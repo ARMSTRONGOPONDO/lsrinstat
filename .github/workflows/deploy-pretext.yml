@@ -52,6 +52,7 @@ jobs:
           fi
           
       - name: Upload artifact for GitHub Pages
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'pretext/output/web'
