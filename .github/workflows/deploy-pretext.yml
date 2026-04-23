@@ -38,7 +38,7 @@ jobs:
       
       - name: Install PreTeXt CLI
         run: |
-          pip install pretextbook
+          pip install pretext
           
       - name: Install ImageMagick for image conversion
         run: |
