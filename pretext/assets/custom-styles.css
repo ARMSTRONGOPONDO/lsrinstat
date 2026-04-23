@@ -40,6 +40,33 @@ pre,
   font-family: var(--font-monospace);
 }
 
+/* Layout for a custom link row injected by custom-footer.js */
+.ptx-page-footer {
+  flex-wrap: wrap;
+  row-gap: 0.25rem;
+}
+
+.custom-site-footer-link-wrap {
+  display: block;
+  flex-basis: 100%;
+  order: 99;
+  margin: 0;
+  padding: 0 0 1.1rem;
+  text-align: center;
+}
+
+.custom-site-footer-link {
+  font-size: 0.9rem;
+  color: var(--brand-orange);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.custom-site-footer-link:hover,
+.custom-site-footer-link:focus-visible {
+  color: var(--link-active-text-color);
+}
+
 /* Match this theme's dark mode strategy (:root.dark-mode) */
 :root.dark-mode {
   --page-color: #0a0a0a;
