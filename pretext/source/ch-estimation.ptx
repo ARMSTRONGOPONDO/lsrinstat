@@ -304,7 +304,7 @@ population mean.
 <image source="images/IQsampc.png"/>
 </figure>
 
-<p>Okay, so that's one part of the story. However, there's something I've been glossing over so far. All my examples up to this point have been based on the "IQ scores" experiments, and because IQ scores are roughly normally distributed, I've assumed that the population distribution is normal. What if it isn't normal? What happens to the sampling distribution of the mean? The remarkable thing is this: no matter what shape your population distribution is, as <m>N</m> increases the sampling distribution of the mean starts to look more like a normal distribution. To give you a sense of this, I ran some simulations using R. To do this, I started with the "ramped" distribution shown in the histogram in <xref ref="fig-cltdemo"/>. As you can see by comparing the triangular shaped histogram to the bell curve plotted by the black line, the population distribution doesn't look very much like a normal distribution at all. Next, I used R to simulate the results of a large number of experiments. In each experiment I took <m>N=2</m> samples from this distribution, and then calculated the sample mean. <xref ref="fig-cltdemob"/> plots the histogram of these sample means (i.e., the sampling distribution of the mean for <m>N=2</m>). This time, the histogram produces a <m>\cap</m>-shaped distribution: it's still not normal, but it's a lot closer to the black line than the population distribution in <xref ref="fig-cltdemoa"/>. When I increase the sample size to <m>N=4</m>, the sampling distribution of the mean is very close to normal (<xref ref="fig-cltdemoc"/>, and by the time we reach a sample size of <m>N=8</m> it's almost perfectly normal. In other words, as long as your sample size isn't tiny, the sampling distribution of the mean will be approximately normal no matter what your population distribution looks like!</p>
+<p>Okay, so that's one part of the story. However, there's something I've been glossing over so far. All my examples up to this point have been based on the "IQ scores" experiments, and because IQ scores are roughly normally distributed, I've assumed that the population distribution is normal. What if it isn't normal? What happens to the sampling distribution of the mean? The remarkable thing is this: no matter what shape your population distribution is, as <m>N</m> increases the sampling distribution of the mean starts to look more like a normal distribution. To give you a sense of this, I ran some simulations using R. To do this, I started with the "ramped" distribution shown in the histogram in <xref ref="fig-cltdemo"/>. As you can see by comparing the triangular shaped histogram to the bell curve plotted by the black line, the population distribution doesn't look very much like a normal distribution at all. Next, I used R to simulate the results of a large number of experiments. In each experiment I took <m>N=2</m> samples from this distribution, and then calculated the sample mean. <xref ref="fig-cltdemob"/> plots the histogram of these sample means (i.e., the sampling distribution of the mean for <m>N=2</m>). This time, the histogram produces a <m>\cap</m>-shaped distribution: it's still not normal, but it's a lot closer to the black line than the population distribution in <xref ref="fig-cltdemoa"/>. When I increase the sample size to <m>N=4</m>, the sampling distribution of the mean is very close to normal (<xref ref="fig-cltdemoc"/>), and by the time we reach a sample size of <m>N=8</m> it's almost perfectly normal. In other words, as long as your sample size isn't tiny, the sampling distribution of the mean will be approximately normal no matter what your population distribution looks like!</p>
 <remark>
   <title>R Code</title>
 <program language="r">
@@ -665,7 +665,7 @@ from 1987 to 2010. This graph was drawn using the <c>bargraph.CI()</c> function.
 Means and 95% confidence intervals for AFL <c>attendance</c>, plotted separately for each year
 from 1987 to 2010. This graph was drawn using the <c>lineplot.CI()</c> function.
 </caption>
-  <image source="images/cilineplot.png"/>
+  <image source="generated/CI_lineplot.png"/>
 </figure>
 
 <p>Finally, here's how you would do it using <c>plotmeans()</c>:</p>
@@ -683,7 +683,7 @@ from 1987 to 2010. This graph was drawn using the <c>lineplot.CI()</c> function.
 Means and 95% confidence intervals for AFL <c>attendance</c>, plotted separately for each year
 from 1987 to 2010. This graph was drawn using the <c>plotmeans()</c> function.
 </caption>
-  <image source="images/ciplotmeans.png"/>
+  <image source="generated/CI_plotmeans.png"/>
 </figure>
 </subsection>
 
