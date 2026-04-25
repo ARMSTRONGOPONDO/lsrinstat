@@ -924,7 +924,7 @@ The downloaded binary packages are in
   </section>
   <section xml:id="factors">
     <title>Factors</title>
-    <p>Okay, it's time to start introducing some of the data types that are somewhat more specific to statistics. If you remember back to <xref ref="ch2-research-statistics"/>, when we assign numbers to possible outcomes, these numbers can mean quite different things depending on what kind of variable we are attempting to measure. In particular, we commonly make the distinction between <em>nominal</em>, <em>ordinal</em>, <em>interval</em> and <em>ratio</em> scale data. How do we capture this distinction in R? Currently, we only seem to have a single numeric data type. That's probably not going to be enough, is it?</p>
+    <p>Okay, it's time to start introducing some of the data types that are somewhat more specific to statistics. If you remember back to <xref ref="studydesign"/>, when we assign numbers to possible outcomes, these numbers can mean quite different things depending on what kind of variable we are attempting to measure. In particular, we commonly make the distinction between <em>nominal</em>, <em>ordinal</em>, <em>interval</em> and <em>ratio</em> scale data. How do we capture this distinction in R? Currently, we only seem to have a single numeric data type. That's probably not going to be enough, is it?</p>
     <p>A little thought suggests that the numeric variable class in R is perfectly suited for capturing ratio scale data. For instance, if I were to measure response time (RT) for five different events, I could store the data in R like this:</p>
     <remark>
       <title>R Code</title>
