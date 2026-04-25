@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <chapter xml:id="hypothesistesting">
-  <title>Hypothesis testing using R-Instat</title>
+  <title>Hypothesis testing using R</title>
 
   <introduction>
     <blockquote>
@@ -223,7 +223,7 @@
             </p>
           </li>
         </ul>
-        In R-Instat, this comparison is done automatically when you run a statistical test.
+        In R, this comparison is done automatically when you run a statistical test.
       </p>
 
       <p>
@@ -373,9 +373,9 @@
     </p>
 
     <remark>
-      <title>Using R-Instat</title>
+      <title>Using R</title>
       <p>
-        The test statistic is calculated automatically in R-Instat.
+        The test statistic is calculated automatically in R.
         See the practical section below for steps.
       </p>
     </remark>
@@ -423,9 +423,9 @@
         </p>
 
         <remark>
-          <title>Using R-Instat</title>
+          <title>Using R</title>
           <p>
-            R-Instat provides a p-value to guide decision making.
+            R provides a p-value to guide decision making.
             See the practical section below.
           </p>
         </remark>
@@ -576,9 +576,9 @@
       </p>
 
       <remark>
-      <title>Using R-Instat</title>
+      <title>Using R</title>
       <p>
-        In R-Instat, the p-value is displayed automatically in the output of a statistical test.
+        In R, the p-value is displayed automatically in the output of a statistical test.
       </p>
 
       <p>
@@ -850,16 +850,16 @@
   At this point some of you might be wondering if this is a "real" hypothesis test, or just a toy example that I made up.
   It's real.
   In the previous discussion I built the test from first principles, thinking that it was the simplest possible problem that you might ever encounter in real life.
-  However, this test already exists: it's called the <em>binomial test</em>, and it can be run directly in R-Instat without writing any code. Follow these steps:.
+  However, this test already exists: it's called the <em>binomial test</em>, and it can be run directly in R without writing any code. Follow these steps:.
   To test the null hypothesis that the response probability is one-half <c>p = .5</c>, <fn>Note that the <c>p</c> here has nothing to do with a <m>p</m> value.
   The <c>p</c> argument in the <c>binom.test()</c> function corresponds to the probability of making a correct response, according to the null hypothesis.
-  In other words, it's the <m>\theta</m> value.</fn> using data in which <c>x = 62</c> of <c>n = 100</c> people made the correct response, here’s how to do it in R-Instat:
+  In other words, it's the <m>\theta</m> value.</fn> using data in which <c>x = 62</c> of <c>n = 100</c> people made the correct response, here’s how to do it in R:
   </p>
 
   <remark>
-  <title>Using R-Instat</title>
+  <title>Using R</title>
   <p>
-  This test can be performed directly in R-Instat without writing any code.
+  This test can be performed directly in R without writing any code.
   </p>
 
   <p><em>Steps:</em>
