@@ -1396,7 +1396,7 @@
     <p>
       My suspicion is that the only time that you would want Cohen's <m>d</m> is when you're running a <m>t</m>-test, and if you're using the <c>oneSampleTTest</c>, <c>independentSamplesTTest</c> and <c>pairedSamplesTTest()</c> functions to run your <m>t</m>-tests, then you don't need to learn any new commands, because they automatically produce an estimate of Cohen's <m>d</m> as part of the output. However, if you're using <c>t.test()</c> then you'll need to use the <c>cohensD()</c> function (also in the <c>lsr</c> package) to do the calculations.
     </p>
-    <table>
+    <table xml:id="table-cohensdinterpretation">
       <title>A (very) rough guide to interpreting Cohen's <m>d</m>.</title>
       <tabular halign="center">
         <row header="yes">
