@@ -21,6 +21,10 @@ __pycache__/
 cli.log
 logs/
 
+assets/generated/
+logs/
+
+
 # don't track OS related files (windows/macos/linux)
 .DS_Store
 .DS_Store?
