@@ -15,6 +15,10 @@ node_modules
 .error_schema.log
 cli.log
 
+assets/generated/
+logs/
+
+
 # don't track OS related files (windows/macos/linux)
 .DS_Store
 .DS_Store?
