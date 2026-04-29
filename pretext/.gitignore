@@ -13,6 +13,7 @@ node_modules
 
 # don't track local Python environments/caches
 .venv/
+.cache/
 __pycache__/
 *.py[cod]
 
