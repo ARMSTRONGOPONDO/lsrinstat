@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <chapter xml:id="hypothesistesting">
-  <title>Hypothesis testing using R-Instat</title>
+  <title>Hypothesis testing</title>
 
   <introduction>
     <blockquote>
@@ -209,24 +209,6 @@
       </p>
 
       <p>
-        In hypothesis testing, we compare two ideas:
-        <ul>
-          <li>
-            <p>
-              Null hypothesis (H₀): no effect or no difference
-            </p>
-          </li>
-
-          <li>
-            <p>
-              Alternative hypothesis (H₁): there is an effect
-            </p>
-          </li>
-        </ul>
-        In R-Instat, this comparison is done automatically when you run a statistical test.
-      </p>
-
-      <p>
         The best way to think about it, in my experience, is to imagine that a hypothesis test is a criminal trial <fn>This analogy only works if you're from an adversarial legal system like UK/US/Australia.
         As I understand these things, the French inquisitorial system is quite different.</fn> <em>the trial of the null hypothesis</em>.
         The null hypothesis is the defendant, the researcher is the prosecutor, and the statistical test itself is the judge.
@@ -428,14 +410,6 @@
       The name for this thing that we calculate to guide our choices is a <em>test statistic</em>.
     </p>
 
-    <remark>
-      <title>Using R-Instat</title>
-      <p>
-        The test statistic is calculated automatically in R-Instat.
-        See the practical section below for steps.
-      </p>
-    </remark>
-
     <p>
       Having chosen a test statistic, the next step is to state precisely which values of the test statistic would cause is to reject the null hypothesis, and which values would cause us to keep it.
       In order to do so, we need to determine what the <em>sampling distribution of the test statistic</em> would be if the null hypothesis were actually true (we talked about sampling distributions earlier in <xref ref="samplingdists"/>).
@@ -505,13 +479,6 @@
           What decision should I make? Should I choose to believe the null hypothesis, or the alternative hypothesis?
         </p>
 
-        <remark>
-          <title>Using R-Instat</title>
-          <p>
-            R-Instat provides a p-value to guide decision making.
-            See the practical section below.
-          </p>
-        </remark>
       </introduction>
 
 
@@ -736,26 +703,6 @@
       You might disagree though, so I've included both.
       I'll start with Neyman's version...
       </p>
-
-      <remark>
-      <title>Using R-Instat</title>
-      <p>
-        In R-Instat, the p-value is displayed automatically in the output of a statistical test.
-      </p>
-
-      <p>
-        The output typically includes:
-      <ul>
-        <li>The p-value</li>
-        <li>The sample proportion</li>
-        <li>A confidence interval</li>
-      </ul>
-      </p>
-
-      <p>
-        Use the p-value to determine whether your result is statistically significant.
-      </p>
-      </remark>
       </introduction>
 
 
@@ -1041,10 +988,10 @@
   At this point some of you might be wondering if this is a "real" hypothesis test, or just a toy example that I made up.
   It's real.
   In the previous discussion I built the test from first principles, thinking that it was the simplest possible problem that you might ever encounter in real life.
-  However, this test already exists: it's called the <em>binomial test</em>, and it can be run directly in R-Instat without writing any code. Follow these steps:.
-  To test the null hypothesis that the response probability is one-half <c>p = .5</c>, <fn>Note that the <c>p</c> here has nothing to do with a <m>p</m> value.
-  The <c>p</c> argument in the <c>binom.test()</c> function corresponds to the probability of making a correct response, according to the null hypothesis.
-  In other words, it's the <m>\theta</m> value.</fn> using data in which <c>x = 62</c> of <c>n = 100</c> people made the correct response, here’s how to do it in R-Instat:
+  However, this test already exists: it's called the <em>binomial test</em>, and it's implemented by an R function called <c>binom.test()</c>. To test the null 
+  hypothesis that the response probability is one half, <c>p = .5</c><fn>Note that the <c>p</c> here has nothing to do with a p value. The <c>p</c> argument in
+  the <c>binom.test()</c> function corresponds to the probability of making a correct response, according to the null hypothesis. In other words, it's the <c>\theta</c> value.</fn>,
+  using data in which <c>x = 62</c> of <c>n = 100</c> people made the correct response, here’s how to do it in R:
   </p>
 
   <remark>
