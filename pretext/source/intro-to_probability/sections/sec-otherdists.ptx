@@ -50,14 +50,7 @@
             </li>
         </ul>
     </p>
-    <console>
-      <output><![CDATA[	xval <- seq(0,10,.01)
-        yval <- dchisq( xval, df=3)
-        plot( 	xval, yval, lwd=3, ylab="Probability Density", xlab="Observed Value",
-            frame.plot = FALSE, col=ifelse(colour,emphCol,"black"), type="l"
-        )
-      ]]></output>
-    </console>
+    
     <figure xml:id="fig-chisqdist">
       <caption>
         Chi-squared distributions with 3 degrees of freedom. Notice that the observed values must always be greater than zero, 
@@ -80,15 +73,7 @@
             </li>
         </ul>
     </p>
-    <console>
-      <output><![CDATA[	# draw the plot
-        xval <- seq(0,10,.01)
-        yval <- df( xval, df1=3, df2=5)
-        plot( 	xval, yval, lwd=3, ylab="Probability Density", xlab="Observed Value",
-            frame.plot = FALSE, col=ifelse(colour,emphCol,"black"), type="l"
-        )
-      ]]></output>
-    </console>
+    
     <figure xml:id="fig-Fdist">
       <caption>
         The F distribution with 3 and 5 degrees of freedom. Qualitatively speaking, it looks pretty similar to a chi-square distribution, 
@@ -108,12 +93,6 @@
       <input><![CDATA[normal.a <- rnorm( n=1000, mean=0, sd=1 )  
       print(head(normal.a))]]></input>
       </program>
-      <console>
-        <output><![CDATA[
-        ## [1]  0.002520116 -1.759249354 -0.055968257  0.879791922  1.166488549
-        ## [6]  0.789723465
-        ]]></output>
-      </console>
     </remark>
     <p>
       So the <c>normal.a</c> variable contains 1000 numbers that are normally distributed, and have mean 0 and standard deviation 1, 

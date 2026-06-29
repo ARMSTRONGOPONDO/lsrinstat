@@ -15,17 +15,7 @@
         Maybe you're wondering why R uses the "d" prefix for functions like <c>dnorm()</c>. And maybe, just maybe, you've been playing around with the <c>dnorm()</c> function, 
         and you accidentally typed in a command like this:
       </p>
-      <remark>
-        <title>R Code</title>
-        <program language="r">
-          <input><![CDATA[dnorm( x = 1, mean = 1, sd = 0.1 )]]></input>
-        </program>
-        <console>
-          <output><![CDATA[
-          ## [1] 3.989423
-          ]]></output>
-        </console>
-      </remark>
+      
       <p>
         And if you've done the last part, you're probably very confused. I've asked R to calculate the probability that <c>x = 1</c>, 
         for a normally distributed variable with <c>mean = 1</c> and standard deviation <c>sd = 0.1</c>; and it tells me that the probability is 3.99. 
