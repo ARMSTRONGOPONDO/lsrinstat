@@ -3,7 +3,7 @@
 <chapter xml:id="descriptives">
   <title>Descriptive statistics</title>
   <p>
-    Any time that you get a new data set to look at, one of the first tasks that you have to do is find ways of summarising the data in a compact, easily understood fashion. This is what <term>descriptive statistics</term> (as opposed to inferential statistics) is all about. In fact, to many people the term "statistics" is synonymous with descriptive statistics. It is this topic that we'll consider in this chapter, but before going into any details, let's take a moment to get a sense of why we need descriptive statistics. To do this, let's load the AFL data using <term>File > Import From Library...</term>. In the dialog that appears, ensure <term>Load from R</term> is selected. Next, select <c>lsrdata</c> from the <term>From Package</term> dropdown menu. Finally, select both the <c>afl.margins</c> and <c>afl.finalists</c> datasets, as shown in <xref ref="fig-import-library" />. 
+    Any time that you get a new data set to look at, one of the first tasks that you have to do is find ways of summarising the data in a compact, easily understood fashion. This is what <term>descriptive statistics</term> (as opposed to inferential statistics) is all about. In fact, to many people the term "statistics" is synonymous with descriptive statistics. It is this topic that we'll consider in this chapter, but before going into any details, let's take a moment to get a sense of why we need descriptive statistics. To do this, let's load the AFL data using <term>File > Import From Library...</term>. In the dialog that appears, ensure <term>Load from R</term> is selected. Next, select <c>lsrdata</c> from the <term>From Package</term> dropdown menu. Finally, select both the <c>afl.margins</c> and <c>afl.finalists</c> datasets, as shown in <xref ref="fig-import-library" />. Several other datasets used later in this chapter—including <c>clinicaltrial</c>, <c>parenthood</c>, and <c>effort</c>—are also available from the same <c>lsrdata</c> package, so you can load them the same way whenever you need them.
   </p>
   <figure xml:id="fig-import-library">
     <caption>Loading the AFL datasets from the lsrdata package in the Import From Library dialog.</caption>
@@ -23,6 +23,12 @@
     </ul>
     <p>
       You can switch between these data frames by clicking on their names in the <term>Data Explorer</term> or the tabs at the top of the data grid.
+    </p>
+  </remark>
+  <remark xml:id="rem-recent-dialogs">
+    <title>Reopening a recent dialog</title>
+    <p>
+      On the R-Instat toolbar, the split button labelled <term>View/Edit Last Dialogue</term> lets you return quickly to a dialog you have used recently. Click the main part of the button to reopen the most recent dialog; click the small dropdown arrow beside it to choose from the last ten dialogs. This is useful when you want to rerun an analysis with small changes without navigating through the menus again.
     </p>
   </remark>
   <p>
@@ -316,22 +322,41 @@
     <subsection xml:id="mode">
       <title>Mode</title>
       <p>
-        The mode of a sample is very simple: it is the value that occurs most frequently. To illustrate the mode using the AFL data, let's examine a different aspect to the data set. Who has played in the most finals? The <c>afl.finalists</c> variable is a factor that contains the name of every team that played in any AFL final from 1987-2010.
+        The mode of a sample is very simple: it is the value that occurs most frequently. For nominal or factor data, such as the <c>afl.finalists</c> variable (which lists every team that played in an AFL final from 1987-2010), the mode tells you which category occurred most often—for example, which team appeared in finals most frequently. For numeric data such as <c>afl.margins</c>, the mode is the winning margin that occurred most often.
       </p>
       <p>
-        In R-Instat, you can find the mode by using the <term>Describe > One Variable > Summarise</term> dialog and checking the <term>Mode</term> box in the <term>Choose Summaries</term> sub-dialog. 
+        In R-Instat, you can find the mode by using the <term>Describe > One Variable > Summarise</term> dialog. First, ensure the mode is set to <term>Customised</term> (refer back to <xref ref="fig-summarise-customised" />). Then, click the <term>Choose Summaries...</term> button. On the <term>Summaries</term> tab, under the <term>Common</term> group, check the <term>Mode</term> box; see <xref ref="fig-summaries-mode" />.
       </p>
+      <figure xml:id="fig-summaries-mode">
+        <caption>Checking the Mode box in the Summaries sub-dialog.</caption>
+        <image source="images/summaries_mode.png"/>
+      </figure>
       <p>
-        If we apply this to our finalists data, we obtain the following result in the Output Window:
+        Next, select the variable you want to analyse. In the selector on the left, highlight the <c>afl.margins</c> variable and click the <term>Add</term> button (the arrow pointing to the right), or simply double-click on the variable name to move it into the <term>Variable(s) to Summarise</term> receiver. Once you click OK on the sub-dialog and then OK on the main dialog, the results appear in the Output Window as shown in <xref ref="fig-mode-output" />.
+      </p>
+      <figure xml:id="fig-mode-output">
+        <caption>The mode value displayed in the R-Instat Output Window.</caption>
+        <image source="images/mode_output.png"/>
+      </figure>
+      <p>
+        For the <c>afl.margins</c> data, R-Instat provides a mode of <c>3</c>.
       </p>
       <remark>
-        <title>R-Instat Output</title>
-        <p>
-          The Output Window will show that the mode is <c>"Geelong"</c>, with a modal frequency of 39.
-        </p>
+        <title>R Code (Generated by R-Instat)</title>
+        <program language="r">
+          <input>
+            # R-Instat uses internal functions to calculate the mode
+            mode( x = afl.margins )
+          </input>
+        </program>
+        <console>
+          <output><![CDATA[
+## [1] 3
+]]></output>
+        </console>
       </remark>
       <p>
-        Taken together, we observe that Geelong (39 finals) played in more finals than any other team during the 1987-2010 period.
+        Taken together, we observe that the most common winning margin (mode) in the AFL data is 3 points, observed in 8 of the 176 games.
       </p>
       <p>
         One last point to make with respect to the mode. While it's generally true that the mode is most often calculated when you have nominal scale data (because means and medians are useless for those sorts of variables), there are some situations in which you really do want to know the mode of an ordinal, interval or ratio scale variable. For instance, let's go back to thinking about our <c>afl.margins</c> variable. This variable is clearly ratio scale, and so in most situations the mean or the median is the measure of central tendency that you want. But consider this scenario... a friend of yours is offering a bet. They pick a football game at random, and (without knowing who is playing) you have to guess the <em>exact</em> margin. For this bet, the mean and the median are completely useless to you. It is the mode that you should bet on. 
@@ -352,7 +377,7 @@
         The <term>range</term> of a variable is very simple: it's the biggest value minus the smallest value. For the AFL winning margins data, the maximum value is 116, and the minimum value is 0. 
       </p>
       <p>
-        In R-Instat, you can find these values by checking the <term>Min</term>, <term>Max</term>, and <term>Range</term> boxes in the <term>Choose Summaries</term> sub-dialog of the <term>One Variable Summarise</term> dialog. 
+        In R-Instat, you can find these values by checking the <term>Minimum</term>, <term>Maximum</term>, and <term>Range</term> boxes in the <term>Choose Summaries</term> sub-dialog of the <term>One Variable Summarise</term> dialog. These options are on the <term>Summaries</term> tab, under the <term>All but (unordered) Factor</term> group.
       </p>
       <remark>
         <title>R-Instat Output</title>
@@ -365,12 +390,42 @@
       </p>
     </subsection>
     <subsection>
+      <title>Calculating multiple measures of spread at once</title>
+      <p>
+        Rather than checking boxes individually for each measure of spread, you can calculate several of them simultaneously in R-Instat. This is often more efficient when you want to explore your data comprehensively. To do this:
+      </p>
+      <ol>
+        <li><p>Open the <term>Describe > One Variable > Summarise</term> dialog and ensure the mode is set to <term>Customised</term> (refer back to <xref ref="fig-summarise-customised" />).</p></li>
+        <li><p>Click the <term>Choose Summaries...</term> button to open the sub-dialog.</p></li>
+        <li><p>On the <term>Summaries</term> tab, under the <term>All but (unordered) Factor</term> group, check the box for <term>Range</term>.</p></li>
+        <li><p>On the <term>Summaries</term> tab, under the <term>Numeric</term> group, check the boxes for <term>Variance</term> and <term>Sd</term>.</p></li>
+        <li><p>On the <term>More</term> tab, under the <term>Scale</term> group, check the box for <term>Median Absolute Deviation (MAD)</term>.</p></li>
+        <li><p>On the <term>More</term> tab, under the <term>Skewness</term> group, check the box for <term>Skewness (3rd Moment)</term>.</p></li>
+        <li><p>On the <term>More</term> tab, under the <term>Kurtosis</term> group, check the box for <term>Kurtosis</term>; see <xref ref="fig-summaries-spread" />.</p></li>
+        <li><p>Click OK on the sub-dialog, then select the <c>afl.margins</c> variable and click OK on the main dialog.</p></li>
+      </ol>
+      <figure xml:id="fig-summaries-spread">
+        <caption>Checking multiple spread and shape measures in the Summaries sub-dialog.</caption>
+        <image source="images/summaries_spread.png"/>
+      </figure>
+      <p>
+        The results appear in the Output Window as a comprehensive table showing all the selected statistics; see <xref ref="fig-spread-output" />.
+      </p>
+      <figure xml:id="fig-spread-output">
+        <caption>Comprehensive spread and shape measures displayed in the R-Instat Output Window.</caption>
+        <image source="images/spread_outputt.png"/>
+      </figure>
+      <p>
+        For the <c>afl.margins</c> data, this gives you a complete picture: Range (116), Variance (679.83), SD (26.07), MAD (28.91), Skewness (0.77), and Kurtosis (0.03). Having all these values together makes it easy to compare different measures and understand the characteristics of your data distribution.
+      </p>
+    </subsection>
+    <subsection>
       <title>Interquartile range</title>
       <p>
         The <term>interquartile range</term> (IQR) is like the range, but instead of calculating the difference between the biggest and smallest value, it calculates the difference between the 25th quantile and the 75th quantile. Probably you already know what a <term>quantile</term> is (they're more commonly called percentiles), but if not: the 10th percentile of a data set is the smallest number <m>x</m> such that 10% of the data is less than <m>x</m>. In fact, we've already come across the idea: the median of a data set is its 50th quantile / percentile! 
       </p>
       <p>
-        In R-Instat, you can calculate the IQR by checking the <term>IQR</term> box in the <term>Choose Summaries</term> sub-dialog. 
+        In R-Instat, you can calculate the IQR by checking the <term>P25</term> and <term>P75</term> boxes in the <term>Choose Summaries</term> sub-dialog—these are on the <term>Summaries</term> tab, under the <term>Quartiles &amp; Terciles</term> group—then subtracting P25 from P75. Alternatively, you can use the <term>Defaults</term> or <term>Skim</term> modes, which report the first and third quartiles (1st Qu and 3rd Qu) so you can read off the IQR directly.
       </p>
       <p>
         For the 2010 AFL winning margins data, R-Instat will provide the interquartile range:
@@ -449,8 +504,43 @@
         <me> \mbox{AAD}(X) = \frac{1}{N} \sum_{i = 1}^N |X_i - \bar{X}| </me>
       </p>
       <p>
-        While R-Instat primarily focuses on the **Standard Deviation** and **Median Absolute Deviation (MAD)** as measures of spread in its summary dialogs, understanding the principle of typical deviations (like AAD) is fundamental to all statistical analysis. If you wanted to calculate AAD in R-Instat, you would typically use the <term>Prepare > Column: Numeric > Calculations</term> dialog to manually perform the steps we just described: calculate the mean, then the absolute differences from that mean, and finally the average of those differences.
+        While R-Instat primarily focuses on the <term>standard deviation</term> and <term>median absolute deviation (MAD)</term> as measures of spread in its summary dialogs, understanding the principle of typical deviations (like AAD) is fundamental to all statistical analysis. If you wanted to calculate AAD in R-Instat, you would use the <term>Prepare > Calculator...</term> dialog (titled <term>Calculations</term>) to manually perform the steps we just described: calculate the mean, then the absolute differences from that mean, and finally the average of those differences.
       </p>
+      <p>
+        To calculate the mean absolute deviation for the <c>afl.margins</c> data using the Calculator dialog:
+      </p>
+      <ol>
+        <li><p>Open <term>Prepare > Calculator...</term>; see <xref ref="fig-calculations-dialog" />.</p></li>
+        <li><p>In the variable selector on the left, select the data frame containing <c>afl.margins</c>.</p></li>
+        <li><p>In the <term>Expression:</term> field, use the keyboard dropdown (default <term>Basic</term>) to select the <term>Summary</term> keyboard, then click <term>Mean</term>. With <c>afl.margins</c> selected in the selector, this builds an expression for the mean. Enter a name such as <c>mean_column</c> in the <term>Store Result:</term> field.</p></li>
+        <li><p>Click <term>Ok</term> to create the mean column; see <xref ref="fig-calculations-mean" />.</p></li>
+        <li><p>Open the Calculator again. Switch the keyboard to <term>Basic</term> and enter the expression <c>abs(afl.margins - mean_column)</c>, where <c>mean_column</c> is the column you just created. Give the new column a name such as <c>abs_diff</c> in <term>Store Result:</term>.</p></li>
+        <li><p>Click <term>Ok</term> to create the absolute-differences column; see <xref ref="fig-calculations-abs-diff" />.</p></li>
+        <li><p>Finally, use the Calculator once more with the <term>Summary</term> keyboard and <term>Mean</term> applied to the <c>abs_diff</c> column (or open <term>Describe > One Variable > Summarise</term> in <term>Customised</term> mode and request the mean of <c>abs_diff</c> only).</p></li>
+        <li><p>The AAD value appears in the Output Window if you used Summarise, or as a constant value in the new column if you used the Calculator; see <xref ref="fig-calculations-aad-output" />.</p></li>
+      </ol>
+      <figure xml:id="fig-calculations-dialog">
+        <caption>The Prepare > Calculator... dialog (titled Calculations) in R-Instat.</caption>
+        <image source="images/calculations_dialog.png"/>
+      </figure>
+      <figure xml:id="fig-calculations-mean">
+        <caption>Calculating the mean of afl.margins in the Calculations dialog.</caption>
+        <image source="images/calculations_mean.png"/>
+      </figure>
+      <figure xml:id="fig-calculations-abs-diff">
+        <caption>Calculating absolute differences from the mean in the Calculations dialog.</caption>
+        <image source="images/calculations_abs_diff.png"/>
+      </figure>
+      <figure xml:id="fig-calculations-aad-output">
+        <caption>The AAD value displayed in the R-Instat Output Window.</caption>
+        <image source="images/calculations_aad_output.png"/>
+      </figure>
+      <remark>
+        <title>Note: Manual Calculation vs Built-in Functions</title>
+        <p>
+          While this manual approach demonstrates the underlying calculation, in practice you would typically use the built-in <term>Standard Deviation</term> or <term>MAD</term> options in the <term>Describe > One Variable > Summarise</term> dialog, as shown in <xref ref="fig-summaries-spread" />. These are more efficient and provide additional statistical information.
+        </p>
+      </remark>
     </subsection>
     <subsection>
       <title>Variance</title>
@@ -477,7 +567,7 @@
         The reason for this is that there's a subtle distinction between "describing a sample" and "making guesses about the population from which the sample came". When you're interested in estimating the population variance, it turns out that dividing by <m>N-1</m> gives you a better (unbiased) estimate. We'll talk more about this in <xref ref="estimation" />. For now, let's just take it on faith that R-Instat knows what it's doing.
       </p>
       <p>
-        In R-Instat, you can calculate the variance by checking the <term>Variance</term> box in the <term>Choose Summaries</term> sub-dialog of the <term>One Variable Summarise</term> dialog. 
+        In R-Instat, you can calculate the variance by checking the <term>Variance</term> box in the <term>Choose Summaries</term> sub-dialog of the <term>One Variable Summarise</term> dialog. For a comprehensive view of multiple spread measures including variance, refer to <xref ref="fig-summaries-spread" /> and <xref ref="fig-spread-output" /> which show how to calculate Range, Variance, SD, and MAD simultaneously.
       </p>
       <remark>
         <title>R Code (Generated by R-Instat)</title>
@@ -505,7 +595,7 @@
         <me> \hat\sigma = \sqrt{ \frac{1}{N-1} \sum_{i=1}^N \left( X_i - \bar{X} \right)^2 } </me>
       </p>
       <p>
-        In R-Instat, calculating the standard deviation is simple: just check the <term>SD</term> box in the <term>Choose Summaries</term> sub-dialog. 
+        In R-Instat, calculating the standard deviation is simple: just check the <term>SD</term> box in the <term>Choose Summaries</term> sub-dialog. For a comprehensive view of multiple spread measures including standard deviation, refer to <xref ref="fig-summaries-spread" /> and <xref ref="fig-spread-output" /> which show how to calculate Range, Variance, SD, and MAD simultaneously.
       </p>
       <remark>
         <title>R Code (Generated by R-Instat)</title>
@@ -534,7 +624,7 @@
         The last measure of variability that I want to talk about is the <term>median absolute deviation</term> (MAD). The basic idea behind MAD is to describe a <em>typical deviation from a typical value</em> (the median) in the data set. It is a robust measure, meaning it isn't highly influenced by extreme outliers.
       </p>
       <p>
-        In R-Instat, you can calculate the MAD by checking the <term>MAD</term> box in the <term>Choose Summaries</term> sub-dialog. 
+        In R-Instat, you can calculate the MAD by checking the <term>Median Absolute Deviation (MAD)</term> box in the <term>Choose Summaries</term> sub-dialog (on the <term>More</term> tab, under the <term>Scale</term> group). For a comprehensive view of multiple spread measures including MAD, refer to <xref ref="fig-summaries-spread" /> and <xref ref="fig-spread-output" /> which show how to calculate Range, Variance, SD, and MAD simultaneously.
       </p>
       <p>
         For our AFL data, checking this box will give you a MAD value:
@@ -589,7 +679,7 @@
       Since it's the more interesting of the two, let's start by talking about the <term>skewness</term>. Skewness is basically a measure of asymmetry, and the easiest way to explain it is by drawing some pictures. As <xref ref="fig-skewness" /> illustrates, if the data tend to have a lot of extreme small values (i.e., the lower tail is "longer" than the upper tail) and not so many extremely large values (left panel), then we say that the data are <em>negatively skewed</em>. On the other hand, if there are more extremely large values than extremely small ones (right panel) we say that the data are <em>positively skewed</em>. 
     </p>
     <p>
-      In R-Instat, you can calculate the skewness of your data by checking the <term>Skewness</term> box in the <term>Choose Summaries</term> sub-dialog of the <term>One Variable Summarise</term> dialog. 
+      In R-Instat, you can calculate the skewness of your data by checking the <term>Skewness (3rd Moment)</term> box in the <term>Choose Summaries</term> sub-dialog (on the <term>More</term> tab, under the <term>Skewness</term> group). For a comprehensive view of multiple shape measures including skewness, refer to <xref ref="fig-summaries-spread" /> and <xref ref="fig-spread-output" /> which show how to calculate Skewness and Kurtosis simultaneously along with spread measures.
     </p>
     <p>
       For the <c>afl.margins</c> data, R-Instat will provide the following result:
@@ -619,7 +709,7 @@
       <image source="generated/kurtosis.png"/>
     </figure>
     <p>
-      In R-Instat, you can calculate the kurtosis by checking the <term>Kurtosis</term> box in the <term>Choose Summaries</term> sub-dialog. 
+      In R-Instat, you can calculate the kurtosis by checking the <term>Kurtosis</term> box in the <term>Choose Summaries</term> sub-dialog (on the <term>More</term> tab, under the <term>Kurtosis</term> group). For a comprehensive view of multiple shape measures including kurtosis, refer to <xref ref="fig-summaries-spread" /> and <xref ref="fig-spread-output" /> which show how to calculate Skewness and Kurtosis simultaneously along with spread measures.
     </p>
     <remark>
       <title>R Code (Generated by R-Instat)</title>
@@ -651,11 +741,27 @@
       <li><p><term>Skim</term>: This uses the <c>skimr</c> package to provide a more detailed summary, including a small histogram for numeric variables.</p></li>
       <li><p><term>Customised</term>: This allows you to pick exactly which statistics you want from the <term>Choose Summaries</term> sub-dialog.</p></li>
     </ul>
+    <p>
+      To access these modes, open the <term>Describe > One Variable > Summarise</term> dialog. At the top of the dialog, you will see three buttons: <term>Defaults</term>, <term>Skim</term>, and <term>Customised</term>; see <xref ref="fig-summarise-modes" />. Click on the desired mode button to switch between them.
+    </p>
+    <figure xml:id="fig-summarise-modes">
+      <caption>The three mode buttons (Defaults, Skim, Customised) at the top of the One Variable Summarise dialog.</caption>
+      <image source="images/summarise_modes.png"/>
+    </figure>
     <subsection>
       <title>"Summarising" a variable</title>
       <p>
         The <term>Defaults</term> mode is the easiest way to get a quick overview. Let's see what happens when we use it for a <em>numeric</em> object like <c>afl.margins</c>:
       </p>
+      <p>
+        To use the Defaults mode:
+      </p>
+      <ol>
+        <li><p>Open the <term>Describe > One Variable > Summarise</term> dialog.</p></li>
+        <li><p>Ensure the <term>Defaults</term> button is selected at the top of the dialog (refer to <xref ref="fig-summarise-modes" />).</p></li>
+        <li><p>Select the <c>afl.margins</c> variable and move it to the <term>Variable(s) to Summarise</term> receiver.</p></li>
+        <li><p>Click OK to generate the summary.</p></li>
+      </ol>
       <remark>
         <title>R Code (Generated by R-Instat)</title>
       <program language="r">
@@ -670,6 +776,10 @@
 ]]></output>
     </console>
       </remark>
+      <figure xml:id="fig-defaults-output">
+        <caption>The Defaults mode output for afl.margins displayed in the R-Instat Output Window.</caption>
+        <image source="images/defaults_output.png"/>
+      </figure>
       <p>
         For numeric variables, we get a whole bunch of useful descriptive statistics. It gives us the minimum and maximum values, the first and third quartiles, the mean and the median. In other words, it gives us a pretty good collection of descriptive statistics related to the central tendency and the spread of the data.
       </p>
@@ -686,7 +796,7 @@
     <subsection>
       <title>"Summarising" a data frame</title>
       <p>
-        Okay, what about data frames? When you select multiple variables (or even a whole data frame) in the <term>Describe > One Variable > Summarise</term> dialog and use the <term>Defaults</term> mode, R-Instat produces a condensed summary of each variable. To see how this is useful, let's look at a new data set: <c>clinicaltrial</c>. This data contains three variables: <c>drug</c>, <c>therapy</c>, and <c>mood.gain</c>. 
+        Okay, what about data frames? When you select multiple variables (or even a whole data frame) in the <term>Describe > One Variable > Summarise</term> dialog and use the <term>Defaults</term> mode, R-Instat produces a condensed summary of each variable. To see how this is useful, let's look at a new data set: <c>clinicaltrial</c>. If you have not loaded it yet, open <term>File > Import From Library...</term>, ensure <term>Load from R</term> is selected, choose <c>lsrdata</c> from the <term>From Package</term> dropdown menu, and select <c>clinicaltrial</c>. This data contains three variables: <c>drug</c>, <c>therapy</c>, and <c>mood.gain</c>.
       </p>
       <p>
         If we select all three variables in the dialog and click OK with the mode set to <term>Defaults</term>, we get the following output:
@@ -705,7 +815,7 @@
         If you need more than just the basic summary, you can use the <term>Customised</term> mode. This is similar to the <c>describe()</c> function found in some R packages, but it's much more flexible because you can choose exactly which statistics you want. 
       </p>
       <p>
-        When you select multiple numeric variables and check boxes like Mean, SD, Median, Trimmed Mean, MAD, Skew, and Kurtosis in the <term>Choose Summaries</term> sub-dialog, R-Instat produces a comprehensive table where each row is a variable and each column is a statistic.
+        When you select multiple numeric variables and check boxes like Mean, Sd, Median, Trimmed Mean, MAD, Skewness (3rd Moment), and Kurtosis in the <term>Choose Summaries</term> sub-dialog, R-Instat produces a comprehensive table where each row is a variable and each column is a statistic.
       </p>
       <figure xml:id="fig-describe-dataframe">
         <caption>A customized, detailed description of the clinicaltrial data frame.</caption>
@@ -720,27 +830,44 @@
       <p>
         The <term>Skim</term> mode in R-Instat provides an even more detailed overview. It calculates the mean, standard deviation, and quantiles, and also identifies the number of missing values. For numeric variables, it even provides a tiny histogram to show the shape of the distribution.
       </p>
+      <p>
+        To use the Skim mode for the <c>afl.margins</c> data:
+      </p>
+      <ol>
+        <li><p>Open the <term>Describe > One Variable > Summarise</term> dialog.</p></li>
+        <li><p>Click the <term>Skim</term> button at the top of the dialog (refer to <xref ref="fig-summarise-modes" />).</p></li>
+        <li><p>Select the <c>afl.margins</c> variable and move it to the <term>Variable(s) to Summarise</term> receiver.</p></li>
+        <li><p>Click OK to generate the skim summary.</p></li>
+      </ol>
+      <figure xml:id="fig-skim-output">
+        <caption>The Skim mode output for afl.margins displayed in the R-Instat Output Window, showing the tiny histogram.</caption>
+        <image source="images/skim_output.png"/>
+      </figure>
+      <p>
+        The output includes the mean, standard deviation, quantiles (min, p25, p50, p75, max), number of missing values, and a small ASCII histogram that gives you a quick visual sense of the distribution shape.
+      </p>
     </subsection>
   </section>
   <section xml:id="groupdescriptives">
     <title>Descriptive statistics separately for each group</title>
     <p>
-      It is very commonly the case that you find yourself needing to look at descriptive statistics broken down by some grouping variable. In R-Instat, there are two primary ways to do this: using the <term>Group by</term> receiver in standard summary dialogs, or using the specialized <term>Summary Tables</term> dialog.
+      It is very commonly the case that you find yourself needing to look at descriptive statistics broken down by some grouping variable. In R-Instat, there are two primary ways to do this: using the <term>Describe > Two/Three Variables > Summarise...</term> dialog with an optional grouping factor, or using the <term>Describe > Tables... > Summaries...</term> dialog for more complex tables.
     </p>
     
     <subsection>
       <title>Grouping in the Summarise dialog</title>
       <p>
-        The simplest way to get grouped results is to use the <term>Factor(s) to group by</term> receiver in the <term>Describe > One Variable > Summarise</term> dialog.
+        To summarise a numeric variable separately for each level of a factor, use the <term>Describe > Two/Three Variables > Summarise...</term> dialog (dialog title: <term>Summarise Two/Three Variables</term>).
       </p>
       <p>
         For instance, in our <c>clinicaltrial</c> data set, we might want to look at the mood gain separately for each drug. To do this:
       </p>
       <ol>
-        <li><p>Open <term>Describe > One Variable > Summarise</term>.</p></li>
-        <li><p>Move <c>mood.gain</c> to the <term>Variable</term> receiver.</p></li>
-        <li><p>Move <c>drug</c> to the <term>Factor(s) to group by</term> receiver.</p></li>
-        <li><p>Click OK.</p></li>
+        <li><p>Open <term>Describe > Two/Three Variables > Summarise...</term>.</p></li>
+        <li><p>Select the <term>Two Variables</term> mode at the top of the dialog.</p></li>
+        <li><p>Move <c>mood.gain</c> to the <term>First Variables:</term> receiver.</p></li>
+        <li><p>Move <c>drug</c> to the <term>Second Variable:</term> receiver.</p></li>
+        <li><p>Click <term>Choose Summaries...</term> to select statistics such as Mean and Sd, then click OK.</p></li>
       </ol>
       <p>
         R-Instat will produce a table where each row corresponds to one of the drugs (placebo, anxifree, and joyzepam), showing the mean, SD, etc., for each.
@@ -750,16 +877,17 @@
     <subsection xml:id="summary-tables">
       <title>The Summary Tables dialog</title>
       <p>
-        When you have multiple grouping variables or want more control over the table layout, the <term>Describe > Specific > Summary Tables</term> dialog is the tool of choice. This is one of R-Instat's most powerful features for descriptive analysis.
+        When you have multiple grouping variables or want more control over the table layout, the <term>Describe > Tables... > Summaries...</term> dialog is the tool of choice (dialog title: <term>Frequency/Summary Tables</term>). This is one of R-Instat's most powerful features for descriptive analysis.
       </p>
       <p>
-        Suppose we want to look at the average mood gain separately for every possible combination of <c>drug</c> and <c>therapy</c>. In the <term>Summary Tables</term> dialog:
+        Suppose we want to look at the average mood gain separately for every possible combination of <c>drug</c> and <c>therapy</c>. In the Summary Tables dialog:
       </p>
-      <ul>
-        <li><p>Move <c>mood.gain</c> into the <term>Summarise</term> receiver.</p></li>
-        <li><p>Move both <c>drug</c> and <c>therapy</c> into the <term>Group by</term> receiver.</p></li>
-        <li><p>Click the <term>Summaries</term> button to select your statistics (e.g., Mean and SD).</p></li>
-      </ul>
+      <ol>
+        <li><p>Ensure the <term>Summary</term> option is selected (not <term>Frequency</term>).</p></li>
+        <li><p>Move <c>mood.gain</c> into the <term>Variables :</term> receiver.</p></li>
+        <li><p>Move both <c>drug</c> and <c>therapy</c> into the <term>Factors :</term> receiver.</p></li>
+        <li><p>Click the <term>Summaries...</term> button to select your statistics (e.g., Mean and Sd), then click OK.</p></li>
+      </ol>
       <p>
         The resulting table in the Output Window will be a "flattened" cross-tabulation showing all six combinations of the two factors.
       </p>
@@ -783,7 +911,7 @@
       A different approach is to convert my grumpiness score into a <term>standard score</term>, also referred to as a <m>z</m>-score. The standard score is defined as the number of standard deviations above the mean that my grumpiness score lies.
     </p>
     <p>
-      In R-Instat, you can easily calculate standard scores for an entire variable using the <term>Prepare > Column: Numeric > Transform</term> dialog. Select the <term>Standardise</term> option to create a new column containing the <m>z</m>-scores.
+      In R-Instat, you can easily calculate standard scores for an entire variable using the <term>Prepare > Column: Numeric > Transform...</term> dialog. Select the <term>Standardize</term> option under <term>Options</term> to create a new column containing the <m>z</m>-scores.
     </p>
     <p>
       In actual maths, the equation for the <m>z</m>-score is <me> z_i = \frac{X_i - \bar{X}}{\hat\sigma} \nonumber </me> So, going back to the grumpiness data, if the mean is 17 and the standard deviation is 5 then my standardised grumpiness score would be <me> z = \frac{35 - 17}{5} = 3.6 \nonumber </me> To interpret this value, recall the rough heuristic that I provided in <xref ref="sd" />, in which I noted that 99.7% of values are expected to lie within 3 standard deviations of the mean. So the fact that my grumpiness corresponds to a <m>z</m> score of 3.6 indicates that I'm very grumpy indeed. 
@@ -804,7 +932,7 @@
         After spending so much time looking at the AFL data, let's turn to a topic close to every parent's heart: sleep. The following data set is fictitious, but based on real events. Suppose I'm curious to find out how much my infant son's sleeping habits affect my mood. Let's say that I can rate my grumpiness very precisely, on a scale from 0 (not at all grumpy) to 100 (grumpy as a very, very grumpy old man). And, let's also assume that I've been measuring my grumpiness, my sleeping patterns and my son's sleeping patterns for quite some time now. Let's say, for 100 days.
       </p>
       <p>
-        We've saved the data as a file called <c>parenthood.Rdata</c>. Once you load this into R-Instat using <term>File > Open</term>, you will see a single data frame called <c>parenthood</c>, which contains four variables: <c>dan.sleep</c>, <c>baby.sleep</c>, <c>dan.grump</c>, and <c>day</c>.
+        This data is available in the <c>lsrdata</c> package as <c>parenthood</c>. To load it, use <term>File > Import From Library...</term>, ensure <term>Load from R</term> is selected, choose <c>lsrdata</c> from the <term>From Package</term> dropdown menu, and select <c>parenthood</c>. You will see a single data frame called <c>parenthood</c>, which contains four variables: <c>dan.sleep</c>, <c>baby.sleep</c>, <c>dan.grump</c>, and <c>day</c>.
       </p>
       <p>
         To get a sense of what the data looks like, we can use the <term>Describe > One Variable > Summarise</term> dialog with the mode set to <term>Skim</term>. This provides a quick overview, including the mean, standard deviation, and a tiny histogram for each variable; see <xref ref="fig-parenthood-skim" />.
@@ -814,10 +942,20 @@
         <image source="images/parenthood_skim_output.png"/>
       </figure>
       <p>
-        For a better look at the distributions, we can also plot proper histograms using the <term>Describe > One Variable > Graph</term> dialog. Selecting <c>dan.grump</c>, <c>dan.sleep</c>, and <c>baby.sleep</c> as our variables produces the graphs shown in <xref ref="fig-parenthood-histograms" />.
+        For a better look at the distributions, we can plot proper histograms using the <term>Describe > One Variable > Graph...</term> dialog (dialog title: <term>One Variable Graph</term>). The default graph type for numeric variables is a boxplot, so you need to change the graph type before running the dialog.
       </p>
+      <ol>
+        <li><p>Open <term>Describe > One Variable > Graph...</term> and make sure the <c>parenthood</c> data frame is selected in the data frame selector on the left.</p></li>
+        <li><p>Move <c>dan.grump</c>, <c>dan.sleep</c>, and <c>baby.sleep</c> into the <term>Selected Variables:</term> receiver. (Leave <c>day</c> out, since it is just an index variable.)</p></li>
+        <li><p>Click <term>Graph Options</term> to open the <term>One Variable Graph Options</term> sub-dialog.</p></li>
+        <li><p>On the <term>Types</term> tab, set <term>Numeric:</term> to <term>Histogram</term>.</p></li>
+        <li><p>On the <term>Display</term> tab, check <term>Free Scale Axis for Facets</term>. This is important here because grumpiness is measured on a 0–100 scale while the sleep variables are measured in hours, so each variable needs its own axis scale.</p></li>
+        <li><p>Click <term>Return</term> on the sub-dialog to go back to the main dialog.</p></li>
+        <li><p>In the <term>Output</term> group, leave <term>Facets</term> selected. This produces one histogram panel per variable in a single graph window, as shown in <xref ref="fig-parenthood-histograms" />. (If you prefer three separate graph windows instead, choose <term>Single Graphs</term>.)</p></li>
+        <li><p>Click <term>OK</term> to draw the histograms.</p></li>
+      </ol>
       <figure xml:id="fig-parenthood-histograms">
-        <caption>Histograms for the three interesting variables in the parenthood data set.</caption>
+        <caption>Histograms for <c>dan.grump</c>, <c>dan.sleep</c>, and <c>baby.sleep</c> from the <term>One Variable Graph</term> dialog, using <term>Histogram</term> on the <term>Types</term> tab of <term>Graph Options</term> and <term>Facets</term> output with <term>Free Scale Axis for Facets</term> enabled.</caption>
         <image source="images/parenthood_histograms.png"/>
       </figure>
       <p>
@@ -828,13 +966,31 @@
     <subsection>
       <title>The strength and direction of a relationship</title>
       <p>
-        We can draw <term>scatterplots</term> to give us a general sense of how closely related two variables are. In R-Instat, you can do this using the <term>Describe > Specific > Point Plot</term> dialog. 
+        We can draw <term>scatterplots</term> to give us a general sense of how closely related two variables are. In R-Instat, use the <term>Describe > Graphs > Scatter Plot...</term> menu item (dialog title: <term>Scatter Plot</term>).
       </p>
       <p>
-        For instance, let's compare the relationship between <c>dan.sleep</c> and <c>dan.grump</c> with that between <c>baby.sleep</c> and <c>dan.grump</c>. In the Point Plot dialog, move <c>dan.grump</c> to the <term>Y variable</term> receiver and <c>dan.sleep</c> to the <term>X variable</term> receiver. Then repeat the process for <c>baby.sleep</c>.
+        For instance, let's compare the relationship between <c>dan.sleep</c> and <c>dan.grump</c> with that between <c>baby.sleep</c> and <c>dan.grump</c>. Each scatterplot uses one response variable on the vertical axis and one explanatory variable on the horizontal axis, so you create them one at a time.
+      </p>
+      <p>
+        To draw the first plot (<c>dan.grump</c> against <c>dan.sleep</c>):
+      </p>
+      <ol>
+        <li><p>Open <term>Describe > Graphs > Scatter Plot...</term> and make sure the <c>parenthood</c> data frame is selected.</p></li>
+        <li><p>At the top right of the dialog, leave the receiver in <term>Single Variable</term> mode (this is the default).</p></li>
+        <li><p>Move <c>dan.grump</c> into the <term>Single Variable</term> receiver (the response variable plotted on the <m>y</m>-axis).</p></li>
+        <li><p>Move <c>dan.sleep</c> into the <term>X Variable:</term> receiver.</p></li>
+        <li><p>Leave <term>By Variable (Optional):</term> and <term>Label Variable (Optional):</term> empty.</p></li>
+        <li><p>In the <term>Geom</term> group, leave <term>Point</term> selected. (The dialog can also draw jittered or count-based versions of the plot, but a simple point scatterplot is what we want here.)</p></li>
+        <li><p>Click <term>OK</term> to draw the graph.</p></li>
+      </ol>
+      <p>
+        To draw the second plot (<c>dan.grump</c> against <c>baby.sleep</c>), open the dialog again and repeat the same steps, but put <c>baby.sleep</c> in the <term>X Variable:</term> receiver instead. The two graphs side by side are shown in <xref ref="fig-parenthood-scatterplots" />.
+      </p>
+      <p>
+        If you want to compare <c>baby.sleep</c> with <c>dan.sleep</c> later, use the same dialog again with <c>dan.sleep</c> in the <term>Single Variable</term> receiver and <c>baby.sleep</c> in <term>X Variable:</term>.
       </p>
       <figure xml:id="fig-parenthood-scatterplots">
-        <caption>Scatterplots in R-Instat showing the relationship between Dan's grumpiness and sleep (left) and the baby's sleep (right).</caption>
+        <caption>Two scatterplots from the <term>Scatter Plot</term> dialog: <c>dan.grump</c> against <c>dan.sleep</c> (left) and <c>dan.grump</c> against <c>baby.sleep</c> (right), each created with <term>Single Variable</term> mode, <term>Point</term> geom, and one variable in the <term>Single Variable</term> receiver and one in <term>X Variable:</term>.</caption>
         <image source="images/parenthood_scatterplots.png"/>
       </figure>
       <p>
@@ -865,18 +1021,23 @@
     <subsection>
       <title>Calculating correlations in R-Instat</title>
       <p>
-        In R-Instat, you can calculate correlations using the <term>Describe > Correlations</term> dialog. 
+        In R-Instat, you can calculate correlations using the <term>Describe > Two/Three Variables > Correlations...</term> menu item (dialog title: <term>Correlation</term>). To get a correlation matrix for several numeric variables at once, use the <term>Multiple Variables</term> mode.
       </p>
       <ol>
-        <li><p>Select the numeric variables you want to correlate into the <term>Variable(s)</term> receiver.</p></li>
-        <li><p>Choose the method (e.g., <term>Pearson</term> for standard correlations) from the <term>Method</term> options.</p></li>
-        <li><p>Click OK to produce a correlation matrix in the Output Window.</p></li>
+        <li><p>Open <term>Describe > Two/Three Variables > Correlations...</term> and make sure the <c>parenthood</c> data frame is selected.</p></li>
+        <li><p>At the top of the dialog, select <term>Multiple Variables</term>.</p></li>
+        <li><p>Move <c>dan.sleep</c>, <c>baby.sleep</c>, and <c>dan.grump</c> into the <term>Variables:</term> receiver. (Leave <c>day</c> out, since it is just an index variable rather than a measurement.)</p></li>
+        <li><p>In the <term>Method</term> group, leave <term>Pearson</term> selected for standard Pearson correlations.</p></li>
+        <li><p>In the <term>Missing</term> group, leave <term>Complete rows only</term> selected. (Use <term>Pairwise</term> only if you want each correlation calculated from all available pairs of observations, even when other variables have missing values.)</p></li>
+        <li><p>Leave <term>Display Options</term> unchecked for a straightforward correlation matrix in the Output Window. (If you check <term>Display Options</term>, you can format the table further using options such as <term>Decimal Places</term> and <term>Output</term>.)</p></li>
+        <li><p>You do not need to click <term>Options</term> for this table. That button opens a separate sub-dialog for correlation plots (for example, a correlation heatmap or scatterplot matrix), which is useful later but not needed for the matrix in <xref ref="fig-parenthood-corr-matrix" />.</p></li>
+        <li><p>Click <term>OK</term> to produce the correlation matrix in the Output Window.</p></li>
       </ol>
       <p>
         For the <c>parenthood</c> data, R-Instat will produce a matrix showing how <c>dan.sleep</c>, <c>baby.sleep</c>, and <c>dan.grump</c> are related. For instance, the correlation between <c>dan.sleep</c> and <c>dan.grump</c> is <m>r = -0.90</m>, indicating a very strong negative relationship.
       </p>
       <figure xml:id="fig-parenthood-corr-matrix">
-        <caption>The correlation matrix for the parenthood data in R-Instat.</caption>
+        <caption>The Pearson correlation matrix for <c>dan.sleep</c>, <c>baby.sleep</c>, and <c>dan.grump</c> from the <term>Correlation</term> dialog, using <term>Multiple Variables</term> mode with <term>Pearson</term> method and <term>Complete rows only</term> missing-data handling.</caption>
         <image source="images/parenthood_corr_matrix.png"/>
       </figure>
     </subsection>
@@ -914,34 +1075,44 @@
     <subsection xml:id="spearman">
       <title>Spearman's rank correlations</title>
       <p>
+        <em>Before working through this section, load the <c>effort</c> data set.</em> If it is not loaded. Use <term>File > Import From Library...</term>, ensure <term>Load from R</term> is selected, choose <c>lsrdata</c> from the <term>From Package</term> dropdown menu, and select <c>effort</c>. When it has loaded, you should see a data frame called <c>effort</c> in the Data Explorer, with two numeric variables: <c>hours</c> and <c>grade</c>.
+      </p>
+      <p>
         The Pearson correlation coefficient is useful for a lot of things, but it does have shortcomings. One issue in particular stands out: what it actually measures is the strength of the <em>linear</em> relationship between two variables. In other words, what it gives you is a measure of the extent to which the data all tend to fall on a single, perfectly straight line.
       </p>
       <p>
-        Sometimes, an increase in one variable <m>X</m> really is reflected in an increase in another variable <m>Y</m>, but the nature of the relationship isn't necessarily linear. To illustrate, consider the relationship between effort and reward when studying for an exam. A little bit of effort causes a massive improvement at first, but it takes a lot more effort to move from 90% to 95% than it does to move from 0% to 35%. 
+        Sometimes, an increase in one variable <m>X</m> really is reflected in an increase in another variable <m>Y</m>, but the nature of the relationship isn't necessarily linear. To illustrate, consider the relationship between effort and reward when studying for an exam. A little bit of effort causes a massive improvement at first, but it takes a lot more effort to move from 90% to 95% than it does to move from 0% to 35%.
       </p>
       <p>
-        Consider a toy data set of 10 students, where we've recorded the <c>hours</c> they worked and the <c>grade</c> they received. If we run a standard Pearson correlation, we get <m>r = 0.91</m>. This is a strong relationship, but it doesn't quite capture the fact that in this data, increasing effort <em>always</em> increases the grade. There is a perfect **_ordinal relationship_** here.
+        The <c>effort</c> data set is a toy example of 10 students, with <c>hours</c> worked and <c>grade</c> received for each. If we run a standard Pearson correlation on these variables, we get <m>r = 0.91</m>. This is a strong relationship, but it doesn't quite capture the fact that in this data, increasing effort <em>always</em> increases the grade. There is a perfect <em>ordinal relationship</em> here, as shown in <xref ref="fig-rankcorrpic" />.
       </p>
+      <figure xml:id="fig-rankcorrpic">
+        <caption>An illustration from the original <em>Learning Statistics with R</em> book, generated from the <c>effort</c> data (not from an R-Instat dialog). Each point is one student. The dashed line shows the linear (Pearson) relationship (<m>r = 0.91</m>); the solid line connecting the observations shows that higher effort always corresponds to a higher grade, which is why Spearman's <m>\rho = 1</m> here.</caption>
+        <image source="images/ordinal_relationship.png"/>
+      </figure>
       <p>
         How should we address this? Actually, it's really easy: if we're looking for ordinal relationships, all we have to do is treat the data as if it were ordinal scale! So, instead of measuring effort in terms of "hours worked", let's rank all 10 of our students in order of hours worked. The student who did the least work (2 hours) gets rank 1, and so on. If we do this for both variables and then calculate the correlation between these ranks, we get a perfect relationship: <m>\rho = 1</m>.
       </p>
       <p>
-        What we've just re-invented is <term>Spearman's rank correlation</term> (traditionally denoted by the Greek letter <m>\rho</m>, "rho"). The idea is simple: instead of calculating the correlation between the raw data, we first convert the data into ranks, and then calculate the Pearson correlation on those ranks. 
+        What we've just re-invented is <term>Spearman's rank correlation</term> (traditionally denoted by the Greek letter <m>\rho</m>, "rho"). The idea is simple: instead of calculating the correlation between the raw data, we first convert the data into ranks, and then calculate the Pearson correlation on those ranks.
       </p>
       <p>
-        In R-Instat, calculating a Spearman correlation is just as easy as a Pearson one. In the <term>Describe > Correlations</term> dialog:
+        In R-Instat, calculating a Spearman correlation for two numeric variables uses the same <term>Correlation</term> dialog as Pearson correlations, but in <term>Two Variables</term> mode:
       </p>
       <ol>
-        <li><p>Select your variables (e.g., <c>hours</c> and <c>grade</c> from the <c>effort</c> data).</p></li>
-        <li><p>In the <term>Method</term> options, select <term>Spearman</term>; see <xref ref="fig-spearman-method" />.</p></li>
-        <li><p>Click OK.</p></li>
+        <li><p>Make sure the <c>effort</c> data frame is loaded (see the note at the start of this section) and selected in the dialog's data frame selector.</p></li>
+        <li><p>Open <term>Describe > Two/Three Variables > Correlations...</term> (or reopen it from the toolbar using <term>View/Edit Last Dialogue</term> if you used this dialog recently).</p></li>
+        <li><p>At the top of the dialog, select <term>Two Variables</term>.</p></li>
+        <li><p>Move <c>hours</c> into the <term>First Variable:</term> receiver and <c>grade</c> into the <term>Second Variable:</term> receiver.</p></li>
+        <li><p>In the <term>Method</term> group, select <term>Spearman</term>; see <xref ref="fig-spearman-method" />.</p></li>
+        <li><p>Click <term>OK</term>. R-Instat will report the rank-based correlation coefficient <m>\rho = 1</m> for this data set.</p></li>
       </ol>
       <figure xml:id="fig-spearman-method">
-        <caption>Selecting the Spearman method in the R-Instat Correlations dialog.</caption>
+        <caption>Selecting the <term>Spearman</term> method in the <term>Correlation</term> dialog for the <c>effort</c> data, with <c>hours</c> and <c>grade</c> in the <term>Two Variables</term> receivers.</caption>
         <image source="images/spearman_method_selection.png"/>
       </figure>
       <p>
-        This will produce the rank-based correlation coefficient <m>\rho</m>, which is more robust to non-linear (but monotonic) relationships.
+        This produces a rank-based correlation that is more robust to non-linear (but monotonic) relationships such as the one in <xref ref="fig-rankcorrpic" />.
       </p>
     </subsection>
   </section>
@@ -954,7 +1125,7 @@
       R-Instat dialogs handle missing values automatically. In most summary dialogs, you will find a <term>Missing Options</term> or <term>Options</term> button. This allows you to choose whether to ignore missing values (the default) or include them in the analysis. 
     </p>
     <p>
-      For correlations, the <term>Describe > Correlations</term> dialog allows you to choose how to handle cases with missing data, typically by ignoring any row that has a missing value in the variables being correlated.
+      For correlations, the <term>Describe > Two/Three Variables > Correlations...</term> dialog includes a <term>Missing</term> group where you can choose how to handle cases with missing data, typically by using complete rows only or pairwise deletion.
     </p>
   </section>
   <section>
@@ -973,16 +1144,16 @@
         <p><em>Getting summaries in R-Instat</em>. We explored the <term>Defaults</term>, <term>Skim</term>, and <term>Customised</term> summary options. (<xref ref="summary" />)</p>
       </li>
       <li>
-        <p><em>Grouped statistics</em>. How to break down summaries by a factor using the <term>Group by</term> receiver or the <term>Summary Tables</term> dialog. (<xref ref="groupdescriptives" />)</p>
+        <p><em>Grouped statistics</em>. How to break down summaries by a factor using <term>Two/Three Variables > Summarise...</term> or <term>Tables... > Summaries...</term>. (<xref ref="groupdescriptives" />)</p>
       </li>
       <li>
-        <p><em>Standard scores</em>. Using the <term>Transform</term> menu to calculate <m>z</m>-scores. (<xref ref="zscore" />)</p>
+        <p><em>Standard scores</em>. Using <term>Prepare > Column: Numeric > Transform...</term> to calculate <m>z</m>-scores. (<xref ref="zscore" />)</p>
       </li>
       <li>
-        <p><em>Correlations</em>. Measuring the strength of relationships between variables using the <term>Correlations</term> dialog. (<xref ref="correl" />)</p>
+        <p><em>Correlations</em>. Measuring the strength of relationships between variables using <term>Two/Three Variables > Correlations...</term>. (<xref ref="correl" />)</p>
       </li>
       <li>
-        <p><em>Missing data</em>. How R-Instat handles missing values in calculations. (<xref ref="missing" /></p>
+        <p><em>Missing data</em>. How R-Instat handles missing values in calculations. (<xref ref="missing" />)</p>
       </li>
     </ul>
   </section>
