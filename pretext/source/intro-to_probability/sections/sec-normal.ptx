@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section xml:id="normal" xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>The normal distribution</title>
-    <introduction>
-        <p>
-            
-        </p>
-    </introduction>
+    <introduction>    
     <p>
       While the binomial distribution is conceptually the simplest distribution to understand, it's not the most important one. 
       That particular honour goes to the <em>normal distribution</em>, which is also referred to as "the bell curve" or a "Gaussian distribution". 
       A normal distribution is described using two parameters, the mean of the distribution <m>\mu</m> and the standard deviation of the distribution <m>\sigma</m>. 
-      The notation that we sometimes use to say that a variable <m>X</m> is normally distributed is as follows: <me>X \sim \mbox{Normal}(\mu,\sigma)</me> Of course, 
-      that's just notation. It doesn't tell us anything interesting about the normal distribution itself. As was the case with the binomial distribution, 
+      The notation that we sometimes use to say that a variable <m>X</m> is normally distributed is as follows: 
+      <m>X \sim \mbox{Normal}(\mu,\sigma)</m> 
+      Of course, that's just notation. It doesn't tell us anything interesting about the normal distribution itself. As was the case with the binomial distribution, 
       I have included the formula for the normal distribution in this book, because I think it's important enough that everyone who learns statistics should at least look at it, 
       but since this is an introductory text I don't want to focus on it, so I've tucked it away in Table <xref ref="table-distribution-formulas"/>. Similarly, 
       the R functions for the normal distribution are <c>dnorm()</c>, <c>pnorm()</c>, <c>qnorm()</c> and <c>rnorm()</c>. 
@@ -19,6 +16,7 @@
       The only thing that I should point out is that the argument names for the parameters are <c>mean</c> and <c>sd</c>. 
       In pretty much every other respect, there's nothing else to add.
     </p>
+
     <p>
       Instead of focusing on the maths, let's try to get a sense for what it means for a variable to be normally distributed. 
       To that end, have a look at <xref ref="fig-normdist"/>, which plots a normal distribution with mean <m>\mu = 0</m> and standard deviation <m>\sigma = 1</m>. 
@@ -29,10 +27,10 @@
       for instance, there's a bar located at <m>X=3</m> and another one at <m>X=4</m>, but there's nothing in between. Continuous quantities don't have this constraint. 
       For instance, suppose we're talking about the weather. The temperature on a pleasant Spring day could be 23 degrees, 24 degrees, 23.9 degrees, 
       or anything in between since temperature is a continuous variable, and so a normal distribution might be quite appropriate for describing Spring temperatures.<fn>
-        In practice, the normal distribution is so handy that people tend to use it even when the variable isn't actually continuous. 
-        As long as there are enough categories (e.g., Likert scale responses to a questionnaire), it's pretty standard practice to use the normal distribution as an approximation. 
-        This works out much better in practice than you'd think.</fn>
-      </p>
+      In practice, the normal distribution is so handy that people tend to use it even when the variable isn't actually continuous. 
+      As long as there are enough categories (e.g., Likert scale responses to a questionnaire), it's pretty standard practice to use the normal distribution as an approximation. 
+      This works out much better in practice than you'd think.</fn>
+    </p>
     
     <figure xml:id="fig-normdist">
       <caption>The normal distribution with mean 0 and standard deviation 1.</caption>
@@ -70,12 +68,12 @@
       <caption>Illustration of the 68-95-99.7 rule: the shaded area shows the probability of falling within 1 standard deviation of the mean.</caption>
       <image source="images/sdnorm1.png"/>
     </figure>
-    <console>
     
     <figure xml:id="fig-sdnorm2">
       <caption>Illustration of the 68-95-99.7 rule: the shaded area shows the probability of falling within 2 standard deviations of the mean.</caption>
       <image source="images/sdnorm2.png"/>
     </figure>
+  </introduction>
 
-    <xi:include href="subsections/normal/subsec-density.ptx" />
-  </section>
+  <xi:include href="subsections/normal/subsec-density.ptx" />
+</section>

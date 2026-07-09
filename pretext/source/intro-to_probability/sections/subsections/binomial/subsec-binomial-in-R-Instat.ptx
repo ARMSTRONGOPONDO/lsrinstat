@@ -28,20 +28,76 @@
       </p>
       
       <p>
-        So, in order to calculate the probability of getting <c>x = 4</c> skulls, from an experiment of <c>size = 20</c> trials, 
-        in which the probability of getting a skull on any one trial is <c>prob = 1/6</c> ... well, the command I would use is simply this:
+        To calculate the probability of obtaining 4 successes from an experiment of 20 trials, where the probability of success on each trial is 1/6, 
+        use the Show Model dialog in R-Instat through <em>Model Menu <m>\rightarrow</m> Probality Distributions <m>\rightarrow</m> Show Model...</em> as show in the image below.
       </p>
-      <remark>
-        <title>R Code</title>
-        <program language="r">
-        <input><![CDATA[dbinom( x = 4, size = 20, prob = 1/6 )]]></input>
-      </program>
-          <console>
-            <output><![CDATA[
-      ## [1] 0.2022036
-      ]]></output>
-          </console>
-      </remark>
+      <figure xml:id="model_menu">
+        <caption>Model Menu Navigation</caption>
+        <image source="images\intro-to_probability\model_menu.png">
+          <shortdescription>Model Menu Naviagtion</shortdescription>
+        </image>
+      </figure>
+      <p>
+        This will open the dialog below, and you can use the sample dataset shown alongside. You can type into a spreadsheet or notepad and import it in format supported by R_Instat.
+      </p>
+      <p>
+        In the inputs of the dialog;
+      </p>
+      <assemblage xml:id="assemblage-show_model_steps">
+          <title>Steps</title>
+          <p>
+            <ul>
+              <li>
+                <p>
+                  Select the <em>Probabilites</em>
+                </p>
+              </li>
+              <li>
+                <p>
+                  In <em>Values</em>, enter 4 (or select the variable containing the observed values, e.g. Skulls). 
+                </p>
+              </li>
+              <li>
+                <p>
+                  Select <em>Binomial</em> as the <em>Distribution</em>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  In <em>mean</em>, enter <m>20</m> to specify the number of trials.
+                </p>
+              </li>
+              <li>
+                <p>
+                  In <em>Probability</em>, enter <m>\frac{1}{6} (or 0.166667)</m> as the probability of success.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Click <em>OK</em>
+                </p>
+              </li>
+            </ul>
+            
+            R-Instat generates the equivalent R command:
+            <m>dbinom(x = 4, size = 20, prob = 1/6)</m>
+            which returns:
+            <m>[1] 0.005909</m>
+          </p>
+        </assemblage>
+      <figure xml:id="show_model_dialog">
+        <caption>Show Model Dialog with Dataset Used</caption>
+        <image source="images\intro-to_probability\show_model_dlg.png">
+          <shortdescription>Show Model Dialog</shortdescription>
+        </image>
+      </figure>
+      
+      <figure xml:id="show_model_output">
+        <caption>Binomial Distribution Output</caption>
+        <image source="images\intro-to_probability\show_model_output.png">
+          <shortdescription>Binomial Output</shortdescription>
+        </image>
+      </figure>
       <p>
         To give you a feel for how the binomial distribution changes when we alter the values of <m>\theta</m> and <m>N</m>, let's suppose that instead of rolling dice, 
         I'm actually flipping coins. This time around, my experiment involves flipping a fair coin repeatedly, and the outcome that I'm interested in is the number of heads that I observe. 
@@ -50,34 +106,7 @@
         the main effect of this is to shift the whole distribution, as you'd expect. Okay, what if we flipped a coin <m>N=100</m> times? 
         Well, in that case, we get <xref ref="fig-binomial2b"/>. The distribution stays roughly in the middle, but there's a bit more variability in the possible outcomes.
       </p>
-      <console>
-      <output><![CDATA[
-      # plots the three examples of a binomial distribution
-        
-        # needed for printing
-        width <- 8
-        height <- 6
-        
-        # function to produce a styled binomial plot
-        binomPlot <- function( n,p, ... ) {
-          
-          # probabilities of each outcome
-          out <- 0:n
-          prob <- dbinom( x=out, size=n, prob=p )
-          
-          # plot
-          plot( 
-            out, prob, type="h", lwd=3, ylab="Probability", 
-            frame.plot=FALSE, col=ifelse(colour,emphCol,"black"), ...
-          )
-          
-        }
-
-
-        # coins image #1...
-        binomPlot( n=20, p=1/2, xlab="Number of heads observed" )
-      ]]></output>
-      </console>
+      
       <figure xml:id="fig-binomial2a">
         <caption>The binomial distributions which I'm flipping a fair coin, so the
           underlying success probability is theta = 1/2. We assume I'm 
@@ -85,34 +114,7 @@
         </caption>
         <image source="images/binomial2a.png"/>
       </figure>
-      <console>
-        <output>
-          <![CDATA[# plots the three examples of a binomial distribution
-          
-          # needed for printing
-          width <- 8
-          height <- 6
-          
-          # function to produce a styled binomial plot
-          binomPlot <- function( n,p, ... ) {
-            
-            # probabilities of each outcome
-            out <- 0:n
-            prob <- dbinom( x=out, size=n, prob=p )
-            
-            # plot
-            plot( 
-              out, prob, type="h", lwd=3, ylab="Probability", 
-              frame.plot=FALSE, col=ifelse(colour,emphCol,"black"), ...
-            )
-            
-          }
-
-          # coins image #2...
-          binomPlot( n=100, p=1/2, xlab="Number of heads observed" )
-          ]]>
-        </output>
-      </console>
+      
       <figure xml:id="fig-binomial2b">
         <caption>The binomial distributions which I'm flipping a fair coin, so the
           underlying success probability is theta = 1/2. We assume I'm 
