@@ -1,64 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<subsection xml:id="density">
-      <title>Probability density</title>
-      <p>
-        There's something I've been trying to hide throughout my discussion of the normal distribution, something that some introductory textbooks omit completely. 
-        They might be right to do so: this "thing" that I'm hiding is weird and counterintuitive even by the admittedly distorted standards that apply in statistics. 
-        Fortunately, it's not something that you need to understand at a deep level in order to do basic statistics: rather, 
-        it's something that starts to become important later on when you move beyond the basics. So, if it doesn't make complete sense, 
-        don't worry: try to make sure that you follow the gist of it.
-      </p>
-      <p>
-        Throughout my discussion of the normal distribution, there's been one or two things that don't quite make sense. 
-        Perhaps you noticed that the <m>y</m>-axis in these figures is labelled "Probability Density" rather than density. 
-        Maybe you noticed that I used <m>p(X)</m> instead of <m>P(X)</m> when giving the formula for the normal distribution. 
-        Maybe you're wondering why R uses the "d" prefix for functions like <c>dnorm()</c>. And maybe, just maybe, you've been playing around with the <c>dnorm()</c> function, 
-        and you accidentally typed in a command like this:
-      </p>
-      
-      <p>
-        And if you've done the last part, you're probably very confused. I've asked R to calculate the probability that <c>x = 1</c>, 
-        for a normally distributed variable with <c>mean = 1</c> and standard deviation <c>sd = 0.1</c>; and it tells me that the probability is 3.99. 
-        But, as we discussed earlier, probabilities <em>can't</em> be larger than 1. So either I've made a mistake, or that's not a probability.
-      </p>
-      <p>
-        As it turns out, the second answer is correct. What we've calculated here isn't actually a probability: it's something else. 
-        To understand what that something is, you have to spend a little time thinking about what it really <em>means</em> to say that <m>X</m> is a continuous variable. 
-        Let's say we're talking about the temperature outside. The thermometer tells me it's 23 degrees, but I know that's not really true. It's not <em>exactly</em> 23 degrees. 
-        Maybe it's 23.1 degrees, I think to myself. But I know that that's not really true either, because it might actually be 23.09 degrees. But, I know that... well, you get the idea. 
-        The tricky thing with genuinely continuous quantities is that you never really know exactly what they are.
-      </p>
-      <p>
-        Now think about what this implies when we talk about probabilities. 
-        Suppose that tomorrow's maximum temperature is sampled from a normal distribution with mean 23 and standard deviation 1. 
-        What's the probability that the temperature will be <em>exactly</em> 23 degrees? The answer is "zero", or possibly, "a number so close to zero that it might as well be zero". 
-        Why is this? It's like trying to throw a dart at an infinitely small dart board: no matter how good your aim, you'll never hit it. 
-        In real life you'll never get a value of exactly 23. It'll always be something like 23.1 or 22.99998 or something. In other words, 
-        it's completely meaningless to talk about the probability that the temperature is exactly 23 degrees. However, in everyday language, 
-        if I told you that it was 23 degrees outside and it turned out to be 22.9998 degrees, you probably wouldn't call me a liar. Because in everyday language, 
-        "23 degrees" usually means something like "somewhere between 22.5 and 23.5 degrees". 
-        And while it doesn't feel very meaningful to ask about the probability that the temperature is exactly 23 degrees, 
-        it does seem sensible to ask about the probability that the temperature lies between 22.5 and 23.5, or between 20 and 30, 
-        or any other range of temperatures.
-      </p>
-      <p>
-        The point of this discussion is to make clear that, when we're talking about continuous distributions, it's not meaningful to talk about the probability of a specific value. 
-        However, what we <em>can</em> talk about is the probability that the value lies within a particular range of values. 
-        To find out the probability associated with a particular range, what you need to do is calculate the "area under the curve". 
-        We've seen this concept already: in <xref ref="fig-sdnorm1"/>, the shaded areas shown depict genuine probabilities (e.g., 
-        in the left hand panel of <xref ref="fig-sdnorm1"/> it shows the probability of observing a value that falls within 1 standard deviation of the mean).
-      </p>
-      <p>
-        Okay, so that explains part of the story. I've explained a little bit about how continuous probability distributions should be interpreted (i.e., 
-        area under the curve is the key thing), but I haven't actually explained what the <c>dnorm()</c> function actually calculates. 
-        Equivalently, what does the formula for <m>p(x)</m> that I described earlier actually mean? Obviously, <m>p(x)</m> doesn't describe a probability, 
-        but what is it? The name for this quantity <m>p(x)</m> is a <em>probability density</em>, and in terms of the plots we've been drawing, 
-        it corresponds to the <em>height</em> of the curve. The densities themselves aren't meaningful in and of themselves: 
-        but they're "rigged" to ensure that the <em>area</em> under the curve is always interpretable as genuine probabilities. 
-        To be honest, that's about as much as you really need to know for now.<fn>For those readers who know a little calculus, I'll give a slightly more precise explanation. 
-        In the same way that probabilities are non-negative numbers that must sum to 1, probability densities are non-negative numbers that must integrate to 1 
-        (where the integral is taken across all possible values of <m>X</m>). To calculate the probability that <m>X</m> falls between <m>a</m> and <m>b</m> 
-        we calculate the definite integral of the density function over the corresponding range, <m>\int_a^b p(x) \ dx</m>. If you don't remember or never learned calculus, 
-        don't worry about this. It's not needed for this book.</fn>
-      </p>
-    </subsection>
+<subsection xml:id="density" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Probability Density</title>
+  <p>
+    Throughout our discussion of the Normal distribution, there is one important idea that has been deliberately simplified. 
+    Many introductory statistics books either avoid it completely or introduce it only briefly because it can seem counterintuitive 
+    at first. Fortunately, it is not essential for carrying out most statistical analyses in R-Instat, 
+    but understanding the basic idea will help you correctly interpret the results produced by the <em>Show Model</em> dialog.
+  </p>
+  <p>
+    You may already have noticed that the graphs of the Normal distribution have the vertical axis labelled <em>Probability Density</em> 
+    rather than <em>Probability</em>. You may also have used the <em>Show Model</em> dialog with the Normal 
+    distribution and found that the calculated density at a particular value can sometimes be greater than one. 
+    For example, if the Mean is <m>1</m> and the Standard Deviation is <m>0.1</m>, 
+    the density at <m>x = 1</m> is approximately <m>3.99</m>. If you view the generated R code, you will see that 
+    R-Instat performs this calculation using the <c>dnorm()</c> function.
+  </p>
+  <p>
+    At first this result may seem surprising. Since probabilities can never be greater than one, how can the value be 3.99? 
+    The answer is that the value returned is <em>not</em> a probability. Instead, it is the <em>probability density</em> 
+    at the specified point.
+  </p>
+  <p>
+    To understand why this happens, it is helpful to think about what it means for a variable to be continuous. 
+    Consider the outside temperature. A thermometer may display a value of <m>23^\circ \,C</m>, but the actual temperature is rarely exactly 23. 
+    It might be 23.1, 22.98 or 23.047 degrees. In reality, there are infinitely many possible values between any two temperatures. 
+    The same is true for measurements such as height, weight and rainfall.
+  </p>
+
+  <p>
+    Now consider what this means when discussing probabilities. Suppose tomorrow's maximum temperature follows a Normal distribution 
+    with Mean <m>23</m> and Standard Deviation <m>1</m>. What is the probability that the temperature will be exactly <m>23^\circ \,C</m>? 
+    The answer is essentially zero. Since there are infinitely many possible values, 
+    the probability of observing one exact value is negligible. Instead, meaningful questions involve ranges of values, 
+    such as the probability that the temperature lies between <m>22.5^\circ \,C</m> and <m>23.5^\circ \,C</m>, or between <m>20^\circ \,C</m> 
+    and <m>30^\circ \,C</m>.
+  </p>
+
+  <p>
+    This is the key difference between discrete and continuous probability distributions. For discrete distributions, 
+    such as the Binomial distribution, it is meaningful to calculate the probability of a single outcome. 
+    For continuous distributions, however, probabilities are calculated over <em>intervals</em> of values rather than at individual 
+    points.
+  </p>
+
+  <p>
+    For continuous distributions, probabilities are represented by the <em>area under the curve</em>. 
+    The total area under the entire Normal curve is always equal to one, representing a total probability of 1. 
+    The probability that a value falls within a particular range is therefore equal to the area under the curve over that interval. 
+    This idea was illustrated earlier in Figures <xref ref="fig-sdnorm1"/> and <xref ref="fig-sdnorm2"/>, 
+    where the shaded regions represented the probability of observations falling within one or two standard deviations of the Mean.
+  </p>
+
+  <p>
+    We can now return to the density values produced by the <em>Show Model</em> dialog. 
+    When you request the density of a Normal distribution, R-Instat is not calculating a probability. 
+    Instead, it calculates the <em>height</em> of the probability density curve at the specified value. 
+    The generated R code uses the <c>dnorm()</c> function to perform this calculation. 
+    Although the height of the curve is useful for describing the shape of the distribution, 
+    it should not be interpreted as a probability.
+  </p>
+
+  <p>
+    The density values themselves have little practical meaning when considered individually. 
+    Their importance lies in ensuring that the area under the curve correctly represents probabilities. 
+    In mathematical terms, the probability density function is constructed so that the total area under the curve is equal to one.
+    <fn>
+      Readers familiar with calculus may recognise that probability densities integrate to one over the entire range of possible values. 
+      The probability that <m>X</m> lies between <m>a</m> and <m>b</m> is obtained by calculating the definite integral
+      <m>\int_a^b p(x)\,dx</m>.
+      If you have not studied calculus, you do not need this result to understand or use the methods presented in this book.
+    </fn>
+  </p>
+
+  <p>
+    In practice, when using the <em>Show Model</em> dialog in R-Instat, 
+    use the <em>Probabilities</em> or <em>Quantiles</em> tabs whenever you require probabilities or probability intervals. 
+    The density calculation is primarily used for displaying the shape of the distribution and for understanding how continuous 
+    probability distributions behave. Remember that the density at a single point is <em>not</em> itself a probability.
+  </p>
+
+</subsection>

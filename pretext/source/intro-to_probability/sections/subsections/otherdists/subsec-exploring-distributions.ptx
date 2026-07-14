@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection xml:id="subsec-exploring-distributions" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title></title>
+   <example>
+    <title>Example: Exploring Different Distributions Using the Skulls Data</title>
+    <p>
+      The skulls dataset introduced earlier in this chapter can also be used to explore different probability distributions. 
+      Although the observed number of skulls follows a Binomial model, the <em>Show Model</em> dialog allows you to investigate 
+      how the same values relate to other theoretical distributions.
+    </p>
+    <p>
+      Load the skulls dataset and open the <em>Show Model</em> dialog. 
+      Select the <em>Values</em> output option and choose each of the following distributions in turn:
+      <ul>
+        <li>
+          <p>
+            Normal
+          </p>
+        </li>
+        <li>
+          <p>
+            <m>t</m>
+          </p>
+        </li>
+        <li>
+          <p>
+            Chi-square
+          </p>
+        </li>
+        <li>
+          <p>
+            <m>F</m>
+          </p>
+        </li>
+    </ul>
+    </p>
+    <p>
+      For each distribution, experiment with different parameter values and compare the resulting graphs. 
+      Notice how changing the parameters affects the location, spread and shape of the distribution. 
+      Although the skulls data were generated from a Binomial experiment, this exercise demonstrates how 
+      different probability models can be explored using a common interface in R-Instat.
+    </p>
+  </example>
+
+  <p>
+    In the following chapters we will make extensive use of these distributions when carrying out hypothesis tests, 
+    confidence intervals and analysis of variance. At this stage it is not necessary to understand every mathematical 
+    relationship between them. Instead, focus on recognising their shapes, understanding the role of their parameters and becoming 
+    familiar with exploring them using the <em>Show Model</em> dialog in R-Instat.
+  </p>
+</subsection>

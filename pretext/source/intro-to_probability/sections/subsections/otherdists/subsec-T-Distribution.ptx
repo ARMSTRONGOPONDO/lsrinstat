@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection xml:id="subsec-T-Distribution" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>The <m>t</m> Distribution</title>
+  <p>
+    The <m>t</m> distribution is a continuous probability distribution that has a shape similar to the 
+    Normal distribution. The main difference is that the tails of the <m>t</m> distribution are slightly heavier, 
+    meaning that values further from the centre occur more frequently than they do under a Normal distribution. 
+    This property makes the <m>t</m> distribution particularly useful when analysing small samples or when 
+    the population standard deviation is unknown.
+  </p>
+  <p>
+    In the <em>Show Model</em> dialog, select the <em>t</em> distribution. 
+    Notice that the dialog now requires a single parameter, the <em>Degrees of Freedom (df)</em>. 
+    This parameter controls the shape of the distribution. Smaller values of <em>df</em> produce heavier tails, 
+    while larger values make the distribution increasingly similar to the Normal distribution.
+  </p>
+  <p>
+    Generate a graph using different values of the degrees of freedom, for example <m>df = 3</m>, 
+    <m>10</m> and <m>30</m>. Compare the resulting graphs with the Normal distribution introduced in 
+    the previous section. As the degrees of freedom increase, the difference between the two distributions 
+    becomes progressively smaller.
+  </p>
+  <figure xml:id="fig-tdist">
+    <caption>
+    The <m>t</m> distribution with three degrees of freedom. Compared with the Normal distribution, 
+    the tails are slightly heavier, indicating a greater probability of observing values further from the mean.
+    </caption>
+    <image source="images/tdist.png"/>
+  </figure>
+</subsection>

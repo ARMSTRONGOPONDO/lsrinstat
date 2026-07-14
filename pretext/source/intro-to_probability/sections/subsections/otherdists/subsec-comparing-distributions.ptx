@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection xml:id="subsec-comparing-distributions" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Comparing the Distributions</title>
+  <p>
+    Having explored these distributions individually, it is useful to compare their shapes. The Normal and <m>t</m> distributions 
+    are both symmetric and bell-shaped, although the <m>t</m> distribution has heavier tails, particularly for small degrees of freedom. 
+    In contrast, the Chi-square and <m>F</m> distributions are positively skewed and take only positive values.
+  </p>
+  <p>
+    Although these distributions appear different, they are mathematically related. Many statistical procedures begin by assuming 
+    that the data are approximately Normally distributed. From this assumption arise the <m>t</m>, Chi-square and <m>F</m> distributions, 
+    which provide the basis for many statistical tests introduced later in this book.
+  </p>
+  <p>
+    You can investigate these relationships further by using the same <em>Show Model</em> dialog to display each distribution in turn. 
+    Because the dialog uses a common interface for all probability distributions, it is easy to compare their shapes by changing only the 
+    selected distribution and its parameters.
+  </p>
+  <figure xml:id="fig-variaterelations">
+    <caption>
+      Comparison of the Normal, <m>t</m>, Chi-square and <m>F</m> distributions. Although their shapes differ, 
+      these distributions are closely related and form the basis of many inferential statistical methods.
+    </caption>
+    <image source="images/variaterelations.png"/>
+  </figure>  
+</subsection>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection xml:id="subsec-F-Distribution" xmlns:xi="http://www.w3.org/2001/XInclude">
+   <title>The <m>F</m> Distribution</title>
+  <p>
+    The <m>F</m> distribution is also a continuous distribution and is closely related to the Chi-square distribution. It is commonly used when comparing two estimates of variability, making it an important distribution in methods such as Analysis of Variance (ANOVA), which is introduced later in this book.
+  </p>
+  <p>
+    Unlike the previous distributions, the <m>F</m> distribution requires two parameters: the numerator degrees of freedom and the denominator degrees of freedom. Both parameters influence the shape of the distribution.
+  </p>
+  <p>
+    Select the <em>F</em> distribution in the <em>Show Model</em> dialog. Enter several combinations of numerator and denominator degrees of freedom and generate the corresponding graphs. Observe how changing either parameter affects the shape of the distribution.
+  </p>
+  <figure xml:id="fig-Fdist">
+    <caption>
+        An <m>F</m> distribution with numerator degrees of freedom equal to 3 and denominator degrees of freedom equal to 5.
+    </caption>
+    <image source="images/Fdist.png"/>
+  </figure>
+</subsection>
