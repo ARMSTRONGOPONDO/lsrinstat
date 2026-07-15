@@ -44,7 +44,7 @@
   <preface xml:id="meta_frontmatter-preface">
     <title>Overview</title>
     <p>
-      <em>Learning Statistics with R</em> covers the contents of an introductory statistics
+      <em>Learning Statistics with R-Instat</em> covers the contents of an introductory statistics
       class, as typically taught to undergraduate psychology students, focusing on the use
       of the R statistical software. The book discusses how to get started in R as well as
       giving an introduction to data manipulation and writing scripts. From a statistical
@@ -58,7 +58,7 @@
   <preface xml:id="meta_frontmatter-pretext-note">
     <title>About This Edition</title>
     <p>
-      This is a <pretext /> version of <em>Learning Statistics with R</em>, originally
+      This is a <pretext /> version of <em>Learning Statistics with R-Instat</em>, originally
       written by
       <url href="https://djnavarro.net" visual="djnavarro.net">Danielle Navarro</url>.
       The original book and its source files are available at

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection xml:id="subsec-chi_square-Distribution" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>The <m>\chi^2</m> Distribution</title>
+  <p>
+    The <m>\chi^2</m> (Chi-square) distribution is another important continuous probability distribution. 
+    Unlike the Normal and <m>t</m> distributions, it is defined only for positive values and is usually 
+    positively skewed. The amount of skewness depends on the degrees of freedom. As the degrees of freedom 
+    increase, the distribution becomes more symmetrical.
+  </p>
+  <p>
+    The Chi-square distribution is widely used in statistical methods involving categorical data and measures 
+    of variability. Later in this book it will be used in Chi-square tests of independence and goodness-of-fit.
+  </p>
+  <p>
+    Select the <em>Chi-square</em> distribution in the <em>Show Model</em> dialog and experiment with different 
+    values for the degrees of freedom. Observe how the distribution changes from being strongly skewed for small 
+    degrees of freedom to becoming more symmetric as the degrees of freedom increase.
+  </p>
+  <figure xml:id="fig-chisqdist">
+    <caption>
+        Chi-square distributions with three degrees of freedom. Notice that the distribution begins at zero 
+        and is positively skewed.
+    </caption>
+    <image source="images/chisqdist.png"/>
+  </figure>
+</subsection>

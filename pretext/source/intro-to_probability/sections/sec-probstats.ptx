@@ -34,7 +34,7 @@
       And in the fourth question, I <em>know</em> that the lottery follows specific rules. You get the idea. 
       The critical point is that probabilistic questions start with a known <em>model</em> of the world, and we use that model to do some calculations. 
       The underlying model can be quite simple. For instance, in the coin flipping example, we can write down the model like this: 
-      <me>P(\mbox{heads}) = 0.5</me> which you can read as "the probability of heads is 0.5". As we'll see later, in the same way that percentages are numbers that range from 0% to 100%, 
+      <m>P(\mbox{heads}) = 0.5</m> which you can read as "the probability of heads is 0.5". As we'll see later, in the same way that percentages are numbers that range from 0% to 100%, 
       probabilities are just numbers that range from 0 to 1. When using this probability model to answer the first question, I don't actually know exactly what's going to happen. 
       Maybe I'll get 10 heads, like the question says. But maybe I'll get three heads. That's the key thing: in probability theory, the <em>model</em> is known, 
       but the <em>data</em> are not.
@@ -61,10 +61,13 @@
       And what I want to <em>infer</em> is whether or not I should conclude that what I just saw was actually a fair coin being flipped 10 times in a row, 
       or whether I should suspect that my friend is playing a trick on me. The data I have look like this:
     </p>
+    
+    <p>
+      <md>
+        H, H, H, H, H, H, H, H, H, H, H
+      </md>      
+    </p>
 
-    <console>
-      <output><![CDATA[H H H H H H H H H H H]]></output>
-    </console>
     <p>
       and what I'm trying to do is work out which "model of the world" I should put my trust in. If the coin is fair, 
       then the model I should adopt is one that says that the probability of heads is 0.5; that is, <m>P(\mbox{heads}) = 0.5</m>. If the coin is not fair, 

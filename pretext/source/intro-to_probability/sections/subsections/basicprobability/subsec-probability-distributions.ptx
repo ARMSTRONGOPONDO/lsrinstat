@@ -61,23 +61,7 @@
       And at this point, we've all achieved something. You've learned what a probability distribution is, 
       and I've finally managed to find a way to create a graph that focuses entirely on my pants. Everyone wins!
     </p>
-    <console>
-      <output><![CDATA[
-
-      probabilities <- c( .5, .3, .1, 0, .1)
-        eventNames <- c( "Blue jeans", "Grey jeans", "Black jeans", 
-                "Black suit", "Blue track" )
-        
-        # draw the plot
-        barplot( 
-          height= probabilities, 
-          xlab = "Event",
-          ylab = "Probability of event",
-          names.arg = eventNames,
-          density = 10,
-          col = ifelse(colour,emphCol,emphGrey)
-        )]]></output>
-    </console>
+    
     <figure xml:id="fig-pantsprob">
       <caption>A visual depiction of the probability distribution over pants preference for the population of students in the introductory statistics class.</caption>
       <image source="images/pantsprob.png"/>
@@ -90,7 +74,7 @@
       in this case "blue jeans", "black jeans" or "grey jeans". In mathematical terms, we defined the "jeans" event <m>E</m> to correspond to the set of elementary events 
       <m>(X_1, X_2, X_3)</m>. If any of these elementary events occurs, then <m>E</m> is also said to have occurred. 
       Having decided to write down the definition of the <m>E</m> this way, it's pretty straightforward to state what the probability <m>P(E)</m> is: we just add everything up. 
-      In this particular case <me>P(E) = P(X_1) + P(X_2) + P(X_3)</me> and, since the probabilities of blue, grey and black jeans respectively are .5, .3 and .1, 
+      In this particular case <m>P(E) = P(X_1) + P(X_2) + P(X_3)</m> and, since the probabilities of blue, grey and black jeans respectively are .5, .3 and .1, 
       the probability that I wear jeans is equal to .9.
     </p>
     <p>
