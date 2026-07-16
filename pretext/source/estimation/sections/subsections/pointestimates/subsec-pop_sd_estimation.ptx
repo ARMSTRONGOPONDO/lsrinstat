@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection xml:id="subsec-pop_sd_estimation">
+    <title>Estimating the population standard deviation</title>
+    <p>So far, estimation seems pretty simple, and you might be wondering why I forced you to read through all that stuff about sampling theory. In the case of the mean, our estimate of the population parameter (i.e. <m>\hat\mu</m>) turned out to identical to the corresponding sample statistic (i.e. <m>\bar{X}</m>). However, that's not always true. To see this, let's have a think about how to construct an <em>estimate of the population standard deviation</em>, which we'll denote  <m>\hat\sigma</m>. What shall we use as our estimate in this case? Your first thought might be that we could do the same thing we did when estimating the mean, and just use the sample statistic as our estimate. That's almost the right thing to do, but not quite.</p>
+    <p>Here's why. Suppose I have a sample that contains a single observation. For this example, it helps to consider a sample where you have no intutions at all about what the true population values might be, so let's use something completely fictitious. Suppose the observation in question measures the <em>cromulence</em> of my shoes. It turns out that my shoes have a cromulence of 20. So here's my sample:</p>
+    <!-- <console>
+    <output><![CDATA[20]]></output>
+    </console> -->
+    <p>This is a perfectly legitimate sample, even if it does have a sample size of <m>N=1</m>. It has a sample mean of 20, and because every observation in this sample is equal to the sample mean (obviously!) it has a sample standard deviation of 0. As a description of the <em>sample</em> this seems quite right: the sample contains a single observation and therefore there is no variation observed within the sample. A sample standard deviation of <m>s = 0</m> is the right answer here. But as an estimate of the <em>population</em> standard deviation, it feels completely insane, right? Admittedly, you and I don't know anything at all about what "cromulence" is, but we know something about data: the only reason that we don't see any variability in the <em>sample</em> is that the sample is too small to display any variation! So, if you have a sample size of <m>N=1</m>, it <em>feels</em> like the right answer is just to say "no idea at all".</p>
+    <p>Notice that you <em>don't</em> have the same intuition when it comes to the sample mean and the population mean. If forced to make a best guess about the population mean, it doesn't feel completely insane to guess that the population mean is 20. Sure, you probably wouldn't feel very confident in that guess, because you have only the one observation to work with, but it's still the best guess you can make.</p>
+    <p>Let's extend this example a little. Suppose I now make a second observation. My data set now has <m>N=2</m> observations of the cromulence of shoes, and the complete sample now looks like this:</p>
+    <!-- <console>
+    <output><![CDATA[20, 22]]></output>
+    </console> -->
+    <p>
+        This time around, our sample is <em>just</em> large enough for us to be able to observe some variability: two observations is the 
+        bare minimum number needed for any variability to be observed! For our new data set, the sample mean is <m>\bar{X}=21</m>, 
+        and the sample standard deviation is <m>s=1</m>. What intuitions do we have about the population? Again, as far as the population 
+        mean goes, the best guess we can possibly make is the sample mean: if forced to guess, we'd probably guess that the population 
+        mean cromulence is 21. What about the standard deviation? This is a little more complicated. The sample standard deviation is 
+        only based on two observations, and if you're at all like me you probably have the intuition that, with only two observations, 
+        we haven't given the population "enough of a chance" to reveal its true variability to us. It's not just that we suspect that the 
+        estimate is <em>wrong</em>: after all, with only two observations we expect it to be wrong to some degree. The worry is that the 
+        error is <em>systematic</em>. Specifically, we suspect that the sample standard deviation is likely to be smaller than the 
+        population standard deviation.
+    </p>
+    <figure xml:id="fig-sampdistsd">
+    <caption>
+    The sampling distribution of the sample standard deviation for a "two IQ scores" experiment.
+    The true population standard deviation is 15 (dashed line), but as you can see from the histogram, the
+    vast majority of experiments will produce a much smaller sample standard deviation than this. On
+    average, this experiment would produce a sample standard deviation of only 8.5, well below the true
+    value! In other words, the sample standard deviation is a biased estimate of the population standard
+    deviation.
+    </caption>
+    <image source="images/sampdistsd.png"/>
+    </figure>
+    <p>This intuition feels right, but it would be nice to demonstrate this somehow. There are in fact mathematical proofs that confirm this intuition, but unless you have the right mathematical background they don't help very much. Instead, what I'll do is use R to simulate the results of some experiments. With that in mind, let's return to our IQ studies. Suppose the true population mean IQ is 100 and the standard deviation is 15. I can use the <c>rnorm()</c> function to generate the the results of an experiment in which I measure <m>N=2</m> IQ scores, and calculate the sample standard deviation. If I do this over and over again, and plot a histogram of these sample standard deviations, what I have is the <em>sampling distribution of the standard deviation</em>. I've plotted this distribution in <xref ref="fig-sampdistsd"/>. Even though the true population standard deviation is 15, the average of the <em>sample</em> standard deviations is only 8.5. Notice that this is a very different result to what we found in <xref ref="fig-IQsampb"/> when we plotted the sampling distribution of the mean. If you look at that sampling distribution, what you see is that the population mean is 100, and the average of the sample means is also 100.</p>
+    <p>Now let's extend the simulation. Instead of restricting ourselves to the situation where we have a sample size of <m>N=2</m>, let's repeat the exercise for sample sizes from 1 to 10. If we plot the average sample mean and average sample standard deviation as a function of sample size, you get the results shown in <xref ref="fig-estimatorbias"/>. On the left hand side (panel a), I've plotted the average sample mean and on the right hand side (panel b), I've plotted the average standard deviation. The two plots are quite different: <em>on average</em>, the average sample mean is equal to the population mean. It is an <em>unbiased estimator</em>, which is essentially the reason why your best estimate for the population mean is the sample mean.<fn>I should note that I'm hiding something here. Unbiasedness is a desirable characteristic for an estimator, but there are other things that matter besides bias. However, it's beyond the scope of this book to discuss this in any detail. I just want to draw your attention to the fact that there's some hidden complexity here.</fn> The plot on the right is quite different: on average, the sample standard deviation <m>s</m> is <em>smaller</em> than the population standard deviation <m>\sigma</m>. It is a <em>biased estimator</em>. In other words, if we want to make a "best guess" <m>\hat\sigma</m> about the value of the population standard deviation <m>\sigma</m>, we should make sure our guess is a little bit larger than the sample standard deviation <m>s</m>.</p>
+    <figure xml:id="fig-estimatorbias">
+    <caption>
+    An illustration of the fact that the sample mean is an unbiased estimator of the population
+    mean (panel a), but the sample standard deviation is a biased estimator of the population standard
+    deviation (panel b). To generate the figure, I generated 10,000 simulated data sets with 1 observation
+    each, 10,000 more with 2 observations, and so on up to a sample size of 10. Each data set consisted
+    of fake IQ data: that is, the data were normally distributed with a true population mean of 100 and
+    standard deviation 15. On average, the sample means turn out to be 100, regardless of sample size (panel
+    a). However, the sample standard deviations turn out to be systematically too small (panel b), especially
+    for small sample sizes.</caption>
+    <image source="images/estimatorbias.png"/>
+    </figure>
+    <p>The fix to this systematic bias turns out to be very simple. Here's how it works. Before tackling the standard deviation, 
+        let's look at the variance. If you recall from <xref ref="var"/>, the sample variance is defined to be the average of the squared 
+        deviations from the sample mean. That is: <md>
+            s^2 = \frac{1}{N} \sum_{i=1}^N (X_i - \bar{X})^2
+        </md>
+        The sample variance <m>s^2</m> is a biased estimator of the population variance <m>\sigma^2</m>. But as it turns out, we only need to make a tiny tweak to 
+        transform this into an unbiased estimator. All we have to do is divide by <m>N-1</m> rather than by <m>N</m>. If we do that, 
+        we obtain the following formula: 
+        <md>
+            \hat\sigma^2 = \frac{1}{N-1} \sum_{i=1}^N (X_i - \bar{X})^2
+        </md>
+        This is an unbiased estimator 
+        of the population variance <m>\sigma</m>. Moreover, this finally answers the question we raised in <xref ref="var"/>. Why did R give 
+        us slightly different answers when we used the <c>var()</c> function? Because the <c>var()</c> function calculates <m>\hat\sigma^2</m> 
+        not <m>s^2</m>, that's why. A similar story applies for the standard deviation. If we divide by <m>N-1</m> rather than <m>N</m>, 
+        our estimate of the population standard deviation becomes: <md>
+            \hat\sigma = \sqrt{\frac{1}{N-1} \sum_{i=1}^N (X_i - \bar{X})^2}
+        </md>
+        and when we use R's built in standard deviation function <c>sd()</c>, what it's doing is calculating <m>\hat\sigma</m>, not <m>s</m>.<fn>Okay, 
+        I'm hiding something else here. In a bizarre and counterintuitive twist, since <m>\hat\sigma^2</m> is an unbiased estimator of <m>\sigma^2</m>, 
+        you'd assume that taking the square root would be fine, and <m>\hat\sigma</m> would be an unbiased estimator of <m>\sigma</m>. Right? Weirdly, 
+        it's not. There's actually a subtle, tiny bias in <m>\hat\sigma</m>. This is just bizarre: <m>\hat\sigma^2</m> is and unbiased estimate of the 
+        population variance <m>\sigma^2</m>, but when you take the square root, it turns out that <m>\hat\sigma</m> is a biased estimator of the population 
+        standard deviation <m>\sigma</m>. Weird, weird, weird, right? So, why is <m>\hat\sigma</m> biased? The technical answer is "because non-linear 
+        transformations (e.g., the square root) don't commute with expectation", but that just sounds like gibberish to everyone who hasn't taken a course 
+        in mathematical statistics. Fortunately, it doesn't matter for practical purposes. The bias is small, and in real life everyone uses <m>\hat\sigma</m> 
+        and it works just fine. Sometimes mathematics is just annoying.</fn>
+    </p>
+    <p>One final point: in practice, a lot of people tend to refer to <m>\hat{\sigma}</m> (i.e., the formula where we divide by <m>N-1</m>) as the <em>sample</em> standard deviation. Technically, this is incorrect: the <em>sample</em> standard deviation should be equal to <m>s</m> (i.e., the formula where we divide by <m>N</m>). These aren't the same thing, either conceptually or numerically. One is a property of the sample, the other is an estimated characteristic of the population. However, in almost every real life application, what we actually care about is the estimate of the population parameter, and so people always report <m>\hat\sigma</m> rather than <m>s</m>. This is the right number to report, of course, it's that people tend to get a little bit imprecise about terminology when they write it up, because "sample standard deviation" is shorter than "estimated population standard deviation". It's no big deal, and in practice I do the same thing everyone else does. Nevertheless, I think it's important to keep the two <em>concepts</em> separate: it's never a good idea to confuse "known properties of your sample" with "guesses about the population from which it came". The moment you start thinking that <m>s</m> and <m>\hat\sigma</m> are the same thing, you start doing exactly that.</p>
+    <p>To finish this section off, here's a table to help keep things clear:</p>
+    <table xml:id="table-estimation-sd-notation">
+    <title>Notation for standard deviation and variance</title>
+    <tabular halign="center">
+        <row header="yes" bottom="minor">
+        <cell halign="left">Symbol</cell>
+        <cell>What is it?</cell>
+        <cell>Do we know what it is?</cell>
+        </row>
+        <row>
+        <cell halign="left"><m>s</m></cell>
+        <cell>Sample standard deviation</cell>
+        <cell>Yes, calculated from the raw data</cell>
+        </row>
+        <row>
+        <cell halign="left"><m>\sigma</m></cell>
+        <cell>Population standard deviation</cell>
+        <cell>Almost never known for sure</cell>
+        </row>
+        <row>
+        <cell halign="left"><m>\hat{\sigma}</m></cell>
+        <cell>Estimate of the population standard deviation</cell>
+        <cell>Yes, but not the same as the sample standard deviation</cell>
+        </row>
+        <row>
+        <cell halign="left"><m>s^2</m></cell>
+        <cell>Sample variance</cell>
+        <cell>Yes, calculated from the raw data</cell>
+        </row>
+        <row>
+        <cell halign="left"><m>\sigma^2</m></cell>
+        <cell>Population variance</cell>
+        <cell>Almost never known for sure</cell>
+        </row>
+        <row>
+        <cell halign="left"><m>\hat{\sigma}^2</m></cell>
+        <cell>Estimate of the population variance</cell>
+        <cell>Yes, but not the same as the sample variance</cell>
+        </row>
+    </tabular>
+    </table>    
+</subsection>

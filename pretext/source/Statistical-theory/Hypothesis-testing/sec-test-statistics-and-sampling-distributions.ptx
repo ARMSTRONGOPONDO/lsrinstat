@@ -18,7 +18,7 @@
 
   <p>
     Having chosen a test statistic, the next step is to state precisely which values of the test statistic would cause is to reject the null hypothesis, and which values would cause us to keep it.
-    In order to do so, we need to determine what the <em>sampling distribution of the test statistic</em> would be if the null hypothesis were actually true (we talked about sampling distributions earlier in <xref ref="samplingdists"/>).
+    In order to do so, we need to determine what the <em>sampling distribution of the test statistic</em> would be if the null hypothesis were actually true (we talked about sampling distributions earlier in <xref ref="subsec-samplingdists"/>).
     Why do we need this? Because this distribution tells us exactly what values of <m>X</m> our null hypothesis would lead us to expect.
     And therefore, we can use this distribution as a tool for assessing how closely the null hypothesis agrees with our data.
   </p>

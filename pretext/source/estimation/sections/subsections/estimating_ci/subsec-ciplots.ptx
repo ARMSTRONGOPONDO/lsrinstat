@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection xml:id="subsec-ciplots" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Plotting confidence intervals in R</title>
+    <p>There's several different ways you can draw graphs that show confidence intervals as error bars. I'll show three versions here, but this certainly doesn't exhaust the possibilities. In doing so, what I'm assuming is that you want to draw is a plot showing the means and confidence intervals for one variable, broken down by different levels of a second variable. For instance, in our <c>afl</c> data that we discussed earlier, we might be interested in plotting the average <c>attendance</c> by <c>year</c>. I'll do this using two different functions, <c>bargraph.CI()</c> and <c>lineplot.CI()</c> (both of which are in the <c>sciplot</c> package). Assuming that you've installed these packages on your system (see <xref ref="packageinstall"/> if you've forgotten how to do this), you'll need to load them. You'll also need to load the <c>lsr</c> package, because we'll make use of the <c>ciMean()</c> function to actually calculate the confidence intervals</p>
+    <!-- <remark>
+    <title>R Code</title>
+    <program language="r">
+    <input><![CDATA[load( file.path(projecthome, "data/afl24.Rdata" ))  # contains the "afl" data frame
+    library( sciplot )     # bargraph.CI() and lineplot.CI() functions
+    library( gplots )     # plotmeans() functions
+    library( lsr )         # ciMean() function]]></input>
+    </program>
+    </remark> -->
+    <p>Here's how to plot the means and confidence intervals drawn using <c>bargraph.CI()</c>.</p>
+    <!-- <remark>
+    <title>R Code</title>
+    <program language="r">
+    <input><![CDATA[
+    bargraph.CI( x.factor = year,            # grouping variable 
+                response = attendance,      # outcome variable
+                data = afl,                 # data frame with the variables
+                ci.fun= ciMean,             # name of the function to calculate CIs
+                xlab = "Year",              # x-axis label
+                ylab = "Average Attendance" # y-axis label
+    )]]></input>
+    </program>
+    </remark> -->
+    <figure xml:id="fig-cibargraph">
+    <caption>
+    Means and 95% confidence intervals for AFL attendance, plotted separately for each year
+    from 1987 to 2010. This graph was drawn using the <c>bargraph.CI()</c> function.
+    </caption>
+    <image source="images/cibargraph.png"/>
+    </figure>
+
+    <p>We can use the same arguments when calling the <c>lineplot.CI()</c> function:</p>
+    <!-- <remark>
+    <title>R Code</title>
+    <program language="r">
+    <input><![CDATA[lineplot.CI( x.factor = year,            # grouping variable 
+                response = attendance,      # outcome variable
+                data = afl,                 # data frame with the variables
+                ci.fun= ciMean,             # name of the function to calculate CIs
+                xlab = "Year",              # x-axis label
+                ylab = "Average Attendance" # y-axis label
+    )]]></input>
+    </program>
+    </remark> -->
+    <figure xml:id="fig-cilinegraph">
+    <caption>
+    Means and 95% confidence intervals for AFL <c>attendance</c>, plotted separately for each year
+    from 1987 to 2010. This graph was drawn using the <c>lineplot.CI()</c> function.
+    </caption>
+    <image source="generated/CI_lineplot.png"/>
+    </figure>
+
+    <p>Finally, here's how you would do it using <c>plotmeans()</c>:</p>
+    <!-- <program language="r">
+    <input><![CDATA[lineplot.CI( x.factor = year,            # grouping variable 
+                response = attendance,      # outcome variable
+                data = afl,                 # data frame with the variables
+                ci.fun= ciMean,             # name of the function to calculate CIs
+                xlab = "Year",              # x-axis label
+                ylab = "Average Attendance" # y-axis label
+    )]]></input>
+    </program> -->
+    <figure xml:id="fig-ciplotmeans">
+    <caption>
+    Means and 95% confidence intervals for AFL <c>attendance</c>, plotted separately for each year
+    from 1987 to 2010. This graph was drawn using the <c>plotmeans()</c> function.
+    </caption>
+    <image source="generated/CI_plotmeans.png"/>
+    </figure>    
+</subsection>

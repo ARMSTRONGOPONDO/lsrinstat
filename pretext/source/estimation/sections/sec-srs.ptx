@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec-srs" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Samples, populations and sampling</title>
+    <p>In the prelude to Part I discussed the riddle of induction, and highlighted the fact that <em>all</em> 
+        learning requires you to make assumptions. Accepting that this is true, our first task to come up with some 
+        fairly general assumptions about data that make sense. This is where <em>sampling theory</em> comes in. 
+        If probability theory is the foundations upon which all statistical theory builds, sampling theory is the frame 
+        around which you can build the rest of the house. Sampling theory plays a huge role in specifying the assumptions upon which your statistical inferences rely. And in order to talk about "making inferences" the way statisticians think about it, we need to be a bit more explicit about what it is that we're drawing inferences <em>from</em> (the sample) and what it is that we're drawing inferences <em>about</em> (the population).</p>
+    <p>
+        In almost every situation of interest, what we have available to us as researchers is a 
+        <em>sample</em> of data. We might have run experiment with some number of participants; 
+        a polling company might have phoned some number of people to ask questions about voting intentions; 
+        etc. Regardless: the data set available to us is finite, and incomplete. 
+        We can't possibly get every person in the  world to do our experiment; 
+        a polling company doesn't have the time or the money to ring up every voter in the country etc. 
+        In our earlier discussion of descriptive statistics (<xref ref="descriptives"/>, 
+        this sample was the only thing we were interested in. Our only goal was to find ways of describing, 
+        summarising and graphing that sample. This is about to change.
+    </p> 
+
+        <xi:include href="subsections/srs/subsec-pop.ptx" />
+        <xi:include href="subsections/srs/subsec-simple-random-samples.ptx" />
+        <xi:include href="subsections/srs/subsec-most-samples-not-srs.ptx" />
+        <xi:include href="subsections/srs/subsec-does-srs-matter.ptx" />
+        <xi:include href="subsections/srs/subsec-pop-parameters-and-srs.ptx" />
+</section>

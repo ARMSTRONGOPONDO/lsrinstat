@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection xml:id="subsec-calculating-ci" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Calculating confidence intervals in R</title>
+    <p>
+        As far as I can tell, the core packages in R don't include a simple function for calculating confidence intervals for the mean. 
+        They <em>do</em> include a lot of complicated, extremely powerful functions that can be used to calculate confidence intervals associated with 
+        lots of different things, such as the <c>confint()</c> function that we'll use in <xref ref="regression"/>. 
+        But I figure that when you're first learning statistics, it might be useful to start with something simpler. 
+        As a consequence, the <c>lsr</c> package includes a function called <c>ciMean()</c> which you can use to calculate your confidence intervals. 
+        There are two arguments that you might want to specify:<fn>As of the current writing, these are the only arguments to the function. 
+        However, I am planning to add a bit more functionality to <c>ciMean()</c>. However, regardless of what those future changes might look like, 
+        the <c>x</c> and <c>conf</c> arguments will remain the same, and the commands used in this book will still work.</fn>
+        <ul>
+            <li>
+                <p>
+                    <c>x</c>. This should be a numeric vector containing the data. 
+                </p>
+            </li>
+            <li>
+                <p>
+                    <c>conf</c>. This should be a number, specifying the confidence level. By default, <c>conf = .95</c>, 
+                    since 95\% confidence intervals are the de facto standard in psychology.
+                </p>
+            </li>
+        </ul>
+    </p>
+    
+    <p>
+        So, for example, if I load the <c>afl24.Rdata</c> file, calculate the confidence interval associated with the mean attendance:
+    </p>
+    <!-- <console>
+    <output><![CDATA[> ciMean( x = afl$attendance )
+        2.5%    97.5% 
+    31597.32 32593.12 ]]></output>
+    </console> -->
+    <p>Hopefully that's fairly clear.</p>    
+</subsection>

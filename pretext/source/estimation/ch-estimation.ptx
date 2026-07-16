@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="estimation" xmlns:xi="http://www.w3.org/2001/XInclude">
+<title>Estimating unknown quantities from a sample</title>
+<p>
+    At the start of the last chapter I highlighted the critical distinction between <em>descriptive statistics</em> 
+    and <em>inferential statistics</em>. As discussed in <xref ref="descriptives"/>, 
+    the role of descriptive statistics is to concisely summarise what we <em>do</em> know. 
+    In contrast, the purpose of inferential statistics is to "learn what we do not know from what we do". 
+    Now that we have a foundation in probability theory, we are in a good position to think about the problem of 
+    statistical inference. What kinds of things would we like to learn about? And how do we learn them? 
+    These are the questions that lie at the heart of inferential statistics, 
+    and they are traditionally divided into two "big ideas": estimation and hypothesis testing. 
+    The goal in this chapter is to introduce the first of these big ideas, estimation theory, 
+    but I'm going to witter on about sampling theory first because estimation theory doesn't make sense until you 
+    understand sampling. As a consequence, this chapter divides naturally into two parts <xref ref="sec-srs"/> through 
+    <xref ref="sec-samplesandclt"/> are focused on sampling theory, and <xref ref="sec-pointestimates"/> and <xref ref="sec-ci"/> 
+    make use of sampling theory to discuss how statisticians think about estimation.
+</p>
+
+
+<xi:include href="sections/sec-srs.ptx" />
+<xi:include href="sections/sec-lawlargenumbers.ptx" />
+<xi:include href="sections/sec-samplesandclt.ptx" />
+<xi:include href="sections/sec-pointestimates.ptx" />
+<xi:include href="sections/sec-ci.ptx" />
+<xi:include href="sections/sec-summary.ptx" />
+
+</chapter>
