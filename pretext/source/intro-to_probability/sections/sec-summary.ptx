@@ -11,44 +11,44 @@
     graphical interface for exploring probability distributions while automatically generating the 
     corresponding R commands in the background. The main topics covered in this chapter are summarised 
     below:
+    <ul>
+      <li>
+        <p>
+          Probability theory versus statistics (<xref ref="probstats"/>)
+        </p>
+      </li>
+
+      <li>
+        <p>
+          Frequentist versus Bayesian views of probability (<xref ref="probmeaning"/>)
+        </p>
+      </li>
+
+      <li>
+        <p>
+          Basic rules of probability (<xref ref="basicprobability"/>)
+        </p>
+      </li>
+
+      <li>
+        <p>
+          Probability distributions, including the Binomial distribution (<xref ref="binomial"/>), 
+          the Normal distribution (<xref ref="normal"/>), and other commonly used distributions such as 
+          the <m>t</m>, Chi-square and <m>F</m> distributions (<xref ref="otherdists"/>).
+        </p>
+      </li>
+
+      <li>
+        <p>
+          Using the <em>Show Model</em> dialog in R-Instat to calculate probabilities, 
+          quantiles and densities, and to investigate how changing distribution parameters affects the shape 
+          of probability distributions.
+        </p>
+      </li>
+    </ul>
   </p>
 
-  <ul>
-    <li>
-      <p>
-        Probability theory versus statistics (<xref ref="probstats"/>)
-      </p>
-    </li>
-
-    <li>
-      <p>
-        Frequentist versus Bayesian views of probability (<xref ref="probmeaning"/>)
-      </p>
-    </li>
-
-    <li>
-      <p>
-        Basic rules of probability (<xref ref="basicprobability"/>)
-      </p>
-    </li>
-
-    <li>
-      <p>
-        Probability distributions, including the Binomial distribution (<xref ref="binomial"/>), 
-        the Normal distribution (<xref ref="normal"/>), and other commonly used distributions such as 
-        the <m>t</m>, Chi-square and <m>F</m> distributions (<xref ref="otherdists"/>).
-      </p>
-    </li>
-
-    <li>
-      <p>
-        Using the <em>Show Model</em> dialog in R-Instat to calculate probabilities, 
-        quantiles and densities, and to investigate how changing distribution parameters affects the shape 
-        of probability distributions.
-      </p>
-    </li>
-
-  </ul>
+  
 
   <p>
     This chapter provides only an introduction to probability theory. 

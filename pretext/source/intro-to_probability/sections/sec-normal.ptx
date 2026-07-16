@@ -28,7 +28,10 @@
 </p>
 <p>
   In statistical notation, a normally distributed variable is written as
-  <me>X \sim Normal(\mu,\sigma)</me>, indicating that the variable follows a Normal distribution with mean <m>\mu</m> and standard deviation <m>\sigma</m>.
+  <md>
+    X \sim Normal(\mu,\sigma)
+  </md>, 
+  indicating that the variable follows a Normal distribution with mean <m>\mu</m> and standard deviation <m>\sigma</m>.
 </p>
 <p>
   Although R provides separate functions for working with the Normal distribution, namely <c>dnorm()</c>, 

@@ -167,6 +167,6 @@
         One possibility is that what the meteorologist means is something like this: "There is a category of days for which I predict a 60% chance of rain; 
         if we look only across those days for which I make this prediction, then on 60% of those days it will actually rain". 
         It's very weird and counterintuitive to think of it this way, but you do see frequentists do this sometimes. 
-        And it <em>will</em> come up later in this book (see <xref ref="ci"/>).
+        And it <em>will</em> come up later in this book (see <xref ref="sec-ci"/>).
       </p>
     </subsection>

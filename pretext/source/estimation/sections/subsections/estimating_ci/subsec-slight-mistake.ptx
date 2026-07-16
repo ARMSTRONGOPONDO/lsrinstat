@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection xml:id="subsec-slight-mistake" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>A slight mistake in the formula</title>
+    <p>
+        As usual, I lied. The formula that I've given above for the 95\% confidence interval is approximately correct, but I glossed over an important detail in the discussion. 
+        Notice my formula requires you to use the standard error of the mean, SEM, which in turn requires you to use the true population standard deviation <m>\sigma</m>. 
+        Yet, in <xref ref="sec-pointestimates"/> I stressed the fact that we don't actually <em>know</em> the true population parameters. 
+        Because we don't know the true value of <m>\sigma</m>, we have to use an estimate of the population standard deviation <m>\hat{\sigma}</m> instead. 
+        This is pretty straightforward to do, but this has the consequence that we need to use the quantiles of the <m>t</m>-distribution rather than the normal 
+        distribution to calculate our magic number; and the answer depends on the sample size. When <m>N</m> is very large, 
+        we get pretty much the same value using <c>qt()</c> that we would if we used <c>qnorm()</c>...
+    </p>
+    <!-- <remark>
+    <title>R Code</title>
+    <program language="r">
+    <input><![CDATA[N <- 10000   # suppose our sample size is 10,000
+    qt( p = .975, df = N-1)   # calculate the 97.5th quantile of the t-dist]]></input>
+    </program>
+        <console>
+        <output><![CDATA[
+    ## [1] 1.960201
+    ]]></output>
+        </console>
+    </remark> -->
+    <p>But when <m>N</m> is small, we get a much bigger number when we use the <m>t</m> distribution:</p>
+    <!-- <remark>
+    <title>R Code</title>
+    <program language="r">
+    <input><![CDATA[N <- 10   # suppose our sample size is 10
+    qt( p = .975, df = N-1)   # calculate the 97.5th quantile of the t-dist]]></input>
+    </program>
+        <console>
+        <output><![CDATA[
+    ## [1] 2.262157
+    ]]></output>
+        </console>
+    </remark> -->
+    <p>
+        There's nothing too mysterious about what's happening here. 
+        Bigger values mean that the confidence interval is wider, indicating that we're more uncertain about what the true value of <m>\mu</m> actually is. 
+        When we use the <m>t</m> distribution instead of the normal distribution, we get bigger numbers, indicating that we have more uncertainty. 
+        And why do we have that extra uncertainty? Well, because our estimate of the population standard deviation <m>\hat\sigma</m> might be wrong! 
+        If it's wrong, it implies that we're a bit less sure about what our sampling distribution of the mean actually looks like... 
+        and this uncertainty ends up getting reflected in a wider confidence interval.</p>    
+</subsection>
