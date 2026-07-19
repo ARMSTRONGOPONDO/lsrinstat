@@ -1,40 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section xml:id="sec-pointestimates" xmlns:xi="http://www.w3.org/2001/XInclude">
-<title>Estimating population parameters</title>
-<p>
-    In all the IQ examples in the previous sections, we actually knew the population parameters ahead of time. 
-    As every undergraduate gets taught in their very first lecture on the measurement of intelligence, IQ scores are <em>defined</em> 
-    to have mean 100 and standard deviation 15. However, this is a bit of a lie. How do we know that IQ scores have a true population 
-    mean of 100? Well, we know this because the people who designed the tests have administered them to very large samples, and have then 
-    "rigged" the scoring rules so that their sample has mean 100. That's not a bad thing of course: it's an important part of designing a 
-    psychological measurement. However, it's important to keep in mind that this theoretical mean of 100 only attaches to the population 
-    that the test designers used to design the tests. Good test designers will actually go to some lengths to provide "test norms" that can 
-    apply to lots of different populations (e.g., different age groups, nationalities etc).
-</p>
-<p>
-    This is very handy, but of course almost every research project of interest involves looking at a different population of people to 
-    those used in the test norms. For instance, suppose you wanted to measure the effect of low level lead poisoning on cognitive 
-    functioning in Port Pirie, a South Australian industrial town with a lead smelter. Perhaps you decide that you want to compare IQ 
-    scores among people in Port Pirie to a comparable sample in Whyalla, a South Australian industrial town with a steel refinery.
-    <fn>Please note that if you were <em>actually</em> interested in this question, you would need to be a <em>lot</em> more careful than 
-    I'm being here. You <em>can't</em> just compare IQ scores in Whyalla to Port Pirie and assume that any differences are due to lead 
-    poisoning. Even if it were true that the only differences between the two towns corresponded to the different refineries (and it 
-    isn't, not by a long shot), you need to account for the fact that people already <em>believe</em> that lead pollution causes 
-    cognitive deficits: if you recall back to <xref ref="studydesign"/>, this means that there are different demand effects for the Port 
-    Pirie sample than for the Whyalla sample. In other words, you might end up with an illusory group difference in your data, 
-    caused by the fact that people <em>think</em> that there is a real difference. I find it pretty implausible to think that the 
-    locals wouldn't be well aware of what you were trying to do if a bunch of researchers turned up in Port Pirie with lab coats and 
-    IQ tests, and even less plausible to think that a lot of people would be pretty resentful of you for doing it. 
-    Those people won't be as co-operative in the tests. Other people in Port Pirie might be <em>more</em> motivated to do well because 
-    they don't want their home town to look bad. The motivational effects that would apply in Whyalla are likely to be weaker, 
-    because people don't have any concept of "iron ore poisoning" in the same way that they have a concept for "lead poisoning". 
-    Psychology is <em>hard</em>.</fn> Regardless of which town you're thinking about, it doesn't make a lot of sense simply to 
-    <em>assume</em> that the true population mean IQ is 100. No-one has, to my knowledge, produced sensible norming data that can 
-    automatically be applied to South Australian industrial towns. We're going to have to <em>estimate</em> the population parameters 
-    from a sample of data. So how do we do this?
-</p>
+    <title>Estimating population parameters</title>
+    <p>
+        In the previous sections, we used examples where the population parameters were already known. 
+        This allowed us to focus on the ideas of sampling, sampling distributions, and the behaviour of sample statistics. 
+        In practice, however, the values of population parameters are rarely known. 
+        Instead, the goal of statistical inference is to use information from a sample to estimate these unknown quantities.
+    </p>
+    <p>
+        Suppose you are interested in estimating the average income of households in a county, the average crop yield from a farming region, 
+        or the proportion of patients who recover after receiving a particular treatment. 
+        It is usually impractical or impossible to collect data from every member of the population. 
+        Instead, a sample is selected, and statistics calculated from that sample are used to estimate the corresponding population parameters.
+    </p>
+    <p>
+        This process of using sample information to estimate unknown population characteristics is called
+        <em>statistical estimation</em>. Because different samples produce different sample statistics, every estimate is subject to sampling variation. 
+        Understanding this variability is essential when interpreting estimates and assessing how reliable they are.
+    </p>
+    <p>
+        In this section, we introduce two of the most widely used approaches to estimation:
+        <em>point estimation</em>, which provides a single best estimate of a population parameter, and
+        <em>confidence intervals</em>, which provide a range of plausible values for the parameter.
+        These methods form the foundation of statistical inference and are supported throughout the chapter using
+        <em>R-Instat</em>.
+    </p>
 
-<xi:include href="subsections/pointestimates/subsec-pop_mean-estimation.ptx" />
-<xi:include href="subsections/pointestimates/subsec-pop_sd_estimation.ptx" />
+    <xi:include href="subsections/pointestimates/subsec-pop_mean-estimation.ptx" />
+    <xi:include href="subsections/pointestimates/subsec-pop_sd_estimation.ptx" />
 
 </section>

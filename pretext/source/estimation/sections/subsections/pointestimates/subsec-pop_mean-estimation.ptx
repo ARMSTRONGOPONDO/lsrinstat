@@ -1,32 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <subsection xml:id="subsec-pop_mean-estimation" xmlns:xi="http://www.w3.org/2001/XInclude">
     <title>Estimating the population mean</title>
-    <p>Suppose we go to Port Pirie and 100 of the locals are kind enough to sit through an IQ test. The average IQ score among these people turns out to be <m>\bar{X}=98.5</m>. So what is the true mean IQ for the entire population of Port Pirie? Obviously, we don't know the answer to that question. It could be <m>97.2</m>, but if could also be <m>103.5</m>. Our sampling isn't exhaustive so we cannot give a definitive answer. Nevertheless if I was forced at gunpoint to give a "best guess" I'd have to say <m>98.5</m>. That's the essence of statistical estimation: giving a best guess.</p>
-    <p>In this example, estimating the unknown poulation parameter is straightforward. I calculate the sample mean, and I use that as my <em>estimate of the population mean</em>. It's pretty simple, and in the next section I'll explain the statistical justification for this intuitive answer. However, for the moment what I want to do is make sure you recognise that the sample statistic and the estimate of the population parameter are conceptually different things. A sample statistic is a description of your data, whereas the estimate is a guess about the population. With that in mind, statisticians often different notation to refer to them. For instance, if true population mean is denoted <m>\mu</m>, then we would use <m>\hat\mu</m> to refer to our estimate of the population mean. In contrast, the sample mean is denoted <m>\bar{X}</m> or sometimes <m>m</m>. However, in simple random samples, the estimate of the population mean is identical to the sample mean: if I observe a sample mean of <m>\bar{X} = 98.5</m>, then my estimate of the population mean is also <m>\hat\mu = 98.5</m>. To help keep the notation clear, here's a handy table:</p>
+    <p>
+        In practice, the true population mean is rarely known. Instead, we collect a sample
+        from the population and use the information in that sample to estimate the unknown
+        population mean. This process is known as <em>point estimation</em>, where a single
+        value is used as the best estimate of a population parameter.
+    </p>
+    <p>
+        The most natural estimate of the population mean is the sample mean. If a sample has
+        an average value of <m>\bar{X}</m>, then the sample mean is used as the estimate of
+        the population mean, denoted by <m>\hat{\mu}</m>. Although the true population mean
+        remains unknown, the sample mean provides the best estimate based on the available
+        data.
+    </p>
+    <p>
+        It is important to distinguish between a <em>sample statistic</em> and a
+        <em>population parameter</em>. A sample statistic is calculated directly from the
+        observed data, whereas a population parameter describes the entire population and is
+        usually unknown. An estimate uses the sample statistic to approximate the corresponding
+        population parameter.
+    </p>
+
     <table xml:id="table-estimation-mean-notation">
-    <title>Notation for sample mean and population mean</title>
+        <title>Notation for the sample mean and population mean.</title>
         <tabular halign="center">
             <row header="yes" bottom="minor">
-            <cell halign="left">Symbol</cell>
-            <cell>What is it?</cell>
-            <cell>Do we know what it is?</cell>
+                <cell halign="left">Symbol</cell>
+                <cell>Description</cell>
+                <cell>Known?</cell>
             </row>
             <row>
-            <cell halign="left"><m>\bar{X}</m></cell>
-            <cell>Sample mean</cell>
-            <cell>Yes, calculated from the raw data</cell>
+                <cell halign="left"><m>\bar{X}</m></cell>
+                <cell>Sample mean</cell>
+                <cell>Yes, calculated from the sample data.</cell>
             </row>
             <row>
-            <cell halign="left"><m>\mu</m></cell>
-            <cell>True population mean</cell>
-            <cell>Almost never known for sure</cell>
+                <cell halign="left"><m>\mu</m></cell>
+                <cell>Population mean</cell>
+                <cell>Usually unknown.</cell>
             </row>
             <row>
-            <cell halign="left"><m>\hat{\mu}</m></cell>
-            <cell>Estimate of the population mean</cell>
-            <cell>Yes, identical to the sample mean</cell>
+                <cell halign="left"><m>\hat{\mu}</m></cell>
+                <cell>Estimate of the population mean</cell>
+                <cell>Yes, obtained using the sample mean.</cell>
             </row>
         </tabular>
     </table>
-    
+
+    <example xml:id="ex-estimating-population-mean-rinstat">
+        <title>Estimating a population mean in R-Instat</title>
+        <p>
+            In this example, we use the <c>effort</c> dataset from the
+            <c>lsrdata</c> package. The dataset contains 10 observations on two
+            variables: <c>hours</c>, representing the number of study hours,
+            and <c>grade</c>, representing the corresponding assessment grades.
+        </p>
+        <p>
+            If the dataset has not already been loaded, import it by selecting
+            <c>Import &gt; Import from Library...</c>. On the
+            <c>Load from R</c> tab, choose <c>lsrdata</c> from the
+            <c>From Package</c> drop-down list, then select the
+            <c>effort</c> dataset and click <c>OK</c>.
+        </p>
+        <p>
+            To calculate the sample means, open
+            <c>Describe &gt; One Variable &gt; Summarise...</c>.
+            On the <c>Default</c> tab, select both
+            <c>hours</c> and <c>grade</c>, move them to the
+            <c>Variable(s) to Summarise</c> box, and click
+            <c>OK</c>.
+        </p>
+        <figure xml:id="fig-one-variable-summarise">
+            <caption>
+                The <c>One Variable Summarise</c> dialog with the
+                <c>hours</c> and <c>grade</c> variables selected.
+            </caption>
+            <image source="images\estimation\one-variable-summarise.png"/>
+        </figure>
+        <figure xml:id="fig-effort-summary-output">
+            <caption>
+                Summary statistics for the <c>effort</c> dataset.
+            </caption>
+            <image source="images\estimation\effort-summary-output.png"/>
+        </figure>
+        <p>
+            The output shows that the sample mean for <c>hours</c> is
+            <m>\bar{X}=36.8</m>, while the sample mean for
+            <c>grade</c> is <m>\bar{X}=59.6</m>. These values are
+            calculated directly from the sample and therefore are
+            sample statistics.
+        </p>
+        <p>
+            Assuming that the observations represent a simple random sample from
+            a larger population, the sample means provide the point estimates of
+            the corresponding population means. Therefore, the estimated population
+            mean number of study hours is
+            <m>\hat{\mu}_{hours}=36.8</m>, and the estimated population mean
+            grade is <m>\hat{\mu}_{grade}=59.6</m>.
+        </p>
+        <p>
+            This example illustrates an important principle of statistical
+            estimation: although the true population mean is unknown, the sample
+            mean provides the best single-value estimate based on the observed
+            data. In the next subsection, we explain why the sample mean is an
+            appropriate estimator and discuss the desirable properties of good
+            statistical estimators.
+        </p>
+    </example>
 </subsection>
