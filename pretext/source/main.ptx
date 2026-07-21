@@ -14,8 +14,8 @@
   <!-- to some short (non-spaced) description of your book         -->
   <book xml:id="learning-stats-with-r">
     <!-- The book needs a title and can have a subtitle  -->
-    <title>Learning Statistics with R</title>
-    <subtitle>A Tutorial for Psychology Students and Other Beginners</subtitle>
+    <title>Learning Statistics with R-Instat</title>
+    <subtitle>An Introduction to Statistics with R-Instat for Beginners</subtitle>
 
     <!-- Now we include files containing each main devision.       -->
 
@@ -36,7 +36,7 @@
 
     <!-- Part II: An Introduction to R -->
     <part xml:id="part-ii-an-introduction-to-r">
-      <title>An Introduction to R</title>
+      <title>An Introduction to R-Instat</title>
 
       <!-- Chapter 3: Getting started with R -->
       <xi:include href="./ch3-intro-r.ptx" />
@@ -73,7 +73,7 @@
       <xi:include href="./intro-to_probability/ch-probability.ptx" />
 
       <!-- Estimation -->
-      <xi:include href="./ch-estimation.ptx" />
+      <xi:include href="./estimation/ch-estimation.ptx" />
 
       <!-- Hypothesis Testing -->
       <xi:include href="./Statistical-theory/ch-hypothesistesting.ptx" />

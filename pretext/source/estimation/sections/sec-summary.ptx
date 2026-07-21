@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec-summary">
+    <title>Summary</title>
+
+<p>
+    This chapter introduced the fundamental ideas of sampling theory and statistical estimation. 
+    These concepts explain how information obtained from a sample can be used to make inferences 
+    about an entire population. Throughout the chapter, R-Instat was used to demonstrate how these 
+    concepts can be explored using real datasets and interactive dialogs.
+</p>
+
+<p>
+    The main topics covered in this chapter include:
+    <ul>
+        <li>
+            <p>
+                Populations, samples, and different sampling methods (<xref ref="sec-srs"/>).
+            </p>
+        </li>
+        <li>
+            <p>
+                Sampling theory, including the law of large numbers, sampling distributions, 
+                and the Central Limit Theorem (<xref ref="sec-lawlargenumbers"/>, <xref ref="sec-samplesandclt"/>).
+            </p>
+        </li>
+        <li>
+            <p>
+                Estimating population parameters using sample statistics, 
+                including the sample mean and sample standard deviation (<xref ref="sec-pointestimates"/>).
+            </p>
+        </li>
+        <li>
+            <p>
+                Confidence intervals, their interpretation, and how they quantify the uncertainty associated with 
+                statistical estimates (<xref ref="sec-ci"/>).
+            </p>
+        </li>
+    </ul>
+</p>
+
+<p>
+    Along the way, you learned how to use R-Instat to import datasets from the <c>lsrdata</c> package, 
+    calculate descriptive statistics using the
+    <c>Describe &gt; One Variable &gt; Summarise...</c> dialog, and interpret confidence intervals using the
+    <c>Describe &gt; Two/Three Variables &gt; Correlations...</c> dialog.
+</p>
+
+<p>
+    The methods presented in this chapter provide the foundation for statistical inference. In the chapters that follow, 
+    these ideas will be extended to hypothesis testing, regression, and other statistical methods, all of which rely on the 
+    principles of sampling and estimation introduced here.
+</p>
+</section>

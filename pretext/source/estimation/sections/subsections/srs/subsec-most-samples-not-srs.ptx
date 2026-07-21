@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection xml:id="subsec-most-samples-not-srs" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Most Samples Are Not Simple Random Samples</title>
+    <p>
+        Although simple random sampling provides the foundation for much of statistical theory, 
+        it is rarely achieved in practice. In many studies, researchers face limitations such as cost, time, accessibility, 
+        or geographical constraints, making it difficult to select every member of the population with an equal chance of 
+        inclusion. As a result, a variety of alternative sampling methods are commonly used.
+    </p>
+    <p>
+        Some of the most widely used sampling methods include:
+        <ul>
+            <li>
+                <p>
+                    <term><em>Stratified sampling.</em></term> The population is divided into distinct groups, known as <em>strata</em>, 
+                    based on characteristics such as region, age group, or gender. A random sample is then selected from 
+                    each stratum. This approach ensures that all important subgroups are represented in the final sample and 
+                    often improves the precision of statistical estimates.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <term><em>Snowball sampling.</em></term> This method is useful for studying populations that are difficult to identify or reach. 
+                    The researcher begins with a small number of participants, who then recommend other eligible participants. 
+                    Although this approach can provide access to otherwise inaccessible populations, it does not produce a random sample 
+                    and may introduce substantial bias.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <term><em>Convenience sampling.</em></term> Samples are selected because they are easy to access rather than through a random selection process. 
+                    Examples include surveying volunteers, students in a classroom, or customers visiting a particular location. 
+                    Convenience sampling is widely used because it is quick and inexpensive, but the resulting sample may not accurately 
+                    represent the target population.
+                </p>
+            </li>
+        </ul>
+    </p>
+    <p>
+        Many real-world studies use one or more of these sampling methods rather than simple random sampling. When analysing data, 
+        it is therefore important to consider how the sample was obtained, since the sampling method affects how confidently the 
+        results can be generalised to the wider population. Whenever possible, probability-based sampling methods, 
+        such as simple random or stratified sampling, are preferred because they provide a stronger basis for statistical inference.
+    </p>    
+</subsection>

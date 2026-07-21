@@ -6,23 +6,23 @@
 <frontmatter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="meta_frontmatter">
   <titlepage>
     <author>
-      <personname>Danielle Navarro</personname>
-      <department>School of Psychology</department>
-      <institution>University of New South Wales</institution>
+      <personname>Roger Stern, Lily Climent, Rodgers Maragia, Armstrong Opondo, Joseph Baya</personname>
+      <!-- <department>School of Psychology</department>
+      <institution>University of New South Wales</institution> -->
     </author>
     <date><today/></date>
   </titlepage>
 
   <colophon>
 
-    <website>
+    <!-- <website>
       <name><c>learningstatisticswithr.com</c></name>
       <address>https://learningstatisticswithr.com</address>
-    </website>
+    </website> -->
 
     <copyright>
-      <year>2011<ndash/>2018</year>
-      <holder>Danielle Navarro</holder>
+      <year>2025<ndash/>2026</year>
+      <holder>IDEMS International</holder>
       <shortlicense>
         This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License.
         To view a copy of this license, visit
@@ -44,21 +44,22 @@
   <preface xml:id="meta_frontmatter-preface">
     <title>Overview</title>
     <p>
-      <em>Learning Statistics with R</em> covers the contents of an introductory statistics
-      class, as typically taught to undergraduate psychology students, focusing on the use
-      of the R statistical software. The book discusses how to get started in R as well as
-      giving an introduction to data manipulation and writing scripts. From a statistical
-      perspective, the book discusses descriptive statistics and graphing first, followed by
-      chapters on probability theory, sampling and estimation, and null hypothesis testing.
-      After introducing the theory, the book covers the analysis of contingency tables,
-      t-tests, ANOVAs and regression. Bayesian statistics are covered at the end of the book.
+      <em>Learning Statistics with R-Instat</em> introduces the fundamental concepts of statistics through the 
+      R-Instat statistical software. Designed for undergraduate students and other beginners, 
+      the book combines statistical theory with practical data analysis using R-Instat's graphical interface. 
+      It begins by introducing the R-Instat environment, data management, and data visualisation, 
+      enabling readers to explore and analyse data without the need for extensive programming. 
+      The book then covers descriptive statistics, probability distributions, sampling, estimation, 
+      and hypothesis testing before progressing to contingency tables, <m>t</m>-tests, analysis of variance (ANOVA), 
+      and regression. The final chapters introduce Bayesian statistics, providing readers with a broad foundation 
+      in modern statistical methods while developing confidence in applying them using R-Instat.
     </p>
   </preface>
 
-  <preface xml:id="meta_frontmatter-pretext-note">
+  <!-- <preface xml:id="meta_frontmatter-pretext-note">
     <title>About This Edition</title>
     <p>
-      This is a <pretext /> version of <em>Learning Statistics with R</em>, originally
+      This is a <pretext /> version of <em>Learning Statistics with R-Instat</em>, originally
       written by
       <url href="https://djnavarro.net" visual="djnavarro.net">Danielle Navarro</url>.
       The original book and its source files are available at
@@ -72,7 +73,7 @@
       file a report at
       <url href="https://github.com/PreTeXtBooks/rbook" visual="github.com/PreTeXtBooks/rbook">github.com/PreTeXtBooks/rbook</url>.
     </p>
-  </preface>
+  </preface> -->
 
 </frontmatter>
 

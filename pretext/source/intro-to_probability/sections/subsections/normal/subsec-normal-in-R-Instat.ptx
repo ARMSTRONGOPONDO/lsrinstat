@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection xml:id="normal-in-R-Instat">
+      <title>
+        Working with the normal distribution in R-Instat
+      </title>
+      
+      <p>
+        Although some people find it handy to know the formulas in Table <xref ref="table-distribution-formulas"/>, 
+        most people just want to know how to use the distributions without worrying too much about the maths.
+        For the normal distribution we use the same R-Instat tool as for the binomial:
+        the <em>Show Model</em> dialog.
+        Open it with
+        <em>Model <m>\rightarrow</m> Probability Distributions <m>\rightarrow</m> Show Model...</em>
+        (see the navigation path in <xref ref="model_menu"/> if you need a reminder).
+      </p>
+      
+      <p>
+        The only important change from the binomial examples is which distribution and parameters you choose.
+        Select <em>Normal</em> from the <em>Distribution</em> list.
+        The distribution parameters then become:
+        <ul>
+          <li>
+            <p>
+              <em>Mean</em> (<m>\mu</m>): the centre of the distribution.
+            </p>
+          </li>
+          <li>
+            <p>
+              <em>Standard Deviation</em> (<m>\sigma</m>): how spread out the distribution is.
+            </p>
+          </li>
+        </ul>
+        As before, the <em>Quantiles</em> and <em>Probabilities</em> tabs let you move between
+        values and probabilities, and the <em>Graph</em> and <em>Values</em> options control how results are shown.
+        Behind the scenes R-Instat generates commands such as <c>dnorm()</c>, <c>pnorm()</c> and <c>qnorm()</c>
+        (see Table <xref ref="table-r-prefix-functions"/>).
+      </p>
+
+      <p>
+        A classic example is human IQ scores, which are often modelled as approximately normal
+        with mean <m>\mu = 100</m> and standard deviation <m>\sigma = 15</m>.
+        That is, we treat IQ as <m>X \sim \mbox{Normal}(100, 15)</m>.
+        The steps below show how to answer a few common questions about that distribution in R-Instat.
+      </p>
+
+      <assemblage xml:id="assemblage-normal-density-steps">
+          <title>Example 1: density (height of the curve) at a value</title>
+          <p>
+            Suppose we want the probability <em>density</em> at an IQ of 100
+            (the height of the normal curve at the mean).
+            This is the continuous analogue of asking <c>dbinom()</c> for a single binomial outcome;
+            for a continuous distribution the result is a density, not a probability
+            (we return to that point in <xref ref="density"/>).
+          </p>
+          <p>
+            <ul>
+              <li>
+                <p>
+                  Open <em>Show Model...</em>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Select the <em>Quantiles</em> tab (or the tab that lets you enter observed values, as in the binomial examples).
+                </p>
+              </li>
+              <li>
+                <p>
+                  In <em>Values</em>, enter <m>100</m>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Select <em>Normal</em> as the <em>Distribution</em>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  In <em>Mean</em>, enter <m>100</m>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  In <em>Standard Deviation</em>, enter <m>15</m>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Choose <em>Values</em> (numerical output) if you want the number in the output window;
+                  choose <em>Graph</em> if you want to see the curve.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Click <em>OK</em> (or use <em>To Script</em> first if you want to inspect the generated R code).
+                </p>
+              </li>
+            </ul>
+            R-Instat generates the equivalent R command:
+            <em><m>\mathrm{dnorm}(x = 100, \mathrm{mean} = 100, \mathrm{sd} = 15)</m></em>
+            which returns a density of about <m>0.0266</m>.
+          </p>
+        </assemblage>
+
+      <assemblage xml:id="assemblage-normal-cumulative-steps">
+          <title>Example 2: cumulative probability below a value</title>
+          <p>
+            A more natural question is: what is the probability that a randomly chosen person has an IQ
+            <em>less than or equal to</em> 115?
+            That is the area under the normal curve to the left of 115.
+            In the <em>Show Model</em> dialog, keep <em>Normal</em>, mean <m>100</m> and standard deviation <m>15</m>,
+            and enter <m>115</m> as the value.
+            Depending on your R-Instat version, use the option that requests a
+            <em>cumulative</em> (lower-tail) probability rather than a density.
+            The generated R code is equivalent to:
+            <em><m>\mathrm{pnorm}(q = 115, \mathrm{mean} = 100, \mathrm{sd} = 15)</m></em>
+            which is about <m>0.841</m>.
+            In other words, roughly 84% of people are expected to score 115 or below under this model.
+          </p>
+        </assemblage>
+
+      <assemblage xml:id="assemblage-normal-quantile-steps">
+          <title>Example 3: quantile (value from a probability)</title>
+          <p>
+            The reverse question uses the <em>Probabilities</em> tab:
+            given a probability, find the IQ cut-off.
+            For example, what IQ is at the 95th percentile
+            (the value below which 95% of the distribution lies)?
+          </p>
+          <p>
+            <ul>
+              <li>
+                <p>
+                  Open <em>Show Model...</em> and select the <em>Probabilities</em> tab.
+                </p>
+              </li>
+              <li>
+                <p>
+                  In <em>Probabilities</em>, enter <m>0.95</m>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Select <em>Normal</em>, mean <m>100</m>, standard deviation <m>15</m>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Click <em>OK</em>.
+                </p>
+              </li>
+            </ul>
+            R-Instat generates the equivalent of:
+            <em><m>\mathrm{qnorm}(p = 0.95, \mathrm{mean} = 100, \mathrm{sd} = 15)</m></em>
+            which is about <m>124.7</m>.
+            So under this model, about 5% of people are expected to score above roughly 125.
+          </p>
+        </assemblage>
+
+      <p>
+        You can also explore how the curve changes with the parameters.
+        Keeping the mean fixed and increasing the standard deviation flattens and widens the curve
+        (as in <xref ref="fig-normsd"/>);
+        changing the mean slides the whole curve left or right (as in <xref ref="fig-normmean"/>).
+        Use <em>Graph</em> in the <em>Show Model</em> dialog to plot the normal density for different
+        means and standard deviations, and compare the pictures with the figures earlier in this section.
+      </p>
+
+      <p>
+        As with the binomial distribution, you do not need to memorise the R function names to use R-Instat.
+        Choose the distribution, enter the parameters, pick the tab that matches your question
+        (value <m>\rightarrow</m> probability, or probability <m>\rightarrow</m> value),
+        and inspect <em>To Script</em> if you want to connect the dialog to the underlying R commands.
+      </p>
+    </subsection>

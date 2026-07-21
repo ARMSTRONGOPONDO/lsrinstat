@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection> xml:id="subsec-does-srs-matter" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>How Much Does It Matter If You Do Not Have a Simple Random Sample?</title>
+    <p>
+        In practice, many datasets are not obtained through simple random sampling. Does this mean that statistical analysis is 
+        invalid? Not necessarily. The impact depends on how the sample was selected and whether the sampling method introduces bias 
+        that affects the conclusions of the study.
+    </p>
+    <p>
+        Some departures from simple random sampling are intentional and can be accounted for during the analysis. For example, 
+        in <term><em>stratified sampling</em></term>, the population is divided into meaningful groups before sampling. 
+        Although this creates a structured sampling design rather than a purely random one, it often improves the precision of 
+        statistical estimates. Appropriate statistical methods can then be used to account for the sampling design.
+    </p>
+    <p>
+        More generally, the purpose of random sampling is to obtain a sample that is representative of the population of interest. 
+        A sample that is not perfectly random may still provide reliable conclusions if the characteristics that influence the study 
+        are well represented. Conversely, even a large sample can produce misleading results if important groups are systematically 
+        excluded or overrepresented.
+    </p>
+    <p>
+        When designing a study, researchers should carefully define the target population and select a sampling method that is 
+        appropriate for that population. Practical considerations such as time, cost, and accessibility often make convenience 
+        sampling unavoidable. In such cases, it is important to recognise the limitations of the sample and consider how these limitations 
+        might affect the interpretation of the results.
+    </p>
+    <p>
+        Similarly, when evaluating the results of a study, it is not sufficient to simply note that the sample was not randomly selected. 
+        Instead, the important question is whether the sampling method is likely to have introduced bias that affects the validity 
+        or generalisability of the conclusions. A thoughtful assessment of the sampling process provides a much stronger basis for 
+        evaluating statistical evidence than simply identifying that a convenience sample was used.
+    </p>
+</subsection>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection xml:id="subsec-samplingdists" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Sampling Distribution of the Mean</title>
+    <p>
+        To understand how sample statistics vary, consider repeatedly drawing random samples of the same size from a population. 
+        Suppose that each sample consists of <m>N=5</m> individuals and that the sample mean is calculated for every sample. 
+        Because each sample is different, the sample mean is also likely to differ from one sample to another.
+    </p>
+
+    <p>
+        Table <xref ref="tab-replications"/> shows the results of ten independent samples, each containing five observations. 
+        Although every sample is drawn from the same population, the sample means are not identical because of random sampling variation.
+    </p>
+
+    <table xml:id="tab-replications">
+        <title>Ten independent samples, each with a sample size of <m>N=5</m>.</title>
+        <tabular>
+            <row header="yes">
+                <cell></cell>
+                <cell>Person 1</cell>
+                <cell>Person 2</cell>
+                <cell>Person 3</cell>
+                <cell>Person 4</cell>
+                <cell>Person 5</cell>
+                <cell>Sample Mean</cell>
+            </row>
+            <row><cell>Sample 1</cell><cell>90</cell><cell>82</cell><cell>94</cell><cell>99</cell><cell>110</cell><cell>95.0</cell></row>
+            <row><cell>Sample 2</cell><cell>78</cell><cell>88</cell><cell>111</cell><cell>111</cell><cell>117</cell><cell>101.0</cell></row>
+            <row><cell>Sample 3</cell><cell>111</cell><cell>122</cell><cell>91</cell><cell>98</cell><cell>86</cell><cell>101.6</cell></row>
+            <row><cell>Sample 4</cell><cell>98</cell><cell>96</cell><cell>119</cell><cell>99</cell><cell>107</cell><cell>103.8</cell></row>
+            <row><cell>Sample 5</cell><cell>105</cell><cell>113</cell><cell>103</cell><cell>103</cell><cell>98</cell><cell>104.4</cell></row>
+            <row><cell>Sample 6</cell><cell>81</cell><cell>89</cell><cell>93</cell><cell>85</cell><cell>114</cell><cell>92.4</cell></row>
+            <row><cell>Sample 7</cell><cell>100</cell><cell>93</cell><cell>108</cell><cell>98</cell><cell>133</cell><cell>106.4</cell></row>
+            <row><cell>Sample 8</cell><cell>107</cell><cell>100</cell><cell>105</cell><cell>117</cell><cell>85</cell><cell>102.8</cell></row>
+            <row><cell>Sample 9</cell><cell>86</cell><cell>119</cell><cell>108</cell><cell>73</cell><cell>116</cell><cell>100.4</cell></row>
+            <row><cell>Sample 10</cell><cell>95</cell><cell>126</cell><cell>112</cell><cell>120</cell><cell>76</cell><cell>105.8</cell></row>
+        </tabular>
+    </table>
+    <p>
+        Now suppose this sampling process is repeated thousands of times. Each sample produces a single value—the sample mean. 
+        Collecting these sample means produces a new distribution known as the <em>sampling distribution of the mean</em>. 
+        This distribution is illustrated in <xref ref="fig-sampdistmean"/>.
+    </p>
+    <figure xml:id="fig-sampdistmean">
+        <caption>
+            Sampling distribution of the sample mean based on repeated random samples of size <m>N=5</m>. 
+            The distribution shows how the sample mean varies from one sample to another, even though every sample is drawn from the same population. 
+            The black curve represents the population distribution.
+        </caption>
+        <image source="images/sampdistmean.png"/>
+    </figure>
+    <p>
+        The sampling distribution of the mean describes the variability of the sample mean across repeated samples of the same size. 
+        Although individual sample means differ because of random sampling variation, they tend to cluster around the population mean. 
+        Understanding this distribution is fundamental to statistical inference because it forms the basis for estimating population parameters, 
+        constructing confidence intervals, and performing hypothesis tests.
+    </p>
+</subsection>

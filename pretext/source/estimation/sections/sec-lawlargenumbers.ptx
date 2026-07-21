@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec-lawlargenumbers" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>The law of large numbers</title>
+    <p>
+        In the previous section, we introduced the distinction between <em>population parameters</em> and <em>sample statistics</em>. 
+        Because sample statistics are calculated from only a subset of the population, they are unlikely to be exactly equal to the corresponding population parameters. 
+        This raises an important question: how can we obtain more accurate estimates of the population?
+    </p>
+
+    <p>
+        One of the simplest ways to improve the accuracy of statistical estimates is to increase the sample size. 
+        As more observations are collected, the sample becomes more representative of the population, and sample statistics such as the sample mean and 
+        sample standard deviation tend to move closer to their true population values.
+    </p>
+
+    <p>
+        This principle is known as the <em>law of large numbers</em>. It states that as the sample size increases, 
+        sample statistics based on averages become increasingly close to the corresponding population parameters. 
+        For the sample mean, this means that as the sample size approaches infinity (<m>N \rightarrow \infty</m>), 
+        the sample mean (<m>\bar{X}</m>) approaches the population mean (<m>\mu</m>).
+    </p>
+
+    <p>
+        The law of large numbers provides the theoretical justification for collecting larger samples whenever possible. 
+        Although any individual sample may differ from the population, 
+        larger samples generally produce more reliable estimates because they reduce the effect of random sampling variation.
+    </p>
+
+    <p>
+        The law applies not only to the sample mean but also to many other statistics that are based on averages. 
+        It forms one of the fundamental principles of statistical inference and provides the basis for many of the estimation methods introduced later in this chapter.
+    </p>
+</section>

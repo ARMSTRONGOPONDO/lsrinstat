@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection xml:id="subsec-slight-mistake" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>A slight adjustment to the confidence interval formula</title>
+    <p>
+        The confidence interval formula introduced in the previous section provides a useful way to
+        understand how confidence intervals are constructed. However, there is one important detail.
+        The formula uses the population standard deviation, <m>\sigma</m>, when calculating the
+        standard error. In practice, the population standard deviation is almost never known and must
+        instead be estimated from the sample.
+    </p>
+    <p>
+        Replacing the unknown population standard deviation with the sample standard deviation
+        introduces additional uncertainty into the estimate. To account for this uncertainty,
+        confidence intervals are calculated using the <em>t-distribution</em> rather than the normal
+        distribution. The <em>t</em>-distribution is similar to the normal distribution but has
+        slightly heavier tails, resulting in wider confidence intervals, particularly when the sample
+        size is small.
+    </p>
+    <p>
+        As the sample size increases, the estimate of the population standard deviation becomes more
+        reliable. Consequently, the <em>t</em>-distribution approaches the normal distribution, and
+        the difference between the two becomes negligible. For large samples, confidence intervals
+        calculated using the <em>t</em>-distribution are therefore almost identical to those based on
+        the normal distribution.
+    </p>
+    <p>
+        In practice, there is no need to determine which distribution to use manually. R-Instat
+        automatically applies the appropriate method when calculating confidence intervals. The
+        important point is that smaller samples produce wider confidence intervals because they
+        provide less precise information about the population, whereas larger samples produce narrower
+        confidence intervals because the estimates are more reliable.
+    </p>    
+</subsection>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection xml:id="subsec-pop-parameters-and-srs" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Population Parameters and Sample Statistics</title>
+    <p>
+        In statistical inference, the concepts of a <em>population</em> and a <em>sample</em> are often described using probability distributions. 
+        Rather than thinking of a population simply as a collection of individuals or observations, 
+        statisticians represent it by a probability distribution that describes how the values of a variable are expected to occur. 
+        This mathematical representation provides the foundation for statistical inference.
+    </p>
+    <p>
+        As an example, consider IQ scores. IQ tests are designed so that scores follow approximately a normal distribution with a mean of 100 and a 
+        standard deviation of 15, as illustrated in <xref ref="fig-IQdista"/>. 
+        These values describe the entire population and are known as <em>population parameters</em>. 
+        The population mean is denoted by <m>\mu</m>, while the population standard deviation is denoted by <m>\sigma</m>.
+    </p>
+    <figure xml:id="fig-IQdista">
+        <caption>
+            The population distribution of IQ scores, modelled as a normal distribution with mean 100 and standard deviation 15.
+        </caption>
+        <image source="images/IQdista.png"/>
+    </figure>
+    <p>
+        Suppose we randomly select 100 individuals from this population and record their IQ scores. The resulting observations form a <em>sample</em>. 
+        From this sample, we can calculate quantities such as the sample mean and the sample standard deviation. 
+        These are called <em>sample statistics</em> because they are computed from the observed data.
+    </p>
+    <p>
+        Sample statistics are usually close to, but not exactly the same as, the corresponding population parameters. 
+        This difference occurs because every random sample is slightly different. Consequently, 
+        different samples drawn from the same population generally produce different sample statistics.
+    </p>
+    <p>
+        The distinction between population parameters and sample statistics is fundamental to statistical inference. 
+        Population parameters are usually unknown and are the quantities we wish to learn about, while sample statistics provide the information used to estimate them. 
+        In the following sections, we introduce methods for obtaining point estimates and confidence intervals, 
+        which allow us to estimate population parameters and quantify the uncertainty associated with those estimates.
+    </p>
+</subsection>

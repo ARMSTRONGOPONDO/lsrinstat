@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection xml:id="subsec-calculating-ci" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Calculating confidence intervals in R-Instat</title>
+    <p>
+        R-Instat provides a straightforward way to calculate confidence intervals for the mean without
+        writing any R code. In this section, we continue using the
+        <c>work</c> dataset from the <c>lsrdata</c> package.
+    </p>
+    <p>
+        In the dialog, select the <c>Customised</c> tab, choose the
+        <c>hours</c> variable, and include the summary statistics required for your
+        analysis. Ensure that the options for the sample mean and the confidence interval
+        for the mean are selected. The default confidence level is 95%, although this can
+        be changed if required.
+    </p>
+
+    <figure xml:id="fig-ci-mean-dialog">
+        <caption>
+            Calculating a confidence interval for the mean using the
+            <c>One Variable Summarise</c> dialog.
+        </caption>
+        <image source="images/ciMeanDialog.png"/>
+    </figure>
+
+    <p>
+        After selecting <c>OK</c>, R-Instat displays the requested summary
+        statistics together with the confidence interval for the mean.
+    </p>
+
+    <figure xml:id="fig-ci-mean-output">
+        <caption>
+            Output showing the sample mean together with its confidence interval.
+        </caption>
+        <image source="images/ciMeanOutput.png"/>
+    </figure>
+
+    <p>
+        The confidence interval provides a range of plausible values for the population
+        mean. Narrower intervals indicate more precise estimates, while wider intervals
+        reflect greater uncertainty. The width of the interval depends primarily on the
+        variability in the data and the sample size. Larger samples generally produce
+        narrower confidence intervals because they provide more precise estimates of the
+        population mean.
+    </p>
+
+    <p>
+        Throughout this book, R-Instat will automatically calculate confidence intervals
+        whenever they are available for the selected analysis. This allows you to focus on
+        interpreting the results rather than performing the calculations manually.
+    </p>
+</subsection>

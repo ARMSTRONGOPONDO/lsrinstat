@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection xml:id="subsec-simple-random-samples" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Simple random samples</title>
+     <figure xml:id="fig-srs1">
+        <caption>
+            Simple random sampling without replacement. Once a member of the population has been selected, it cannot be 
+            selected again.
+        </caption>
+        <image source="images/srs1.png"/>
+    </figure>
+    <p>
+        A sample is useful only if it represents the population from which it was selected. The method used to select the 
+        sample is known as the <em>sampling method</em>, and it plays a fundamental role in statistical inference.
+    </p>
+    <p>
+        To illustrate the idea, consider a population consisting of ten chips labelled <m>a</m> to <m>j</m>, 
+        shown on the left of <xref ref="fig-srs1"/>. Four chips are selected at random without returning any chip to the 
+        population before the next draw. Because every chip has an equal chance of being selected, this procedure produces 
+        a <em>simple random sample without replacement</em>. Repeating the sampling process produces different samples, 
+        but every member of the population always has an equal probability of selection.
+    </p>
+    <figure xml:id="fig-brs">
+        <caption>
+            Biased sampling. Some members of the population are systematically more likely to be selected than others.
+        </caption>
+        <image source="images/brs.png"/>
+    </figure>
+    <p>
+        Not every sampling method produces representative data. Suppose only the black chips are deliberately selected, 
+        as illustrated in <xref ref="fig-brs"/>. This is an example of <em>biased sampling</em>. 
+        Because some members of the population have little or no chance of being selected, the resulting sample does not accurately 
+        represent the population and may lead to misleading conclusions.
+    </p>
+    <figure xml:id="fig-srs2">
+        <caption>
+            Simple random sampling with replacement. Each selected member is returned to the population before the next draw.
+        </caption>
+        <image source="images/srs2.png"/>
+    </figure>
+    <p>
+        Another common sampling method is <em>simple random sampling with replacement</em>. After each selection, 
+        the chosen chip is returned to the population before the next draw. As shown in <xref ref="fig-srs2"/>, 
+        the same member of the population may therefore be selected more than once.
+    </p>
+    <p>
+        In many practical studies, such as surveys and experiments involving people, sampling is usually carried out without 
+        replacement because the same individual is rarely included more than once. However, much of statistical theory assumes 
+        sampling with replacement because it simplifies the mathematical development. When the population is large, 
+        the difference between the two methods is usually negligible. In contrast, the difference between a simple random 
+        sample and a biased sample is often substantial and can have a major impact on the validity of statistical conclusions.
+    </p>
+</subsection>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection xml:id="subsec-pop" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Defining a Population</title>
+    <p>
+        A <term><em>sample</em></term> is the set of observations that has been collected and is available for analysis. 
+        You can open a dataset in R-Instat and view every observation in the sample. A <term><em>population</em></term>, 
+        on the other hand, is the complete set of individuals, objects, or measurements about which we want to draw conclusions. 
+        In most studies, the population is much larger than the sample and may even be impossible to observe in its entirety.
+    </p>
+    <p>
+        Before collecting or analysing data, it is important to clearly define the population of interest. 
+        The design of the study, the method used to select the sample, and the conclusions that can be drawn all depend on 
+        the population being investigated. In practice, however, the population may not always be precisely defined, 
+        particularly in observational studies where the available data determine the scope of the analysis.
+    </p>
+    <p>
+        In some situations, identifying the population is straightforward. For example, 
+        if a survey is conducted to estimate the proportion of registered voters who support a particular candidate, 
+        the population consists of all registered voters, while the sample is the group of voters who participated in the survey.
+    </p>
+    <p>
+        In other situations, defining the population requires more careful consideration. Suppose a researcher collects 
+        data from 100 maize farms in a district to study crop yield. Depending on the objective of the study, 
+        the population could be:
+        <ul>
+            <li>
+                <p>
+                    All maize farms in the district.
+                </p>
+            </li>
+            <li>
+                <p>
+                    All maize farms in the country.
+                </p>
+            </li>
+            <li>
+                <p>
+                    Small-scale maize farms only.
+                </p>
+            </li>
+            <li>
+                <p>
+                    Maize farms with similar climatic and soil conditions.
+                </p>
+            </li>
+        </ul>
+    </p>
+    <p>
+        Each of these represents a different population, and the appropriate choice depends on the research question. 
+        The sample remains the same, but the conclusions that can be drawn differ according to the population to which the 
+        researcher intends to generalise the results.
+    </p>
+    <p>
+        Throughout this book, datasets analysed in R-Instat represent samples drawn from larger populations. 
+        Understanding the distinction between a sample and a population is essential because statistical inference uses 
+        information from the sample to estimate unknown characteristics of the population.
+    </p>  
+</subsection>

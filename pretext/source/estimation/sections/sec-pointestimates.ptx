@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec-pointestimates" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Estimating population parameters</title>
+    <p>
+        In the previous sections, we used examples where the population parameters were already known. 
+        This allowed us to focus on the ideas of sampling, sampling distributions, and the behaviour of sample statistics. 
+        In practice, however, the values of population parameters are rarely known. 
+        Instead, the goal of statistical inference is to use information from a sample to estimate these unknown quantities.
+    </p>
+    <p>
+        Suppose you are interested in estimating the average income of households in a county, the average crop yield from a farming region, 
+        or the proportion of patients who recover after receiving a particular treatment. 
+        It is usually impractical or impossible to collect data from every member of the population. 
+        Instead, a sample is selected, and statistics calculated from that sample are used to estimate the corresponding population parameters.
+    </p>
+    <p>
+        This process of using sample information to estimate unknown population characteristics is called
+        <em>statistical estimation</em>. Because different samples produce different sample statistics, every estimate is subject to sampling variation. 
+        Understanding this variability is essential when interpreting estimates and assessing how reliable they are.
+    </p>
+    <p>
+        In this section, we introduce two of the most widely used approaches to estimation:
+        <em>point estimation</em>, which provides a single best estimate of a population parameter, and
+        <em>confidence intervals</em>, which provide a range of plausible values for the parameter.
+        These methods form the foundation of statistical inference and are supported throughout the chapter using
+        <em>R-Instat</em>.
+    </p>
+
+    <xi:include href="subsections/pointestimates/subsec-pop_mean-estimation.ptx" />
+    <xi:include href="subsections/pointestimates/subsec-pop_sd_estimation.ptx" />
+
+</section>

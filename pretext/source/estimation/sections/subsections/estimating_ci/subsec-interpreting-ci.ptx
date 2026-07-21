@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection xml:id="subsec-interpreting-ci" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Interpreting a confidence interval</title>
+    <p>
+        Confidence intervals are most useful when they accompany the results of a statistical analysis.
+        In R-Instat, confidence intervals are calculated automatically for many statistical procedures,
+        allowing you to focus on interpreting the results rather than performing the calculations manually.
+        In this example, we estimate the relationship between the number of hours worked and the number of
+        tasks completed using Pearson's correlation coefficient together with its 95% confidence interval.
+    </p>
+    <p>
+        Begin by importing the <c>work</c> dataset from the <c>lsrdata</c> package. This dataset contains
+        49 observations and includes the variables <c>hours</c>, <c>tasks</c>, <c>pay</c>,
+        <c>day</c>, <c>weekday</c>, <c>week</c>, and <c>day.type</c>.
+        <ul>
+            <li>
+                <p>
+                    Import the dataset using
+                </p>
+            </li>
+            <li>
+                <p>
+                    <c>File &gt; Import from Library &gt; Load from R</c>
+                </p>
+            </li>
+            <li>
+                <p>
+                    Select <c>lsrdata</c> from the <c>From Package</c> drop-down list and choose the <c>work</c> dataset.
+                </p>
+            </li>
+            <li>
+                <p>
+                    To calculate the correlation together with its confidence interval, 
+                    open the <term>Correlation</term> dialog from <c>Describe &gt; Two/Three Variables &gt; Correlations...</c>
+                </p>
+            </li>
+            <li>
+                <p>
+                    Select the <term>Two Variables</term> tab and specify the following settings:
+                    <ul>
+                        <li>
+                            <p>
+                                First Variable: <c>hours</c>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Second Variable: <c>tasks</c>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Method: <c>Pearson</c>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Confidence Interval: <c>0.95</c>
+                            </p>
+                        </li>
+                    </ul>
+                </p>
+            </li>
+        </ul>
+    </p>
+
+    <figure xml:id="fig-correlation-ci-dialog">
+        <caption>
+            The Correlation dialog configured to calculate the Pearson correlation
+            between <c>hours</c> and <c>tasks</c> together with a 95% confidence interval.
+        </caption>
+        <image source="images\estimation\correlation_ci_dialog.png"/>
+    </figure>
+
+    <p>
+        Click <c>OK</c> to produce the output shown in
+        <xref ref="fig-correlation-ci-output"/>.
+    </p>
+
+    <figure xml:id="fig-correlation-ci-output">
+        <caption>
+            Output from the Correlation dialog showing the Pearson correlation coefficient
+            and its 95% confidence interval.
+        </caption>
+        <image source="images\estimation\correlation_ci_output.png"/>
+    </figure>
+
+    <p>
+        The output reports a Pearson correlation coefficient of
+        <m>r = 0.8002</m>, indicating a strong positive linear relationship between the
+        number of hours worked and the number of tasks completed. In general, employees
+        who worked more hours also completed more tasks.
+    </p>
+
+    <p>
+        More importantly for this section, the output also provides a 95% confidence
+        interval for the population correlation, which ranges from approximately
+        <m>0.6697</m> to <m>0.8827</m>. This interval represents a range of plausible
+        values for the true correlation in the population. Since the entire interval is
+        positive and lies well above zero, the data provide strong evidence of a positive
+        association between the two variables.
+    </p>
+
+    <p>
+        The width of the confidence interval also tells us about the precision of the
+        estimate. A narrow interval indicates that the estimated correlation is relatively
+        precise, whereas a wider interval would indicate greater uncertainty. Larger
+        sample sizes generally produce narrower confidence intervals because they provide
+        more reliable estimates of population parameters.
+    </p>
+
+    <p>
+        When interpreting confidence intervals in R-Instat, it is good practice to
+        consider both the point estimate and the confidence interval together. The point
+        estimate summarises the observed relationship in the sample, while the confidence
+        interval indicates the range of values that are consistent with the observed data.
+        Reporting both provides a more complete understanding of the statistical results
+        than reporting the point estimate alone.
+    </p>
+</subsection>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec-srs" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Samples, populations and sampling</title>
+    <p>
+        In the previous chapter (<xref ref="descriptives"/>), we distinguished between <em>descriptive statistics</em> and <em>inferential statistics</em>. 
+        Descriptive statistics are used to organise, summarise, and present the information contained in a dataset. 
+        Inferential statistics, on the other hand, use information from a sample to draw conclusions about the wider population 
+        from which the sample was selected.</p> <p>Having developed a foundation in probability, we are now ready to explore 
+        <em>statistical inference</em>. Inferential statistics seeks to answer questions about populations using evidence 
+        obtained from samples. Two of the fundamental objectives of statistical inference are <em>estimation</em> and 
+        <em>hypothesis testing</em>. This chapter introduces the first of these concepts; <em>estimation</em>, 
+        which focuses on using sample data to estimate unknown population quantities.
+    </p> 
+    <p>
+        Before studying estimation methods, it is important to understand the principles of <em>sampling theory</em>. 
+        The reliability of any estimate depends on how the sample was selected and on the natural variation that exists 
+        between different samples drawn from the same population. An understanding of sampling distributions therefore 
+        provides the foundation for making valid statistical inferences.
+    </p> 
+    <p>
+        This chapter begins by introducing the key concepts of sampling and sampling distributions. 
+        It then explains how sample statistics can be used to 
+        estimate population parameters through point estimates and confidence intervals. Throughout the chapter, 
+        these concepts are illustrated using <term>R-Instat</term>, enabling you to apply the theory by producing estimates, 
+        confidence intervals, and interpreting the corresponding output using the R-Instat interface.
+    </p> 
+
+        <xi:include href="subsections/srs/subsec-pop.ptx" />
+        <xi:include href="subsections/srs/subsec-simple-random-samples.ptx" />
+        <xi:include href="subsections/srs/subsec-most-samples-not-srs.ptx" />
+        <xi:include href="subsections/srs/subsec-does-srs-matter.ptx" />
+        <xi:include href="subsections/srs/subsec-pop-parameters-and-srs.ptx" />
+</section>

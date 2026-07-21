@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subsection xml:id="subsec-pop_sd_estimation" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Estimating the population standard deviation</title>
+    <p>
+        In the previous section, we used the sample mean to estimate the population mean. 
+        We can apply the same principle to variability. Although the standard deviation of a sample can be calculated directly from 
+        the data, the true population standard deviation is usually unknown. 
+        Therefore, we use the sample standard deviation to estimate the population standard deviation.
+    </p>
+    <p>
+        Unlike the sample mean, however, the sample standard deviation tends to slightly underestimate the true population standard 
+        deviation, particularly when the sample size is small. This systematic difference is known as <em>bias</em>. To reduce this bias, 
+        statistical software applies a small correction by dividing by <m>N-1</m> instead of <m>N</m> when calculating the variance. 
+        This adjustment, known as <em>Bessel's correction</em>, provides a better estimate of the population variance and, consequently, 
+        the population standard deviation.
+    </p>
+    <p>
+        Continuing with the <c>effort</c> dataset introduced in the previous section, 
+        we can estimate the population standard deviation for the <c>hours</c> and <c>grade</c> variables using the <c>One Variable Summarise</c> dialog. 
+        Open the dialog through <c>Describe &gt; One Variable &gt; Summarise...</c>. 
+        Select the <c>Customised</c> tab, move the <c>hours</c> and <c>grade</c> variables into the <c>Variable(s) to Summarise</c> box, 
+        ensure the required summary statistics are selected, and click <c>OK</c>.
+    </p>
+
+    <figure xml:id="fig-estimate-sd-dialog">
+        <caption>
+            The <c>One Variable Summarise</c> dialog used to obtain summary statistics for the <c>hours</c> and <c>grade</c> 
+            variables in the <c>effort</c> dataset using the <c>Customised</c> tab.
+        </caption>
+        <image source="images\estimation\estimate_sd_dialog.png"/>
+    </figure>
+
+    <figure xml:id="fig-estimate-sd-output">
+        <caption>
+            Summary output showing the mean and standard deviation for the <c>hours</c> and <c>grade</c> variables in the <c>effort</c> dataset.
+        </caption>
+        <image source="images\estimation\estimate_sd_output.png"/>
+    </figure>
+
+    <p>
+        The customised summary output reports several descriptive statistics, including the sample size, mean, 
+        median and standard deviation for each variable. In this example, 
+        the <c>hours</c> variable has a mean of 36.80 hours and a standard deviation of 25.52, while the <c>grade</c> variable has a 
+        mean of 59.60 and a standard deviation of 32.52. The standard deviation measures how much the observations vary around the mean. 
+        Larger values indicate greater variability, whereas smaller values indicate that the observations are more closely clustered 
+        around the mean.
+    </p>
+    <p>
+        R-Instat calculates the standard deviation using the <m>N-1</m> correction (Bessel's correction). 
+        This is the standard deviation commonly reported in statistical analyses and provides the best available estimate of the population 
+        standard deviation based on the sample data.
+    </p>
+    <p>
+        If the sample observations are denoted by <m>X_1, X_2, \ldots, X_N</m>, 
+        then the estimated population standard deviation is calculated as
+        <md>
+            \hat{\sigma}=
+            \sqrt{\frac{1}{N-1}\sum_{i=1}^{N}(X_i-\bar{X})^2}
+        </md>
+    </p>
+    <p>
+        The corresponding estimate of the population variance is
+        <md>
+            \hat{\sigma}^{2}=
+            \frac{1}{N-1}\sum_{i=1}^{N}(X_i-\bar{X})^2
+        </md>
+    </p>
+    <p>
+        Using <m>N-1</m> instead of <m>N</m> compensates for the tendency of small samples to underestimate the true population variability. 
+        As the sample size increases, the difference between dividing by <m>N</m> and <m>N-1</m> becomes negligible.
+    </p>
+    <p>
+        To distinguish between quantities calculated from the sample and the corresponding population parameters, 
+        the notation shown in <xref ref="table-estimation-sd-notation"/> is used throughout this book.
+    </p>
+
+    <table xml:id="table-estimation-sd-notation">
+        <title>Notation for standard deviation and variance</title>
+        <tabular halign="center">
+            <row header="yes" bottom="minor">
+                <cell halign="left">Symbol</cell>
+                <cell>Meaning</cell>
+                <cell>Known?</cell>
+            </row>
+            <row>
+                <cell halign="left"><m>s</m></cell>
+                <cell>Sample standard deviation</cell>
+                <cell>Yes, calculated from the sample data</cell>
+            </row>
+            <row>
+                <cell halign="left"><m>\sigma</m></cell>
+                <cell>Population standard deviation</cell>
+                <cell>Usually unknown</cell>
+            </row>
+            <row>
+                <cell halign="left"><m>\hat{\sigma}</m></cell>
+                <cell>Estimate of the population standard deviation</cell>
+                <cell>Yes, obtained from the sample</cell>
+            </row>
+            <row>
+                <cell halign="left"><m>s^2</m></cell>
+                <cell>Sample variance</cell>
+                <cell>Yes, calculated from the sample data</cell>
+            </row>
+            <row>
+                <cell halign="left"><m>\sigma^2</m></cell>
+                <cell>Population variance</cell>
+                <cell>Usually unknown</cell>
+            </row>
+            <row>
+                <cell halign="left"><m>\hat{\sigma}^2</m></cell>
+                <cell>Estimate of the population variance</cell>
+                <cell>Yes, obtained from the sample</cell>
+            </row>
+        </tabular>
+    </table>    
+</subsection>

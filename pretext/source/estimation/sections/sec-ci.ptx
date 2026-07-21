@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec-ci" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Estimating a confidence interval</title>
+    <p>
+        In the previous section, we estimated unknown population parameters using sample statistics.
+        For example, the sample mean provides a sensible estimate of the population mean.
+        However, a single estimate does not tell us how precise that estimate is. Different random
+        samples from the same population are unlikely to produce exactly the same sample mean, so
+        every estimate contains some uncertainty.
+    </p>
+    <p>
+        A <em>confidence interval</em> provides a way of expressing this uncertainty. Rather than
+        reporting only a single estimate, we calculate a range of plausible values that is likely
+        to contain the true population parameter. For example, instead of reporting that the mean
+        IQ is estimated to be 98.5, we might report that the true population mean is likely to lie
+        between 95.2 and 101.8. This interval gives a better indication of the reliability of the
+        estimate than the sample mean alone.
+    </p>
+    <p>
+        Confidence intervals are based on the sampling distribution of a statistic. As discussed in
+        the previous section, repeated random samples produce different sample means, but these means
+        follow a predictable sampling distribution. The Central Limit Theorem tells us that, for
+        sufficiently large samples, the sampling distribution of the mean is approximately normal.
+        This allows us to calculate confidence intervals using the sample mean, the standard error,
+        and a chosen confidence level, such as 95%.
+    </p>
+    <p>
+        A 95% confidence interval for the population mean is commonly written as
+        <md>
+            \bar{X} \pm 1.96 \times \text{SEM}
+        </md>
+        where <m>\bar{X}</m> is the sample mean and
+        <m>\text{SEM}=\sigma/\sqrt{N}</m> is the standard error of the mean. The value 1.96 is the
+        multiplier associated with a 95% confidence level when the sampling distribution is
+        approximately normal.
+    </p>
+    <p>
+        In practice, you rarely calculate confidence intervals manually. R-Instat computes them
+        automatically for many statistical procedures. The following sections demonstrate how to
+        estimate confidence intervals using R-Instat and explain how to interpret the results.
+    </p>
+
+    <xi:include href="subsections/estimating_ci/subsec-slight-mistake.ptx" />
+    <xi:include href="subsections/estimating_ci/subsec-interpreting-ci.ptx" />
+    <!-- <xi:include href="subsections/estimating_ci/subsec-calculating-ci.ptx" /> -->
+    <!-- <xi:include href="subsections/estimating_ci/subsec-ciplots.ptx" /> -->
+
+</section>
