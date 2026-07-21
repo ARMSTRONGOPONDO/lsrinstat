@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<chapter xml:id="anova" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Comparing several means (one-way ANOVA)</title>
+  <p>This chapter introduces one of the most widely used tools in statistics, known as "the analysis of variance", which is usually referred to as ANOVA. The basic technique was developed by Sir Ronald Fisher in the early 20th century, and it is to him that we owe the rather unfortunate terminology. The term ANOVA is a little misleading, in two respects. Firstly, although the name of the technique refers to variances, ANOVA is concerned with investigating differences in means. Secondly, there are several different things out there that are all referred to as ANOVAs, some of which have only a very tenuous connection to one another. Later on in the book we'll encounter a range of different ANOVA methods that apply in quite different situations, but for the purposes of this chapter we'll only consider the simplest form of ANOVA, in which we have several different groups of observations, and we're interested in finding out whether those groups differ in terms of some outcome variable of interest. This is the question that is addressed by a <em>one-way ANOVA</em>.</p>
+  <p>The structure of this chapter is as follows: In <xref ref="anxifree"/> I'll introduce a fictitious data set that we'll use as a running example throughout the chapter. After introducing the data, I'll describe the mechanics of how a one-way ANOVA actually works (<xref ref="anovaintro"/>) and then focus on how you can run one in R (<xref ref="introduceaov"/>). These two sections are the core of the chapter. The remainder of the chapter discusses a range of important topics that inevitably arise when running an ANOVA, namely how to calculate effect sizes (<xref ref="etasquared"/>), post hoc tests and corrections for multiple comparisons (<xref ref="posthoc"/>) and the assumptions that ANOVA relies upon (<xref ref="anovaassumptions"/>). We'll also talk about how to check those assumptions and some of the things you can do if the assumptions are violated (<xref ref="levene"/> to <xref ref="kruskalwallis"/>). At the end of the chapter we'll talk a little about the relationship between ANOVA and other statistical tools (<xref ref="anovaandt"/>).</p>
+
+  <xi:include href="./An-illustrative-data-set/14.1-anxifree.ptx"/>
+  <xi:include href="./How-ANOVA-works/14.2-anovaintro.ptx"/>
+  <xi:include href="./Running-an-ANOVA-in-R/14.3-introduceaov.ptx"/>
+  <xi:include href="./Effect-size/14.4-etasquared.ptx"/>
+  <xi:include href="./Multiple-comparisons-and-post-hoc-tests/14.5-posthoc.ptx"/>
+  <xi:include href="./Assumptions-of-one-way-ANOVA/14.6-anovaassumptions.ptx"/>
+  <xi:include href="./Checking-the-homogeneity-of-variance-assumption/14.7-levene.ptx"/>
+  <xi:include href="./Removing-the-homogeneity-of-variance-assumption/14.8-welchoneway.ptx"/>
+  <xi:include href="./Checking-the-normality-assumption/14.9-anovanormality.ptx"/>
+  <xi:include href="./Removing-the-normality-assumption/14.10-kruskalwallis.ptx"/>
+  <xi:include href="./On-the-relationship-between-ANOVA-and-the-Student-T-test/14.11-anovaandt.ptx"/>
+  <xi:include href="./Summary/14.12-summary.ptx"/>
+</chapter>

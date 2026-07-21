@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<subsection xml:id="anovaassumptions-robustness">
+    <title>How robust is ANOVA?</title>
+
+    <p>One question that people often want to know the answer to is the extent to which you can trust the results of an ANOVA if the assumptions are violated. Or, to use the technical language, how <em>robust</em> is ANOVA to violations of the assumptions. Due to deadline constraints I don't have the time to discuss this topic. This is a topic I'll cover in some detail in a later version of the book.</p>
+</subsection>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="etasquared">
+    <title>Effect size</title>
+
+    <p>There's a few different ways you could measure the effect size in an ANOVA, but the most commonly used measures are <m><![CDATA[\eta^2]]></m> (<em>eta squared</em>) and partial <m><![CDATA[\eta^2]]></m>. For a one way analysis of variance they're identical to each other, so for the moment I'll just explain <m><![CDATA[\eta^2]]></m>. The definition of <m><![CDATA[\eta^2]]></m> is actually really simple:</p>
+    <me><![CDATA[\eta^2 = \frac{\mbox{SS}_b}{\mbox{SS}_{tot}}]]></me>
+    <p>That's all it is. So when I look at the ANOVA table above, I see that <m><![CDATA[\mbox{SS}_b = 3.45]]></m>  and <m><![CDATA[\mbox{SS}_{tot} = 3.45 + 1.39 = 4.84]]></m>. Thus we get an <m><![CDATA[\eta^2]]></m> value of</p>
+    <me><![CDATA[\eta^2 = \frac{3.45}{4.84} = 0.71]]></me>
+    <p>The interpretation of <m><![CDATA[\eta^2]]></m> is equally straightforward: it refers to the proportion of the variability in the outcome variable (<c>mood.gain</c>) that can be explained in terms of the predictor (<c>drug</c>). A value of <m><![CDATA[\eta^2 = 0]]></m> means that there is no relationship at all between the two, whereas a value of <m><![CDATA[\eta^2 = 1]]></m> means that the relationship is perfect. Better yet, the <m><![CDATA[\eta^2]]></m> value is very closely related to a squared correlation (i.e., <m><![CDATA[r^2]]></m>). So, if you're trying to figure out whether a particular value of <m><![CDATA[\eta^2]]></m> is big or small, it's sometimes useful to remember that</p>
+    <me><![CDATA[\eta= \sqrt{\frac{\mbox{SS}_b}{\mbox{SS}_{tot}}}]]></me>
+    <p>can be interpreted as if it referred to the <em>magnitude</em> of a Pearson correlation. So in our drugs example, the <m><![CDATA[\eta^2]]></m> value of .71 corresponds to an <m><![CDATA[\eta]]></m> value of <m><![CDATA[\sqrt{.71} = .84]]></m>. If we think about this as being equivalent to a correlation of about .84, we'd conclude that the relationship between <c>drug</c> and <c>mood.gain</c> is strong.</p>
+    <p>The core packages in R don't include any functions for calculating <m><![CDATA[\eta^2]]></m>. However, it's pretty straightforward to calculate it directly from the numbers in the ANOVA table. In fact, since I've already got the <c>SSw</c> and <c>SSb</c> variables lying around from my earlier calculations, I can do this:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+SStot <- SSb + SSw          # total sums of squares
+eta.squared <- SSb / SStot  # eta-squared value
+print( eta.squared )]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+## [1] 0.7127623
+]]></output>
+    </console>
+    </remark>
+    <p>However, since it can be tedious to do this the long way (especially when we start running more complicated ANOVAs, such as those in <xref ref="anova2"/> I've included an <c>etaSquared()</c> function in the <c>lsr</c> package which will do it for you. For now, the only argument you need to care about is <c>x</c>, which should be the <c>aov</c> object corresponding to your ANOVA. When we do this, what we get as output is this:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+etaSquared( x = my.anova )]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+##         eta.sq eta.sq.part
+## drug 0.7127623   0.7127623
+]]></output>
+    </console>
+    </remark>
+    <p>The output here shows two different numbers. The first one corresponds to the <m><![CDATA[\eta^2]]></m> statistic, precisely as described above. The second one refers to "partial <m><![CDATA[\eta^2]]></m>", which is a somewhat different measure of effect size that I'll describe later. For the simple ANOVA that we've just run, they're the same number. But this won't always be true once we start running more complicated ANOVAs.<fn>A potentially important footnote -- I wrote the <c>etaSquared()</c> function for the <c>lsr</c> package as a teaching exercise, but like all the other functions in the <c>lsr</c> package it hasn't been exhaustively tested. As of this writing -- <c>lsr</c> package version 0.5 -- there is at least one known bug in the code. In some cases at least, it doesn't work (and can give very silly answers) when you set the <c>weights</c> on the observations to something other than uniform. That doesn't matter at all for this book, since those kinds of analyses are well beyond the scope, but I haven't had a chance to revisit the package in a long time; it would probably be wise to be very cautious with the use of this function in any context other than very simple introductory analyses. Thanks to Emil Kirkegaard for finding the bug! (Oh, and while I'm here, there's an interesting blog post by Daniel Lakens suggesting that eta-squared itself is perhaps not the best measure of effect size in real world data analysis: http://daniellakens.blogspot.com.au/2015/06/why-you-should-use-omega-squared.html</fn></p>
+</section>

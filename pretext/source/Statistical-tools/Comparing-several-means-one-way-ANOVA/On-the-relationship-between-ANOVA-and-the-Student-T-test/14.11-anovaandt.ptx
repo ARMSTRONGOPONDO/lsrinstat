@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="anovaandt">
+    <title>On the relationship between ANOVA and the Student <m><![CDATA[t]]></m> test</title>
+
+    <p>There's one last thing I want to point out before finishing. It's something that a lot of people find kind of surprising, but it's worth knowing about: an ANOVA with two groups is identical to the Student <m><![CDATA[t]]></m>-test. No, really. It's not just that they are similar, but they are actually equivalent in every meaningful way. I won't try to prove that this is always true, but I will show you a single concrete demonstration. Suppose that, instead of running an ANOVA on our <c>mood.gain ~ drug</c> model, let's instead do it using <c>therapy</c> as the predictor. If we run this ANOVA, here's what we get:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+summary( aov( mood.gain ~ therapy, data = clin.trial ))]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+##             Df Sum Sq Mean Sq F value Pr(>F)
+## therapy      1  0.467  0.4672   1.708   0.21
+## Residuals   16  4.378  0.2736
+]]></output>
+    </console>
+    </remark>
+    <p>Overall, it looks like there's no significant effect here at all but, as we'll see in <xref ref="anova2"/>, this is actually a misleading  answer! In any case, it's irrelevant to our current goals: our interest here is in the <m><![CDATA[F]]></m>-statistic, which is <m><![CDATA[F(1,16) = 1.71]]></m>, and the <m><![CDATA[p]]></m>-value, which is .21. Since we only have two groups, I didn't actually need to resort to an ANOVA, I could have just decided to run a Student <m><![CDATA[t]]></m>-test. So let's see what happens when I do that:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+t.test( mood.gain ~ therapy, data = clin.trial, var.equal = TRUE )]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+## 
+##  Two Sample t-test
+## 
+## data:  mood.gain by therapy
+## t = -1.3068, df = 16, p-value = 0.2098
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.8449518  0.2005073
+## sample estimates:
+## mean in group no.therapy        mean in group CBT 
+##                0.7222222                1.0444444
+]]></output>
+    </console>
+    </remark>
+    <p>Curiously, the <m><![CDATA[p]]></m>-values are identical: once again we obtain a value of <m><![CDATA[p = .21]]></m>. But what about the test statistic? Having run a <m><![CDATA[t]]></m>-test instead of an ANOVA, we get a somewhat different answer, namely <m><![CDATA[t(16) = -1.3068]]></m>. However, there is a fairly straightforward relationship here. If we square the <m><![CDATA[t]]></m>-statistic</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+1.3068 ^ 2]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+## [1] 1.707726
+]]></output>
+    </console>
+    </remark>
+    <p>we get the <m><![CDATA[F]]></m>-statistic from before.</p>
+</section>

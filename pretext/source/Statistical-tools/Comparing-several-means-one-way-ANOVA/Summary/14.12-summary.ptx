@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="anova-summary">
+    <title>Summary</title>
+
+    <p>There's a fair bit covered in this chapter, but there's still a lot missing. Most obviously, I haven't yet discussed any analog of the paired samples <m><![CDATA[t]]></m>-test for more than two groups. There is a way of doing this, known as <em>repeated measures ANOVA</em>, which will appear in a later version of this book. I also haven't discussed how to run an ANOVA when you are interested in more than one grouping variable, but that will be discussed in a lot of detail in <xref ref="anova2"/>. In terms of what we have discussed, the key topics were:</p>
+    <ul>
+      <li><p>The basic logic behind how ANOVA works (<xref ref="anovaintro"/>) and how to run one in R (<xref ref="introduceaov"/>).</p></li>
+      <li><p>How to compute an effect size for an ANOVA (<xref ref="etasquared"/>)</p></li>
+      <li><p>Post hoc analysis and corrections for multiple testing (<xref ref="posthoc"/>).</p></li>
+      <li><p>The assumptions made by ANOVA (<xref ref="anovaassumptions"/>).</p></li>
+      <li><p>How to check the homogeneity of variance assumption (<xref ref="levene"/>) and what to do if it is violated (<xref ref="welchoneway"/>).</p></li>
+      <li><p>How to check the normality assumption (<xref ref="anovanormality"/> and what to do if it is violated (<xref ref="kruskalwallis"/>).</p></li>
+    </ul>
+    <p>As with all of the chapters in this book, there are quite a few different sources that I've relied upon, but the one stand-out text that I've been most heavily influenced by is <xref ref="biblio-Sahai2000">Sahai &amp; Ageel (2000)</xref>. It's not a good book for beginners, but it's an excellent book for more advanced readers who are interested in understanding the mathematics behind ANOVA.</p>
+</section>

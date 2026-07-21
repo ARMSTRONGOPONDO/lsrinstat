@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<subsection xml:id="aovobjects">
+    <title>Understanding what the <c>aov()</c> function produces</title>
+
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+my.anova <- aov( mood.gain ~ drug, clin.trial )]]></input>
+</program>
+    </remark>
+    <p>Now that we've seen how to use the <c>aov()</c> function to create <c>my.anova</c> we'd better have a look at what this variable actually is. The first thing to do is to check to see what class of variable we've created, since it's  kind of interesting in this case. When we do that...</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+class( my.anova )]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+## [1] "aov" "lm"
+]]></output>
+    </console>
+    </remark>
+    <p>... we discover that <c>my.anova</c> actually has <em>two</em> classes! The first class tells us that it's an <c>aov</c> (analysis of variance) object, but the second tells us that it's <em>also</em> an <c>lm</c> (linear model) object. Later on, we'll see that this reflects a pretty deep statistical relationship between ANOVA and regression (<xref ref="regression"/> and it means that any function that exists in R for dealing with regressions can also be applied to <c>aov</c> objects, which is neat; but I'm getting ahead of myself. For now, I want to note that what we've created is an <c>aov</c> object, and to also make the point that <c>aov</c> objects are actually rather complicated beasts. I <em>won't</em> be trying to explain everything about them, since it's way beyond the scope of an introductory statistics subject, but to give you a tiny hint of some of the stuff that R stores inside an <c>aov</c> object, let's ask it to print out the <c>names()</c> of all the stored quantities...</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+names( my.anova )]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+##  [1] "coefficients"  "residuals"     "effects"       "rank"         
+##  [5] "fitted.values" "assign"        "qr"            "df.residual"  
+##  [9] "contrasts"     "xlevels"       "call"          "terms"        
+## [13] "model"
+]]></output>
+    </console>
+    </remark>
+    <p>As we go through the rest of the book, I hope that a few of these will become a little more obvious to you, but right now that's going to look pretty damned opaque. That's okay. You don't need to know any of the details about it right now, and most of it you don't need at all... what you <em>do</em> need to understand is that the <c>aov()</c> function does a lot of calculations for you, not just the basic ones that I outlined in the previous sections. What this means is that it's generally a good idea to create a variable like <c>my.anova</c> that stores the output of the <c>aov()</c> function... because later on, you can use <c>my.anova</c> as an input to lots of other functions:  those other functions can pull out bits and pieces from the <c>aov</c> object, and calculate various other things that you might need.</p>
+    <p>Right then. The simplest thing you can do with an <c>aov</c> object is to <c>print()</c> it out. When we do that, it shows us a few of the key quantities of interest:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+print( my.anova )]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+## Call:
+##    aov(formula = mood.gain ~ drug, data = clin.trial)
+## 
+## Terms:
+##                     drug Residuals
+## Sum of Squares  3.453333  1.391667
+## Deg. of Freedom        2        15
+## 
+## Residual standard error: 0.3045944
+## Estimated effects may be unbalanced
+]]></output>
+    </console>
+    </remark>
+    <p>Specificially, it prints out a reminder of the command that you used when you called <c>aov()</c> in the first place, shows you the sums of squares values, the degrees of freedom, and a couple of other quantities that we're not really interested in right now. Notice, however, that R doesn't use the names "between-group" and "within-group". Instead, it tries to assign more meaningful names: in our particular example, the <em>between groups</em> variance corresponds to the effect that the <c>drug</c> has on the outcome variable; and the <em>within groups</em> variance is corresponds to the "leftover" variability, so it calls that the <em>residuals</em>. If we compare these numbers to the numbers that I calculated by hand in <xref ref="anovacalc"/>, you can see that they're identical... the between groups sums of squares is <m><![CDATA[\mbox{SS}_b = 3.45]]></m>, the within groups sums of squares is <m><![CDATA[\mbox{SS}_w = 1.39]]></m>, and the degrees of freedom are 2 and 15 repectively.</p>
+</subsection>

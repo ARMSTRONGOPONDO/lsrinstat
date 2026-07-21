@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<subsection xml:id="introduceaov-hypothesis-tests">
+    <title>Running the hypothesis tests for the ANOVA</title>
+
+    <p>Okay, so we've verified that <c>my.anova</c> seems to be storing a bunch of the numbers that we're looking for, but the <c>print()</c> function didn't quite give us the output that we really wanted. Where's the <m><![CDATA[F]]></m>-value? The <m><![CDATA[p]]></m>-value? These are the most important numbers in our hypothesis test, but the <c>print()</c> function doesn't provide them. To get those numbers, we need to use a different function. Instead of asking R to <c>print()</c> out the <c>aov</c> object, we should have asked for a <c>summary()</c> of it.<fn>It's worth noting that you can get the same result by using the command <c>anova( my.anova )</c>.</fn> When we do that...</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+summary( my.anova )]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+##             Df Sum Sq Mean Sq F value   Pr(>F)    
+## drug         2  3.453  1.7267   18.61 8.65e-05 ***
+## Residuals   15  1.392  0.0928                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+]]></output>
+    </console>
+    </remark>
+    <p>... we get all of the key numbers that we calculated earlier. We get the sums of squares, the degrees of freedom, the mean squares, the <m><![CDATA[F]]></m>-statistic, and the <m><![CDATA[p]]></m>-value itself. These are all identical to the numbers that we calculated ourselves when doing it the long and tedious way, and it's even organised into the same kind of ANOVA table that I showed in <xref ref="tab-anovatable"/>, and then filled out by hand in <xref ref="anovacalc"/>. The only things that are even slightly different is that some of the row and column names are a bit different.</p>
+</subsection>

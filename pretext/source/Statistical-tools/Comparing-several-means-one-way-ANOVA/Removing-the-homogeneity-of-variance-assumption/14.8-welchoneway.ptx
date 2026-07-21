@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="welchoneway">
+    <title>Removing the homogeneity of variance assumption</title>
+
+    <p>In our example, the homogeneity of variance assumption turned out to be a pretty safe one: the Levene test came back non-significant, so we probably don't need to worry. However, in real life we aren't always that lucky. How do we save our ANOVA when the homogeneity of variance assumption is violated? If you recall from our discussion of <m><![CDATA[t]]></m>-tests, we've seen this problem before. The Student <m><![CDATA[t]]></m>-test assumes equal variances, so the solution was to use the Welch <m><![CDATA[t]]></m>-test, which does not. In fact, <xref ref="biblio-Welch1951">Welch (1951)</xref> also showed how we can solve this problem for ANOVA too (the <em>Welch one-way test</em>). It's implemented in R using the <c>oneway.test()</c> function. The arguments that we'll need for our example are:</p>
+    <ul>
+      <li><p><c>formula</c>. This is the model formula, which (as usual) needs to specify the outcome variable on the left hand side and the grouping variable on the right hand side: i.e., something like <c>outcome ~ group</c>.</p></li>
+      <li><p><c>data</c>. Specifies the data frame containing the variables.</p></li>
+      <li><p><c>var.equal</c>. If this is <c>FALSE</c> (the default) a Welch one-way test is run. If it is <c>TRUE</c> then it just runs a regular ANOVA.</p></li>
+    </ul>
+    <p>The function also has a <c>subset</c> argument that lets you analyse only some of the observations and a <c>na.action</c> argument that tells it how to handle missing data, but these aren't necessary for our purposes. So, to run the Welch one-way ANOVA for our example, we would do this:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+oneway.test(mood.gain ~ drug, data = clin.trial)]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+## 
+##  One-way analysis of means (not assuming equal variances)
+## 
+## data:  mood.gain and drug
+## F = 26.322, num df = 2.0000, denom df = 9.4932, p-value = 0.000134
+]]></output>
+    </console>
+    </remark>
+    <p>To understand what's happening here, let's compare these numbers to what we got earlier in <xref ref="introduceaov"/> when we ran our original ANOVA. To save you the trouble of flicking back, here are those numbers again, this time calculated by setting <c>var.equal = TRUE</c> for the <c>oneway.test()</c> function:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+oneway.test(mood.gain ~ drug, data = clin.trial, var.equal = TRUE)]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+## 
+##  One-way analysis of means
+## 
+## data:  mood.gain and drug
+## F = 18.611, num df = 2, denom df = 15, p-value = 8.646e-05
+]]></output>
+    </console>
+    </remark>
+    <p>Okay, so originally our ANOVA gave us the result <m><![CDATA[F(2,15) = 18.6]]></m>, whereas the Welch one-way test gave us <m><![CDATA[F(2,9.49) = 26.32]]></m>. In other words, the Welch test has reduced the within-groups degrees of freedom from 15 to 9.49, and the <m><![CDATA[F]]></m>-value has increased from 18.6 to 26.32.</p>
+</section>
