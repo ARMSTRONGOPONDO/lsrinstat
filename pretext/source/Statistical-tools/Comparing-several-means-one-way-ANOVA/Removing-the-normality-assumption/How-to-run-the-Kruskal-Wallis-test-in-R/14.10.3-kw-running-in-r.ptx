@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<subsection xml:id="kruskalwallis-running-in-r">
+    <title>How to run the Kruskal-Wallis test in R</title>
+
+    <p>Despite the horror that we've gone through in trying to understand what the Kruskal-Wallis test actually does, it turns out that running the test is pretty painless, since R has a function called <c>kruskal.test()</c>. The function is pretty flexible, and allows you to input your data in a few different ways. Most of the time you'll have data like the <c>clin.trial</c> data set, in which you have your outcome variable <c>mood.gain</c>, and a grouping variable <c>drug</c>. If so, you can call the <c>kruskal.test()</c> function by specifying a formula, and a data frame:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+kruskal.test(mood.gain ~ drug, data = clin.trial)]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  mood.gain by drug
+## Kruskal-Wallis chi-squared = 12.076, df = 2, p-value = 0.002386
+]]></output>
+    </console>
+    </remark>
+    <p>A second way of using the <c>kruskal.test()</c> function, which you probably won't have much reason to use, is to directly specify the outcome variable and the grouping variable as separate input arguments, <c>x</c> and <c>g</c>:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+kruskal.test(x = clin.trial$mood.gain, g = clin.trial$drug)]]></input>
+</program>
+    </remark>
+    <p>This isn't very interesting, since it's just plain easier to specify a formula. However, sometimes it can be useful to specify <c>x</c> as a list. What I mean is this. Suppose you actually had data as three separate variables, <c>placebo</c>, <c>anxifree</c> and <c>joyzepam</c>. If that's the format that your data are in, then it's convenient to know that you can bundle all three together as a list:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+mood.gain <- list( placebo, joyzepam, anxifree )
+kruskal.test( x = mood.gain )]]></input>
+</program>
+    </remark>
+    <p>And again, this would give you exactly the same results as the command we tried originally.</p>
+</subsection>

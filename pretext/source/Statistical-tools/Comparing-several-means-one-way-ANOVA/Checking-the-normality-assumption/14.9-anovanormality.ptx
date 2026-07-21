@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="anovanormality">
+    <title>Checking the normality assumption</title>
+
+    <p>Testing the normality assumption is relatively straightforward. We covered most of what you need to know in <xref ref="shapiro"/>. The only thing we really need to know how to do is pull out the residuals (i.e., the <m><![CDATA[\epsilon_{ik}]]></m> values) so that we can draw our QQ plot and run our Shapiro-Wilk test. First, let's extract the residuals. R provides a function called <c>residuals()</c> that will do this for us. If we pass our <c>my.anova</c> to this function, it will return the residuals.  So let's do that:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+my.anova.residuals <- residuals( object = my.anova )   # extract the residuals]]></input>
+</program>
+    </remark>
+    <p>We can print them out too, though it's not exactly an edifying experience.  In fact, given that I'm on the verge of putting <em>myself</em> to sleep just typing this, it might be a good idea to skip that step. Instead, let's draw some pictures and run ourselves a hypothesis test:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+hist( x = my.anova.residuals )           # plot a histogram (similar to Figure @ref{fig:normalityanova}a)
+qqnorm( y = my.anova.residuals )         # draw a QQ plot (similar to Figure @ref{fig:normalityanova}b)
+shapiro.test( x = my.anova.residuals )   # run Shapiro-Wilk test]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  my.anova.residuals
+## W = 0.96019, p-value = 0.6053
+]]></output>
+    </console>
+    </remark>
+    <p>The histogram and QQ plot are both look pretty normal to me.<fn>Note that neither of these figures has been tidied up at all: if you want to create nicer looking graphs it's always a good idea to use the tools from <xref ref="graphics"/> to help you draw cleaner looking images.</fn> This is supported by the results of our Shapiro-Wilk test (<m><![CDATA[W = .96]]></m>, <m><![CDATA[p = .61]]></m>) which finds no indication that normality is violated.</p>
+</section>

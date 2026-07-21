@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<subsection xml:id="posthoc-writing-up">
+    <title>Writing up the post hoc test</title>
+
+    <p>Finally, having run the post hoc analysis to determine which groups are significantly different to one another, you might write up the result like this:</p>
+    <blockquote>
+      <p>Post hoc tests (using the Holm correction to adjust <m><![CDATA[p]]></m>) indicated that Joyzepam produced a significantly larger mood change than both Anxifree (<m><![CDATA[p = .001]]></m>) and the placebo (<m><![CDATA[p = 9.1 \times 10^{-5}]]></m>). We found no evidence that Anxifree performed better than the placebo (<m><![CDATA[p = .15]]></m>).</p>
+    </blockquote>
+    <p>Or, if you don't like the idea of reporting exact <m><![CDATA[p]]></m>-values, then you'd change those numbers to <m><![CDATA[p<.01]]></m>, <m><![CDATA[p<.001]]></m> and <m><![CDATA[p > .05]]></m> respectively. Either way, the key thing is that you indicate that you used Holm's correction to adjust the <m><![CDATA[p]]></m>-values. And of course, I'm assuming that elsewhere in the write up you've included the relevant descriptive statistics (i.e., the group means and standard deviations), since these <m><![CDATA[p]]></m>-values on their own aren't terribly informative.</p>
+</subsection>

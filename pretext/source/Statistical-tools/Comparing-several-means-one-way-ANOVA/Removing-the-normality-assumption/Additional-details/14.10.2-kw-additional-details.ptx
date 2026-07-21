@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<subsection xml:id="kruskalwallis-additional-details">
+    <title>Additional details</title>
+
+    <p>The description in the previous section illustrates the logic behind the Kruskal-Wallis test. At a conceptual level, this is the right way to think about how the test works. However, from a purely mathematical perspective it's needlessly complicated. I won't show you the derivation, but you can use a bit of algebraic jiggery-pokery<fn>A technical term.</fn> to show that the equation for <m><![CDATA[K]]></m> can be rewritten as</p>
+    <me><![CDATA[K = \frac{12}{N(N-1)} \sum_k N_k {\bar{R}_k}^2    -  3(N+1)]]></me>
+    <p>It's this last equation that you sometimes see given for <m><![CDATA[K]]></m>. This is way easier to calculate than the version I described in the previous section, it's just that it's totally meaningless to actual humans. It's probably best to think of <m><![CDATA[K]]></m> the way I described it earlier... as an analogue of ANOVA based on ranks. But keep in mind that the test statistic that gets calculated ends up with a rather different look to it than the one we used for our original ANOVA.</p>
+    <p>But wait, there's more! Dear lord, why is there always <em>more</em>? The story I've told so far is only actually true when there are no ties in the raw data. That is, if there are no two observations that have exactly the same value. If there <em>are</em> ties, then we have to introduce a correction factor to these calculations. At this point I'm assuming that even the most diligent reader has stopped caring (or at least formed the opinion that the tie-correction factor is something that doesn't require their immediate attention). So I'll very quickly tell you how it's calculated, and omit the tedious details about <em>why</em> it's done this way. Suppose we construct a frequency table for the raw data, and let <m><![CDATA[f_j]]></m> be the number of observations that have the <m><![CDATA[j]]></m>-th unique value. This might sound a bit abstract, so here's the R code showing a concrete example:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+f <- table( clin.trial$mood.gain )   # frequency table for mood gain
+print(f)   # we have some ties]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+## 
+## 0.1 0.2 0.3 0.4 0.5 0.6 0.8 0.9 1.1 1.2 1.3 1.4 1.7 1.8 
+##   1   1   2   1   1   2   1   1   1   1   2   2   1   1
+]]></output>
+    </console>
+    </remark>
+    <p>Looking at this table, notice that the third entry in the frequency table has a value of <m><![CDATA[2]]></m>. Since this corresponds to a <c>mood.gain</c> of 0.3, this table is telling us that two people's mood increased by 0.3. More to the point, note that we can say that <c>f[3]</c> has a value of <c>2</c>. Or, in the mathematical notation I introduced above, this is telling us that <m><![CDATA[f_3 = 2]]></m>. Yay. So, now that we know this, the tie correction factor (TCF) is:</p>
+    <me><![CDATA[\mbox{TCF} = 1 - \frac{\sum_j {f_j}^3 - f_j}{N^3 - N}]]></me>
+    <p>The tie-corrected value of the Kruskal-Wallis statistic obtained by dividing the value of <m><![CDATA[K]]></m> by this quantity: it is this tie-corrected version that R calculates. And at long last, we're actually finished with the theory of the Kruskal-Wallis test. I'm sure you're all terribly relieved that I've cured you of the existential anxiety that naturally arises when you realise that you <em>don't</em> know how to calculate the tie-correction factor for the Kruskal-Wallis test. Right?</p>
+</subsection>

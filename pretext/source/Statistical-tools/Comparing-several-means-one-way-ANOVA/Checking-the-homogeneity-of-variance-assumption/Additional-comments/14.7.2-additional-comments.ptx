@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<subsection xml:id="levene-additional-comments">
+    <title>Additional comments</title>
+
+    <p>Two more quick comments before I move onto a different topic. Firstly, as mentioned above, there are other ways of calling the <c>leveneTest()</c> function. Although the vast majority of situations that call for a Levene test involve checking the assumptions of an ANOVA (in which case you probably have a variable like <c>my.anova</c> lying around), sometimes you might find yourself wanting to specify the variables directly. Two different ways that you can do this are shown below:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+leveneTest(y = mood.gain ~ drug, data = clin.trial)   # y is a formula in this case
+leveneTest(y = clin.trial$mood.gain, group = clin.trial$drug)   # y is the outcome]]></input>
+</program>
+    </remark>
+    <p>Secondly, I did mention that it's possible to run a Levene test just using the <c>aov()</c> function. I don't want to waste a lot of space on this, but just in case some readers are interested in seeing how this is done, here's the code that creates the new variables and runs an ANOVA. If you are interested, feel free to run this to verify that it produces the same answers as the Levene test (i.e., with <c>center = mean</c>):</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+Y <- clin.trial $ mood.gain    # the original outcome variable, Y
+G <- clin.trial $ drug         # the grouping variable, G
+gp.mean <- tapply(Y, G, mean)  # calculate group means
+Ybar <- gp.mean[G]             # group mean associated with each obs
+Z <- abs(Y - Ybar)             # the transformed variable, Z
+summary( aov(Z ~ G) )          # run the ANOVA]]></input>
+</program>
+    </remark>
+    <p>That said, I don't imagine that many people will care about this. Nevertheless, it's nice to know that you could do it this way if you wanted to. And for those of you who do try it, I think it helps to demystify the test a little bit when you can see -- with your own eyes -- the way in which Levene's test relates to ANOVA.</p>
+</subsection>

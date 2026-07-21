@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<subsection xml:id="levene-running-in-r">
+    <title>Running the Levene's test in R</title>
+
+    <p>Okay, so how do we run the Levene test? Obviously, since the Levene test is just an ANOVA, it would be easy enough to manually create the transformed variable <m><![CDATA[Z_{ik}]]></m> and then use the <c>aov()</c> function to run an ANOVA on that. However, that's the tedious way to do it. A better way to do run your Levene's test is to use the <c>leveneTest()</c> function, which is in the <c>car</c> package.  As usual, we first load the package</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+library( car )]]></input>
+</program>
+    </remark>
+    <p>and now that we have, we can run our Levene test. The main argument that you need to specify is <c>y</c>, but you can do this in lots of different ways. Probably the simplest way to do it is actually input the original <c>aov</c> object. Since I've got the <c>my.anova</c> variable stored from my original ANOVA, I can just do this:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+leveneTest( my.anova )]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+## Levene's Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(>F)
+## group  2  1.4672 0.2618
+##       15
+]]></output>
+    </console>
+    </remark>
+    <p>If we look at the output, we see that the test is non-significant <m><![CDATA[(F_{2,15} = 1.47, p = .26)]]></m>, so it looks like the homogeneity of variance assumption is fine. Remember, although R reports the test statistic as an <m><![CDATA[F]]></m>-value, it could equally be called <m><![CDATA[W]]></m>, in which case you'd just write <m><![CDATA[W_{2,15} = 1.47]]></m>. Also, note the part of the output that says <c>center = median</c>. That's telling you that, by default, the <c>leveneTest()</c> function actually does the Brown-Forsythe test. If you want to use the mean instead, then you need to explicitly set the <c>center</c> argument, like this:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+leveneTest( y = my.anova, center = mean )]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+## Levene's Test for Homogeneity of Variance (center = mean)
+##       Df F value Pr(>F)
+## group  2  1.4497 0.2657
+##       15
+]]></output>
+    </console>
+    </remark>
+    <p>That being said, in most cases it's probably best to stick to the default value, since the Brown-Forsythe test is a bit more robust than the original Levene test.</p>
+</subsection>

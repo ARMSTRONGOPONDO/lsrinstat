@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<subsection xml:id="posthoc-bonferroni">
+    <title>Bonferroni corrections</title>
+
+    <p>The simplest of these adjustments is called the <em>Bonferroni correction</em> (<xref ref="biblio-Dunn1961">Dunn, 1961</xref>), and it's very very simple indeed. Suppose that my post hoc analysis consists of <m><![CDATA[m]]></m> separate tests, and I want to ensure that the total probability of making <em>any</em> Type I errors at all is at most <m><![CDATA[\alpha]]></m>.<fn>It's worth noting in passing that not all adjustment methods try to do this. What I've described here is an approach for controlling "family wise Type I error rate". However, there are other post hoc tests seek to control the "false discovery rate", which is a somewhat different thing.</fn> If so, then the Bonferroni correction just says "multiply all your raw <m><![CDATA[p]]></m>-values by <m><![CDATA[m]]></m>". If we let <m><![CDATA[p]]></m> denote the original <m><![CDATA[p]]></m>-value, and let <m><![CDATA[p^\prime_j]]></m> be the corrected value, then the Bonferroni correction tells that:</p>
+    <me><![CDATA[p^\prime = m \times p]]></me>
+    <p>And therefore, if you're using the Bonferroni correction, you would reject the null hypothesis if <m><![CDATA[p^\prime < \alpha]]></m>. The logic behind this correction is very straightforward. We're doing <m><![CDATA[m]]></m> different tests; so if we arrange it so that each test has a Type I error rate of at most <m><![CDATA[\alpha / m]]></m>, then the <em>total</em> Type I error rate across these tests cannot be larger than <m><![CDATA[\alpha]]></m>. That's pretty simple, so much so that in the original paper, the author writes:</p>
+    <blockquote>
+      <p>The method given here is so simple and so general that I am sure it must have been used before this. I do not find it, however, so can only conclude that perhaps its very simplicity has kept statisticians from realizing that it is a very good method in some situations (pp 52-53 <xref ref="biblio-Dunn1961">Dunn, 1961</xref>)</p>
+    </blockquote>
+    <p>To use the Bonferroni correction in R, you can use the <c>pairwise.t.test()</c> function,<fn>There's also a function called <c>p.adjust()</c> in which you can input a vector of raw <m><![CDATA[p]]></m>-values, and it will output a vector of adjusted <m><![CDATA[p]]></m>-values. This can be handy sometimes. I should also note that more advanced users may wish to consider using some of the tools provided by the <c>multcomp</c> package.</fn> making sure that you set <c>p.adjust.method = "bonferroni"</c>. Alternatively, since the whole reason why we're doing these pairwise tests in the first place is because we have an ANOVA that we're trying to understand, it's probably more convenient to use the <c>posthocPairwiseT()</c> function in the <c>lsr</c> package, since we can use <c>my.anova</c> as the input:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+posthocPairwiseT( my.anova, p.adjust.method = "bonferroni")]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  mood.gain and drug 
+## 
+##          placebo anxifree
+## anxifree 0.4506  -       
+## joyzepam 9.1e-05 0.0017  
+## 
+## P value adjustment method: bonferroni
+]]></output>
+    </console>
+    </remark>
+    <p>If we compare these three <m><![CDATA[p]]></m>-values to those that we saw in the previous section when we made no adjustment at all, it is clear that the only thing that R has done is multiply them by 3.</p>
+</subsection>

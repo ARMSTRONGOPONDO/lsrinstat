@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="kruskalwallis" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Removing the normality assumption</title>
+
+    <p>Now that we've seen how to check for normality, we are led naturally to ask what we can do to address violations of normality. In the context of a one-way ANOVA, the easiest solution is probably to switch to a non-parametric test (i.e., one that doesn't rely on any particular assumption about the kind of distribution involved). We've seen non-parametric tests before, in <xref ref="ttest"/>: when you only have two groups, the Wilcoxon test provides the non-parametric alternative that you need. When you've got three or more groups, you can use the <em>Kruskal-Wallis rank sum test</em> (<xref ref="biblio-KruskalWallis1952">Kruskal &amp; Wallis, 1952</xref>). So that's the test we'll talk about next.</p>
+
+  <xi:include href="./The-logic-behind-the-Kruskal-Wallis-test/14.10.1-kw-logic.ptx"/>
+  <xi:include href="./Additional-details/14.10.2-kw-additional-details.ptx"/>
+  <xi:include href="./How-to-run-the-Kruskal-Wallis-test-in-R/14.10.3-kw-running-in-r.ptx"/>
+</section>

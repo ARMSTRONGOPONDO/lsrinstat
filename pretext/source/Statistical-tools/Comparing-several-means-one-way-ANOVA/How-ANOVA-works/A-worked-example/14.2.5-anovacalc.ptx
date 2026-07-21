@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<subsection xml:id="anovacalc">
+    <title>A worked example</title>
+
+    <p>The previous discussion was fairly abstract, and a little on the technical side, so I think that at this point it might be useful to see a worked example. For that, let's go back to the clinical trial data that I introduced at the start of the chapter. The descriptive statistics that we calculated at the beginning tell us our group means: an average mood gain of 0.45 for the placebo, 0.72 for Anxifree, and 1.48 for Joyzepam. With that in mind, let's party like it's 1899 <fn>Or, to be precise, party like "it's 1899 and we've got no friends and nothing better to do with our time than do some calculations that wouldn't have made any sense in 1899 because ANOVA didn't exist until about the 1920s".</fn> and  start doing some pencil and paper calculations. I'll only do this for the first 5 observations, because it's not bloody 1899 and I'm very lazy. Let's start by calculating <m><![CDATA[\mbox{SS}_{w}]]></m>, the within-group sums of squares. First, let's draw up a nice table to help us with our calculations...</p>
+        <table xml:id="table-chanova-42">
+      <tabular halign="center">
+        <row header="yes" bottom="minor">
+          <cell halign="left">group (<m>k</m>)</cell>
+          <cell>outcome (<m>Y_{ik}</m>)</cell>
+        </row>
+        <row>
+          <cell halign="left">placebo</cell>
+          <cell>0.5</cell>
+        </row>
+        <row>
+          <cell halign="left">placebo</cell>
+          <cell>0.3</cell>
+        </row>
+        <row>
+          <cell halign="left">placebo</cell>
+          <cell>0.1</cell>
+        </row>
+        <row>
+          <cell halign="left">anxifree</cell>
+          <cell>0.6</cell>
+        </row>
+        <row>
+          <cell halign="left">anxifree</cell>
+          <cell>0.4</cell>
+        </row>
+      </tabular>
+    </table>
+    <p>At this stage, the only thing I've included in the table is the raw data itself: that is, the grouping variable (i.e., <c>drug</c>) and outcome variable (i.e. <c>mood.gain</c>) for each person. Note that the outcome variable here corresponds to the <m><![CDATA[Y_{ik}]]></m> value in our equation previously. The next step in the calculation is to write down, for each person in the study, the corresponding group mean; that is, <m><![CDATA[\bar{Y}_k]]></m>. This is slightly repetitive, but not particularly difficult since we already calculated those group means when doing our descriptive statistics:</p>
+        <table xml:id="table-chanova-41">
+      <tabular halign="center">
+        <row header="yes" bottom="minor">
+          <cell halign="left">group (<m>k</m>)</cell>
+          <cell>outcome (<m>Y_{ik}</m>)</cell>
+          <cell><alert>group mean</alert> (<m>\bar{Y}_k</m>)</cell>
+        </row>
+        <row>
+          <cell halign="left">placebo</cell>
+          <cell>0.5</cell>
+          <cell><alert>0.45</alert></cell>
+        </row>
+        <row>
+          <cell halign="left">placebo</cell>
+          <cell>0.3</cell>
+          <cell><alert>0.45</alert></cell>
+        </row>
+        <row>
+          <cell halign="left">placebo</cell>
+          <cell>0.1</cell>
+          <cell><alert>0.45</alert></cell>
+        </row>
+        <row>
+          <cell halign="left">anxifree</cell>
+          <cell>0.6</cell>
+          <cell><alert>0.72</alert></cell>
+        </row>
+        <row>
+          <cell halign="left">anxifree</cell>
+          <cell>0.4</cell>
+          <cell><alert>0.72</alert></cell>
+        </row>
+      </tabular>
+    </table>
+    <p>Now that we've written those down, we need to calculate -- again for every person -- the deviation from the corresponding group mean. That is, we want to subtract <m><![CDATA[Y_{ik} - \bar{Y}_k]]></m>. After we've done that, we need to square everything. When we do that, here's what we get:</p>
+        <table xml:id="table-chanova-40">
+      <tabular halign="center">
+        <row header="yes" bottom="minor">
+          <cell halign="left">group (<m>k</m>)</cell>
+          <cell>outcome (<m>Y_{ik}</m>)</cell>
+          <cell>group mean (<m>\bar{Y}_k</m>)</cell>
+          <cell><alert>dev.\ from group mean</alert> (<m>Y_{ik} - \bar{Y}_{k}</m>)</cell>
+          <cell><alert>squared deviation</alert> (<m>(Y_{ik} - \bar{Y}_{k})^2</m>)</cell>
+        </row>
+        <row>
+          <cell halign="left">placebo</cell>
+          <cell>0.5</cell>
+          <cell>0.45</cell>
+          <cell><alert>0.05</alert></cell>
+          <cell><alert>0.0025</alert></cell>
+        </row>
+        <row>
+          <cell halign="left">placebo</cell>
+          <cell>0.3</cell>
+          <cell>0.45</cell>
+          <cell><alert>-0.15</alert></cell>
+          <cell><alert>0.0225</alert></cell>
+        </row>
+        <row>
+          <cell halign="left">placebo</cell>
+          <cell>0.1</cell>
+          <cell>0.45</cell>
+          <cell><alert>-0.35</alert></cell>
+          <cell><alert>0.1225</alert></cell>
+        </row>
+        <row>
+          <cell halign="left">anxifree</cell>
+          <cell>0.6</cell>
+          <cell>0.72</cell>
+          <cell><alert>-0.12</alert></cell>
+          <cell><alert>0.0136</alert></cell>
+        </row>
+        <row>
+          <cell halign="left">anxifree</cell>
+          <cell>0.4</cell>
+          <cell>0.72</cell>
+          <cell><alert>-0.32</alert></cell>
+          <cell><alert>0.1003</alert></cell>
+        </row>
+      </tabular>
+    </table>
+    <p>The last step is equally straightforward. In order to calculate the within-group sum of squares, we just add up  the squared deviations across all observations:</p>
+    <me><![CDATA[\begin{array}{rcl}
+\mbox{SS}_w &=& 0.0025 + 0.0225 + 0.1225 + 0.0136 + 0.1003 \\
+&=& 0.2614
+\end{array}]]></me>
+    <p>Of course, if we actually wanted to get the <em>right</em> answer, we'd need to do this for all 18 observations in the data set, not just the first five. We could continue with the pencil and paper calculations if we wanted to, but it's pretty tedious. Alternatively, it's not too hard to get R to do it. Here's how:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+outcome <- clin.trial$mood.gain
+group <- clin.trial$drug
+gp.means <- tapply(outcome,group,mean)
+gp.means <- gp.means[group]
+dev.from.gp.means <- outcome - gp.means
+squared.devs <- dev.from.gp.means ^2]]></input>
+</program>
+    </remark>
+    <p>It might not be obvious from inspection what these commands are doing: as a general rule, the human brain seems to just shut down when faced with a big block of programming. However, I strongly suggest that -- if you're like me and tend to find that the mere sight of this code makes you want to look away and see if there's any beer left in the fridge or a game of footy on the telly -- you take a moment and look closely at these commands one at a time. Every single one of these commands is something you've seen before somewhere else in the book. There's nothing novel about them (though I'll have to admit that the <c>tapply()</c> function takes a while to get a handle on), so if you're not quite sure how these commands work, this might be a good time to try playing around with them yourself, to try to get a sense of what's happening. On the other hand, if this does seem to make sense, then you won't be all that surprised at what happens when I wrap these variables in a data frame, and print it out...</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+Y <- data.frame( group, outcome, gp.means,
+                  dev.from.gp.means, squared.devs )
+print(Y, digits = 2)]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+##       group outcome gp.means dev.from.gp.means squared.devs
+## 1   placebo     0.5     0.45             0.050       0.0025
+## 2   placebo     0.3     0.45            -0.150       0.0225
+## 3   placebo     0.1     0.45            -0.350       0.1225
+## 4  anxifree     0.6     0.72            -0.117       0.0136
+## 5  anxifree     0.4     0.72            -0.317       0.1003
+## 6  anxifree     0.2     0.72            -0.517       0.2669
+## 7  joyzepam     1.4     1.48            -0.083       0.0069
+## 8  joyzepam     1.7     1.48             0.217       0.0469
+## 9  joyzepam     1.3     1.48            -0.183       0.0336
+## 10  placebo     0.6     0.45             0.150       0.0225
+## 11  placebo     0.9     0.45             0.450       0.2025
+## 12  placebo     0.3     0.45            -0.150       0.0225
+## 13 anxifree     1.1     0.72             0.383       0.1469
+## 14 anxifree     0.8     0.72             0.083       0.0069
+## 15 anxifree     1.2     0.72             0.483       0.2336
+## 16 joyzepam     1.8     1.48             0.317       0.1003
+## 17 joyzepam     1.3     1.48            -0.183       0.0336
+## 18 joyzepam     1.4     1.48            -0.083       0.0069
+]]></output>
+    </console>
+    </remark>
+    <p>If you compare this output to the contents of the table I've been constructing by hand, you can see that R has done exactly the same calculations that I was doing, and much faster too. So, if we want to finish the calculations of the within-group sum of squares in R, we just ask for the <c>sum()</c> of the <c>squared.devs</c> variable:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+SSw <- sum( squared.devs )
+print( SSw )]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+## [1] 1.391667
+]]></output>
+    </console>
+    </remark>
+    <p>Obviously, this isn't the same as what I calculated, because R used all 18 observations. But if I'd typed <c>sum( squared.devs[1:5] )</c> instead, it would have given the same answer that I got earlier.</p>
+    <p>Okay. Now that we've calculated the within groups variation, <m><![CDATA[\mbox{SS}_w]]></m>, it's time to turn our attention to the between-group sum of squares, <m><![CDATA[\mbox{SS}_b]]></m>. The calculations for this case are very similar. The main difference is that, instead of calculating the differences between an observation <m><![CDATA[Y_{ik}]]></m> and a group mean <m><![CDATA[\bar{Y}_k]]></m> for all of the observations, we calculate the differences between the group means <m><![CDATA[\bar{Y}_k]]></m> and the grand mean <m><![CDATA[\bar{Y}]]></m> (in this case 0.88) for all of the groups...</p>
+        <table xml:id="table-chanova-39">
+      <tabular halign="center">
+        <row header="yes" bottom="minor">
+          <cell halign="left">group (<m>k</m>)</cell>
+          <cell>group mean (<m>\bar{Y}_k</m>)</cell>
+          <cell>grand mean (<m>\bar{Y}</m>)</cell>
+          <cell>deviation (<m>\bar{Y}_{k} - \bar{Y}</m>)</cell>
+          <cell>squared deviations (<m>(\bar{Y}_{k} - \bar{Y})^2</m>)</cell>
+        </row>
+        <row>
+          <cell halign="left">placebo</cell>
+          <cell>0.45</cell>
+          <cell>0.88</cell>
+          <cell>-0.43</cell>
+          <cell>0.18</cell>
+        </row>
+        <row>
+          <cell halign="left">anxifree</cell>
+          <cell>0.72</cell>
+          <cell>0.88</cell>
+          <cell>-0.16</cell>
+          <cell>0.03</cell>
+        </row>
+        <row>
+          <cell halign="left">joyzepam</cell>
+          <cell>1.48</cell>
+          <cell>0.88</cell>
+          <cell>0.60</cell>
+          <cell>0.36</cell>
+        </row>
+      </tabular>
+    </table>
+    <p>However, for the between group calculations we need to multiply each of these squared deviations by <m><![CDATA[N_k]]></m>, the number of observations in the group. We do this because every <em>observation</em> in the group (all <m><![CDATA[N_k]]></m> of them) is associated with a between group difference. So if there are six people in the placebo group, and the placebo group mean differs from the grand mean by 0.19, then the <em>total</em> between group variation associated with these six people is <m><![CDATA[6 \times 0.16 = 1.14]]></m>. So we have to extend our little table of calculations...</p>
+        <table xml:id="table-chanova-38">
+      <tabular halign="center">
+        <row header="yes" bottom="minor">
+          <cell halign="left">group (<m>k</m>)</cell>
+          <cell>squared deviations (<m>(\bar{Y}_{k} - \bar{Y})^2</m>)</cell>
+          <cell>sample size (<m>N_k</m>)</cell>
+          <cell>weighted squared dev (<m>N_k (\bar{Y}_{k} - \bar{Y})^2</m>)</cell>
+        </row>
+        <row>
+          <cell halign="left">placebo</cell>
+          <cell>0.18</cell>
+          <cell>6</cell>
+          <cell>1.11</cell>
+        </row>
+        <row>
+          <cell halign="left">anxifree</cell>
+          <cell>0.03</cell>
+          <cell>6</cell>
+          <cell>0.16</cell>
+        </row>
+        <row>
+          <cell halign="left">joyzepam</cell>
+          <cell>0.36</cell>
+          <cell>6</cell>
+          <cell>2.18</cell>
+        </row>
+      </tabular>
+    </table>
+    <p>And so now our between group sum of squares is obtained by summing these "weighted squared deviations" over all three groups in the study:</p>
+    <me><![CDATA[\begin{array}{rcl}
+\mbox{SS}_{b} &=& 1.11 + 0.16 + 2.18 \\
+&=& 3.45
+\end{array}]]></me>
+    <p>As you can see, the between group calculations are a lot shorter, so you probably wouldn't usually want to bother using R as your calculator. However, if you <em>did</em> decide to do so, here's one way you could do it:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+gp.means <- tapply(outcome,group,mean)
+grand.mean <- mean(outcome)
+dev.from.grand.mean <- gp.means - grand.mean
+squared.devs <- dev.from.grand.mean ^2
+gp.sizes <- tapply(outcome,group,length)
+wt.squared.devs <- gp.sizes * squared.devs]]></input>
+</program>
+    </remark>
+    <p>Again, I won't actually try to explain this code line by line, but -- just like last time -- there's nothing in there that we haven't seen in several places elsewhere in the book, so I'll leave it as an exercise for you to make sure you understand it. Once again, we can dump all our variables into a data frame so that we can print it out as a nice table:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+Y <- data.frame( gp.means, grand.mean, dev.from.grand.mean, 
+                  squared.devs, gp.sizes, wt.squared.devs )
+print(Y, digits = 2)]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+##          gp.means grand.mean dev.from.grand.mean squared.devs gp.sizes
+## placebo      0.45       0.88               -0.43        0.188        6
+## anxifree     0.72       0.88               -0.17        0.028        6
+## joyzepam     1.48       0.88                0.60        0.360        6
+##          wt.squared.devs
+## placebo             1.13
+## anxifree            0.17
+## joyzepam            2.16
+]]></output>
+    </console>
+    </remark>
+    <p>Clearly, these are basically the same numbers that we got before. There are a few tiny differences, but that's only because the hand-calculated versions have some small errors caused by the fact that I rounded all my numbers to 2 decimal places at each step in the calculations, whereas R only does it at the end (obviously, R s version is more accurate). Anyway, here's the R command showing the final step:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+SSb <- sum( wt.squared.devs )
+print( SSb )]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+## [1] 3.453333
+]]></output>
+    </console>
+    </remark>
+    <p>which is (ignoring the slight differences due to rounding error) the same answer that I got when doing things by hand.</p>
+    <p>Now that we've calculated our sums of squares values, <m><![CDATA[\mbox{SS}_b]]></m> and <m><![CDATA[\mbox{SS}_w]]></m>, the rest of the ANOVA is pretty painless. The next step is to calculate the degrees of freedom. Since we have <m><![CDATA[G = 3]]></m> groups and <m><![CDATA[N = 18]]></m> observations in total, our degrees of freedom can be calculated by simple subtraction:</p>
+    <me><![CDATA[\begin{array}{lclcl}
+\mbox{df}_b &=& G - 1 &=& 2 \\
+\mbox{df}_w &=& N - G &=& 15 
+\end{array}]]></me>
+    <p>Next, since we've now calculated the values for the sums of squares and the degrees of freedom, for both the within-groups variability and the between-groups variability, we can obtain the mean square values by dividing one by the other:</p>
+    <me><![CDATA[\begin{array}{lclclcl}
+\mbox{MS}_b &=& \displaystyle\frac{\mbox{SS}_b }{  \mbox{df}_b } &=& \displaystyle\frac{3.45}{ 2}  &=& 1.73
+\end{array}]]></me>
+    <me><![CDATA[\begin{array}{lclclcl}
+\mbox{MS}_w &=& \displaystyle\frac{\mbox{SS}_w }{  \mbox{df}_w } &=& \displaystyle\frac{1.39}{15} &=& 0.09
+\end{array}]]></me>
+    <p>We're almost done. The mean square values can be used to calculate the <m><![CDATA[F]]></m>-value, which is the test statistic that we're interested in. We do this by dividing the between-groups MS value by the and within-groups MS value.</p>
+    <me><![CDATA[F \ = \ \frac{\mbox{MS}_b }{ \mbox{MS}_w } \ = \ \frac{1.73}{0.09} \ = \ 18.6]]></me>
+    <p>Woohooo! This is terribly exciting, yes? Now that we have our test statistic, the last step is to find out whether the test itself gives us a significant result. As discussed in <xref ref="hypothesistesting"/>, what we really <em>ought</em> to do is choose an <m><![CDATA[\alpha]]></m> level (i.e., acceptable Type I error rate) ahead of time, construct our rejection region, etc etc. But in practice it's just easier to directly calculate the <m><![CDATA[p]]></m>-value. Back in the "old days", what we'd do is open up a statistics textbook or something and flick to the back section which would actually have a huge lookup table... that's how we'd "compute" our <m><![CDATA[p]]></m>-value, because it's too much effort to do it any other way. However, since we have access to R, I'll use the <c>pf()</c> function to do it instead. Now, remember that I explained earlier that the <m><![CDATA[F]]></m>-test is always one sided? And that we only reject the null hypothesis for very large <m><![CDATA[F]]></m>-values? That means we're only interested in the <em>upper tail</em> of the <m><![CDATA[F]]></m>-distribution. The command that you'd use here would be this...</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+pf( 18.6, df1 = 2, df2 = 15, lower.tail = FALSE)]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+## [1] 8.672727e-05
+]]></output>
+    </console>
+    </remark>
+    <p>Therefore, our <m><![CDATA[p]]></m>-value comes to 0.0000867, or <m><![CDATA[8.67 \times 10^{-5}]]></m> in scientific notation. So, unless we're being <em>extremely</em> conservative about our Type I error rate, we're pretty much guaranteed to reject the null hypothesis.</p>
+    <p>At this point, we're basically done. Having completed our calculations, it's traditional to organise all these numbers into an ANOVA table like the one in <xref ref = "tab-anovatable"/>. For our clinical trial data, the ANOVA table would look like this:</p>
+        <table xml:id="table-chanova-37">
+      <tabular halign="center">
+        <row header="yes" bottom="minor">
+          <cell halign="left"></cell>
+          <cell>df</cell>
+          <cell>sum of squares</cell>
+          <cell>mean squares</cell>
+          <cell><m>F</m>-statistic</cell>
+          <cell><m>p</m>-value</cell>
+        </row>
+        <row>
+          <cell halign="left">between groups</cell>
+          <cell>2</cell>
+          <cell>3.45</cell>
+          <cell>1.73</cell>
+          <cell>18.6</cell>
+          <cell><m>8.67 \times 10^{-5}</m></cell>
+        </row>
+        <row>
+          <cell halign="left">within groups</cell>
+          <cell>15</cell>
+          <cell>1.39</cell>
+          <cell>0.09</cell>
+          <cell>-</cell>
+          <cell>-</cell>
+        </row>
+      </tabular>
+    </table>
+    <p>These days, you'll probably never have much reason to want to construct one of these tables yourself, but you <em>will</em> find that almost all statistical software (R included) tends to organise the output of an ANOVA into a table like this, so it's a good idea to get used to reading them. However, although the software will output a full ANOVA table, there's almost never a good reason to include the whole table in your write up. A pretty standard way of reporting this result would be to write something like this:</p>
+    <blockquote>
+      <p>One-way ANOVA showed a significant effect of drug on mood gain (<m><![CDATA[F(2,15) = 18.6, p<.001]]></m>).</p>
+    </blockquote>
+    <p>Sigh. So much work for one short sentence.</p>
+</subsection>

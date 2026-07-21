@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<subsection xml:id="kruskalwallis-logic">
+    <title>The logic behind the Kruskal-Wallis test</title>
+
+    <p>The Kruskal-Wallis test is surprisingly similar to ANOVA, in some ways. In ANOVA, we started with <m><![CDATA[Y_{ik}]]></m>, the value of the outcome variable for the <m><![CDATA[i]]></m>th person in the <m><![CDATA[k]]></m>th group. For the Kruskal-Wallis test, what we'll do is rank order all of these <m><![CDATA[Y_{ik}]]></m> values, and conduct our analysis on the ranked data. So let's let <m><![CDATA[R_{ik}]]></m> refer to the ranking given to the <m><![CDATA[i]]></m>th member of the <m><![CDATA[k]]></m>th group. Now, let's calculate <m><![CDATA[\bar{R}_k]]></m>, the average rank given to observations in the <m><![CDATA[k]]></m>th group:</p>
+    <me><![CDATA[\bar{R}_k = \frac{1}{N_K} \sum_{i} R_{ik}]]></me>
+    <p>and let's also calculate <m><![CDATA[\bar{R}]]></m>, the grand mean rank:</p>
+    <me><![CDATA[\bar{R} = \frac{1}{N} \sum_{i} \sum_{k} R_{ik}]]></me>
+    <p>Now that we've done this, we can calculate the squared deviations from the grand mean rank <m><![CDATA[\bar{R}]]></m>. When we do this for the individual scores -- i.e., if we calculate <m><![CDATA[(R_{ik} - \bar{R})^2]]></m> -- what we have is a "nonparametric" measure of how far the <m><![CDATA[ik]]></m>-th observation deviates from the grand mean rank. When we calculate the squared deviation of the group means from the grand means -- i.e., if we calculate <m><![CDATA[(\bar{R}_k  - \bar{R} )^2]]></m> -- then what we have is a nonparametric measure of how much the <em>group</em> deviates from the grand mean rank. With this in mind, let's follow the same logic that we did with ANOVA, and define our <em>ranked</em> sums of squares measures in much the same way that we did earlier. First, we have our "total ranked sums of squares":</p>
+    <me><![CDATA[\mbox{RSS}_{tot} = \sum_k \sum_i ( R_{ik} - \bar{R} )^2]]></me>
+    <p>and we can define the "between groups ranked sums of squares" like this:</p>
+    <me><![CDATA[\begin{array}{rcl}
+\mbox{RSS}_{b} &=& \sum_k \sum_i ( \bar{R}_k  - \bar{R} )^2 \\
+&=& \sum_k N_k ( \bar{R}_k  - \bar{R} )^2 
+\end{array}]]></me>
+    <p>So, if the null hypothesis is true and there are no true group differences at all, you'd expect the between group rank sums <m><![CDATA[\mbox{RSS}_{b}]]></m> to be very small, much smaller than the total rank sums <m><![CDATA[\mbox{RSS}_{tot}]]></m>. Qualitatively this is very much the same as what we found when we went about constructing the ANOVA <m><![CDATA[F]]></m>-statistic; but for technical reasons the Kruskal-Wallis test statistic, usually denoted <m><![CDATA[K]]></m>, is constructed in a slightly different way:</p>
+    <me><![CDATA[K = (N - 1) \times \frac{\mbox{RSS}_b}{\mbox{RSS}_{tot}}]]></me>
+    <p>and, if the null hypothesis is true, then the sampling distribution of <m><![CDATA[K]]></m> is <em>approximately</em> chi-square with <m><![CDATA[G-1]]></m> degrees of freedom (where <m><![CDATA[G]]></m> is the number of groups). The larger the value of <m><![CDATA[K]]></m>, the less consistent the data are with null hypothesis, so this is a one-sided test: we reject <m><![CDATA[H_0]]></m> when <m><![CDATA[K]]></m> is sufficiently large.</p>
+</subsection>

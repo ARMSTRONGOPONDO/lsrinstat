@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="posthoc" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Multiple comparisons and post hoc tests</title>
+
+    <p>Any time you run an ANOVA with more than two groups, and you end up with a significant effect, the first thing you'll probably want to ask is which groups are actually different from one another. In our drugs example, our null hypothesis was that all three drugs (placebo, Anxifree and Joyzepam) have the exact same effect on mood. But if you think about it, the null hypothesis is actually claiming <em>three</em> different things all at once here. Specifically, it claims that:</p>
+    <ul>
+      <li><p>Your competitor's drug (Anxifree) is no better than a placebo (i.e., <m><![CDATA[\mu_A = \mu_P]]></m>)</p></li>
+      <li><p>Your drug (Joyzepam) is no better than a placebo (i.e., <m><![CDATA[\mu_J = \mu_P]]></m>)</p></li>
+      <li><p>Anxifree and Joyzepam are equally effective (i.e., <m><![CDATA[\mu_J = \mu_A]]></m>)</p></li>
+    </ul>
+    <p>If any one of those three claims is false, then the null hypothesis is also false. So, now that we've rejected our null hypothesis, we're thinking that <em>at least</em> one of those things isn't true. But which ones? All three of these propositions are of interest: you certainly want to know if your new drug Joyzepam is better than a placebo, and it would be nice to know how well it stacks up against an existing commercial alternative (i.e., Anxifree). It would even be useful to check the performance of Anxifree against the placebo: even if Anxifree has already been extensively tested against placebos by other researchers, it can still be very useful to check that your study is producing similar results to earlier work.</p>
+    <p>When we characterise the null hypothesis in terms of these three distinct propositions, it becomes clear that there are eight possible "states of the world" that we need to distinguish between:</p>
+        <table xml:id="table-chanova-36">
+      <tabular halign="center">
+        <row header="yes" bottom="minor">
+          <cell halign="left">possibility:</cell>
+          <cell>is <m>\mu_P = \mu_A</m>?</cell>
+          <cell>is <m>\mu_P = \mu_J</m>?</cell>
+          <cell>is <m>\mu_A = \mu_J</m>?</cell>
+          <cell>which hypothesis?</cell>
+        </row>
+        <row>
+          <cell halign="left">1</cell>
+          <cell><m>\checkmark</m></cell>
+          <cell><m>\checkmark</m></cell>
+          <cell><m>\checkmark</m></cell>
+          <cell>null</cell>
+        </row>
+        <row>
+          <cell halign="left">2</cell>
+          <cell><m>\checkmark</m></cell>
+          <cell><m>\checkmark</m></cell>
+          <cell></cell>
+          <cell>alternative</cell>
+        </row>
+        <row>
+          <cell halign="left">3</cell>
+          <cell><m>\checkmark</m></cell>
+          <cell></cell>
+          <cell><m>\checkmark</m></cell>
+          <cell>alternative</cell>
+        </row>
+        <row>
+          <cell halign="left">4</cell>
+          <cell><m>\checkmark</m></cell>
+          <cell></cell>
+          <cell></cell>
+          <cell>alternative</cell>
+        </row>
+        <row>
+          <cell halign="left">5</cell>
+          <cell></cell>
+          <cell><m>\checkmark</m></cell>
+          <cell><m>\checkmark</m></cell>
+          <cell>alternative</cell>
+        </row>
+        <row>
+          <cell halign="left">6</cell>
+          <cell></cell>
+          <cell><m>\checkmark</m></cell>
+          <cell></cell>
+          <cell>alternative</cell>
+        </row>
+        <row>
+          <cell halign="left">7</cell>
+          <cell></cell>
+          <cell></cell>
+          <cell><m>\checkmark</m></cell>
+          <cell>alternative</cell>
+        </row>
+        <row>
+          <cell halign="left">8</cell>
+          <cell></cell>
+          <cell></cell>
+          <cell></cell>
+          <cell>alternative</cell>
+        </row>
+      </tabular>
+    </table>
+    <p>By rejecting the null hypothesis, we've decided that we <em>don't</em> believe that \#1 is the true state of the world. The next question to ask is, which of the other seven possibilities <em>do</em> we think is right? When faced with this situation, its usually helps to look at the data. For instance, if we look at the plots in <xref ref="fig-moodgain"/>, it's tempting to conclude that Joyzepam is better than the placebo and better than Anxifree, but there's no real difference between Anxifree and the placebo. However, if we want to get a clearer answer about this, it might help to run some tests.</p>
+
+  <xi:include href="./Running-pairwise-T-tests/14.5.1-pairwise-t-tests.ptx"/>
+  <xi:include href="./Corrections-for-multiple-testing/14.5.2-corrections-multiple-testing.ptx"/>
+  <xi:include href="./Bonferroni-corrections/14.5.3-bonferroni.ptx"/>
+  <xi:include href="./Holm-corrections/14.5.4-holm.ptx"/>
+  <xi:include href="./Writing-up-the-post-hoc-test/14.5.5-writing-up.ptx"/>
+</section>

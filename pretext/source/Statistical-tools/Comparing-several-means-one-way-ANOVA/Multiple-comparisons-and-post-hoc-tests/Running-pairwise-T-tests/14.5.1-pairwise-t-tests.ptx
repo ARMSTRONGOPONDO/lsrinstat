@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<subsection xml:id="posthoc-pairwise-t-tests">
+    <title>Running "pairwise" <m>t</m>-tests</title>
+
+    <p>How might we go about solving our problem? Given that we've got three separate pairs of means (placebo versus Anxifree, placebo versus Joyzepam, and Anxifree versus Joyzepam) to compare, what we could do is run three separate <m><![CDATA[t]]></m>-tests and see what happens. There's a couple of ways that we could do this. One method would be to construct new variables corresponding the groups you want to compare (e.g., <c>anxifree</c>, <c>placebo</c> and <c>joyzepam</c>), and then run a <m><![CDATA[t]]></m>-test on these new variables:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+t.test( anxifree, placebo, var.equal = TRUE )   # Student t-test
+
+anxifree <- with(clin.trial, mood.gain[drug == "anxifree"])  # mood change due to anxifree
+placebo <- with(clin.trial, mood.gain[drug == "placebo"])    # mood change due to placebo]]></input>
+</program>
+    </remark>
+    <p>or, you could use the <c>subset</c> argument in the <c>t.test()</c> function to select only those observations corresponding to one of the two groups we're interested in:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+t.test( formula = mood.gain ~ drug, 
+       data = clin.trial, 
+       subset = drug %in% c("placebo","anxifree"), 
+       var.equal = TRUE 
+)]]></input>
+</program>
+    </remark>
+    <p>See <xref ref="datahandling"/> if you've forgotten how the <c>%in%</c> operator works. Regardless of which version we do, R will print out the results of the <m><![CDATA[t]]></m>-test, though I haven't included that output here. If we go on to do this for all possible pairs of variables, we can look to see which (if any) pairs of groups are significantly different to each other. This "lots of <m><![CDATA[t]]></m>-tests idea" isn't a bad strategy, though as we'll see later on there are some problems with it. However, for the moment our bigger problem is that it's a <em>pain</em> to have to type in such a long command over and over again: for instance, if your experiment has 10 groups, then you have to run 45 <m><![CDATA[t]]></m>-tests. That's way too much typing.</p>
+    <p>To help keep the typing to a minimum, R provides a function called <c>pairwise.t.test()</c> that automatically runs all of the <m><![CDATA[t]]></m>-tests for you. There are three arguments that you need to specify, the outcome variable <c>x</c>, the group variable <c>g</c>, and the <c>p.adjust.method</c> argument, which "adjusts" the <m><![CDATA[p]]></m>-value in one way or another. I'll explain <m><![CDATA[p]]></m>-value adjustment in a moment, but for now we can just set <c>p.adjust.method = "none"</c> since we're not doing any adjustments. For our example, here's what we do:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+ pairwise.t.test( x = clin.trial$mood.gain,   # outcome variable
+                  g = clin.trial$drug,        # grouping variable
+                  p.adjust.method = "none"    # which correction to use?
+ )]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  clin.trial$mood.gain and clin.trial$drug 
+## 
+##          placebo anxifree
+## anxifree 0.15021 -       
+## joyzepam 3e-05   0.00056 
+## 
+## P value adjustment method: none
+]]></output>
+    </console>
+    </remark>
+    <p>One thing that bugs me slightly about the <c>pairwise.t.test()</c> function is that you can't just give it an <c>aov</c> object, and have it produce this output. After all, I went to all that trouble earlier of getting R to create the <c>my.anova</c> variable and -- as we saw in <xref ref="aovobjects"/> -- R has actually stored enough information inside it that I should just be able to get it to run all the pairwise tests using <c>my.anova</c> as an input. To that end, I've included a <c>posthocPairwiseT()</c> function in the <c>lsr</c> package that lets you do this. The idea behind this function is that you can just input the <c>aov</c> object itself,<fn>I should point out that there are other functions in R for running multiple comparisons, and at least one of them works this way: the <c>TukeyHSD()</c> function takes an <c>aov</c> object as its input, and outputs Tukey's "honestly significant difference" tests. I talk about Tukey's HSD in <xref ref="anova2"/>.</fn> and then get the pairwise tests as an output. As of the current writing, <c>posthocPairwiseT()</c> is actually just a simple way of calling <c>pairwise.t.test()</c> function, but you should be aware that I intend to make some changes to it later on. Here's an example:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+posthocPairwiseT( x = my.anova, p.adjust.method = "none" )]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  mood.gain and drug 
+## 
+##          placebo anxifree
+## anxifree 0.15021 -       
+## joyzepam 3e-05   0.00056 
+## 
+## P value adjustment method: none
+]]></output>
+    </console>
+    </remark>
+    <p>In later versions, I plan to add more functionality (e.g., adjusted  confidence intervals), but for now I think it's at least kind of useful. To see why, let's suppose you've run your ANOVA and stored the results in <c>my.anova</c>, and you're happy using the Holm correction (the default method in <c>pairwise.t.test()</c>, which I'll explain this in a moment). In that case, all you have to do is type this:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+posthocPairwiseT( my.anova )]]></input>
+</program>
+    <console>
+      <output><![CDATA[
+## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  mood.gain and drug 
+## 
+##          placebo anxifree
+## anxifree 0.1502  -       
+## joyzepam 9.1e-05 0.0011  
+## 
+## P value adjustment method: holm
+]]></output>
+    </console>
+    </remark>
+</subsection>

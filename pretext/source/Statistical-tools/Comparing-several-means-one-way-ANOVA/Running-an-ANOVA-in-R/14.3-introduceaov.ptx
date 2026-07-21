@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<section xml:id="introduceaov" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Running an ANOVA in R</title>
+
+    <p>I'm pretty sure I know what you're thinking after reading the last section, <em>especially</em> if you followed my advice and tried typing all the commands in yourself.... doing the ANOVA calculations yourself <em>sucks</em>. There's quite a lot of calculations that we needed to do along the way, and it would be tedious to have to do this over and over again every time you wanted to do an ANOVA. One possible solution to the problem would be to take all these calculations and turn them into some R functions yourself. You'd still have to do a lot of typing, but at least you'd only have to do it the one time: once you've created the functions, you can reuse them over and over again. However, writing your own functions is a lot of work, so this is kind of a last resort. Besides, it's much better if someone else does all the work for you...</p>
+
+  <xi:include href="./Using-the-aov-function-to-specify-your-ANOVA/14.3.1-aov-function.ptx"/>
+  <xi:include href="./Understanding-what-the-aov-function-produces/14.3.2-aovobjects.ptx"/>
+  <xi:include href="./Running-the-hypothesis-tests-for-the-ANOVA/14.3.3-hypothesis-tests.ptx"/>
+</section>

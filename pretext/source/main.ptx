@@ -90,7 +90,9 @@
       <xi:include href="./ch13-ttest.ptx" />
 
       <!-- Chapter 14: Comparing several means (one-way ANOVA) -->
-      <xi:include href="./ch-anova.ptx" />
+
+
+      <xi:include href="./Statistical-tools/Comparing-several-means-one-way-ANOVA/14.0-anova.ptx" />
 
       <!-- Chapter 15: Linear Regression -->
       <xi:include href="./ch-regression.ptx" />

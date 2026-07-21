@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<subsection xml:id="anovaintro-sums-of-squares">
+    <title>From variances to sums of squares</title>
+
+    <p>Okay, now that we've got a good grasp on how the variance is calculated, let's define something called the <em>total sum of squares</em>, which is denoted SS<m><![CDATA[_{tot}]]></m>. This is very simple: instead of averaging the squared deviations, which is what we do when calculating the variance, we just add them up. So the formula for the total sum of squares is almost identical to the formula for the variance:</p>
+    <me><![CDATA[\mbox{SS}_{tot} = \sum_{k=1}^G \sum_{i=1}^{N_k} \left(Y_{ik} - \bar{Y} \right)^2]]></me>
+    <p>When we talk about analysing variances in the context of ANOVA, what we're really doing is working with the total sums of squares rather than the actual variance. One very nice thing about the total sum of squares is that we can break it up into two different kinds of variation. Firstly, we can talk about the <em>within-group sum of squares</em>, in which we look to see how different each individual person is from their own group mean:</p>
+    <me><![CDATA[\mbox{SS}_w = \sum_{k=1}^G \sum_{i=1}^{N_k} \left( Y_{ik} - \bar{Y}_k \right)^2]]></me>
+    <p>where <m><![CDATA[\bar{Y}_k]]></m> is a group mean. In our example, <m><![CDATA[\bar{Y}_k]]></m> would be the average mood change experienced by those people given  the <m><![CDATA[k]]></m>-th drug. So, instead of comparing individuals to the average of <em>all</em> people in the experiment, we're only comparing them to those people in the the same group. As a consequence, you'd expect the value of <m><![CDATA[\mbox{SS}_w]]></m> to be smaller than the total sum of squares, because it's completely ignoring any group differences -- that is, the fact that the drugs (if they work) will have different effects on people's moods.</p>
+    <p>Next, we can define a third notion of variation which captures <em>only</em> the differences between groups. We do this by looking at the differences between the group means <m><![CDATA[\bar{Y}_k]]></m> and grand mean <m><![CDATA[\bar{Y}]]></m>. In order to quantify the extent of this variation, what we do is calculate the <em>between-group sum of squares</em>:</p>
+    <me><![CDATA[\begin{array}{rcl}
+\mbox{SS}_{b} &=& \sum_{k=1}^G \sum_{i=1}^{N_k} \left( \bar{Y}_k - \bar{Y} \right)^2
+ \\
+&=& \sum_{k=1}^G N_k \left( \bar{Y}_k - \bar{Y} \right)^2
+\end{array}]]></me>
+    <p>It's not too difficult to show that the total variation among people in the experiment <m><![CDATA[\mbox{SS}_{tot}]]></m> is actually the sum of the differences between the groups <m><![CDATA[\mbox{SS}_b]]></m> and the variation inside the groups <m><![CDATA[\mbox{SS}_w]]></m>. That is:</p>
+    <me><![CDATA[\mbox{SS}_w  + \mbox{SS}_{b} = \mbox{SS}_{tot}]]></me>
+    <p>Yay.</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+	width <- 7
+	height <- 4
+	# params
+	mu <- c(-4, -.25, 3.5)
+	sig <- 2
+
+	# data
+	x <- seq(-3,3,.1)
+	x1 <- x*sig + mu[1]
+	x2 <- x*sig + mu[2]
+	x3 <- x*sig + mu[3]
+	y1 <- dnorm( x1, mu[1], sig )
+	y2 <- dnorm( x2, mu[2], sig )
+	y3 <- dnorm( x3, mu[3], sig )
+
+	# set up window
+	plot.new() # create graphics device
+	plot.window(xlim = c(-10,10), ylim = c(0,.25)) # define plot area
+	axis(side = 1, # axis located below
+	     col = "gray20",  # coloured gray
+	     at = c(-10,mu,10), # tick marks located at
+	     labels = c("","group 1","group 2","group 3","")
+	)  
+
+	# plot densities
+	lines(x1,y1, type = "l", col = "gray20")
+	lines(x2,y2, type = "l", col = "gray20")
+	lines(x3,y3, type = "l", col = "gray20")
+
+	# arrows
+	arrows(
+	  mu[1],.15, # from
+	  mu[2],.15, # to
+	  code = 3,  # arrows on both ends
+	  lwd = 2,   # thick line
+	)
+
+	arrows(
+	  mu[2],.125, # from
+	  mu[3],.125, # to
+	  code = 3,  # arrows on both ends
+	  lwd = 2,   # thick line
+	)
+
+	arrows(
+	  mu[1],.1, # from
+	  mu[3],.1, # to
+	  code = 3,  # arrows on both ends
+	  lwd = 2,   # thick line
+	)
+
+	# title 
+	title(main = "Between-group variation\n(i.e., differences among group means)",
+	      font.main = 1)]]></input>
+</program>
+    </remark>
+    <figure xml:id="fig-anovavara">
+      <caption>Graphical illustration of "between groups" variation. The arrows indicate the differences between group means.</caption>
+      <image source="generated/anova1.png"/>
+    </figure>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+width <- 7
+	height <- 4
+
+		# params
+	mu <- c(-4, -.25, 3.5)
+	sig <- 2
+
+	# data
+	x <- seq(-3,3,.1)
+	x1 <- x*sig + mu[1]
+	x2 <- x*sig + mu[2]
+	x3 <- x*sig + mu[3]
+	y1 <- dnorm( x1, mu[1], sig )
+	y2 <- dnorm( x2, mu[2], sig )
+	y3 <- dnorm( x3, mu[3], sig )
+
+	# set up window
+	plot.new() # create graphics device
+	plot.window(xlim = c(-10,10), ylim = c(0,.25)) # define plot area
+	axis(side = 1, # axis located below
+	     col = "gray20",  # coloured gray
+	     at = c(-10,mu,10), # tick marks located at
+	     labels = c("","group 1","group 2","group 3","")
+	)  
+
+	# plot densities
+	lines(x1,y1, type = "l", col = "gray20")
+	lines(x2,y2, type = "l", col = "gray20")
+	lines(x3,y3, type = "l", col = "gray20")
+
+	# arrows
+	x <- 1.5
+	y <- .135
+	for (i in 1:3) {
+	  arrows(
+	    mu[i]-x,y, # from
+	    mu[i]+x,y, # to
+	    code = 3,  # arrows on both ends
+	    lwd = 2,   # thick line
+	  )  }]]></input>
+</program>
+    </remark>
+    <figure xml:id="fig-anovavarb">
+      <caption>Graphical illustration of "within groups" variation. The arrows indicate the spread of observations within each group.</caption>
+      <image source="generated/anova2.png"/>
+    </figure>
+    <p>Okay, so what have we found out? We've discovered that the total variability associated with the outcome variable (<m><![CDATA[\mbox{SS}_{tot}]]></m>) can be mathematically carved up into the sum of "the variation due to the differences in the sample means for the different groups" (<m><![CDATA[\mbox{SS}_{b}]]></m>) plus "all the rest of the variation" (<m><![CDATA[\mbox{SS}_{w}]]></m>). How does that help me find out whether the groups have different population means? Um. Wait. Hold on a second... now that I think about it, this is <em>exactly</em> what we were looking for. If the null hypothesis is true, then you'd expect all the sample means to be pretty similar to each other, right? And that would imply that you'd expect <m><![CDATA[\mbox{SS}_{b}]]></m> to be really small, or at least you'd expect it to be a lot smaller than the "the variation associated with everything else", <m><![CDATA[\mbox{SS}_{w}]]></m>. Hm. I detect a hypothesis test coming on...</p>
+</subsection>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<subsection xml:id="introduceaov-aov-function">
+    <title>Using the <c>aov()</c> function to specify your ANOVA</title>
+
+    <p>To make life easier for you, R provides a function called <c>aov()</c>, which -- obviously -- is an acronym of "Analysis Of Variance".<fn>Actually, it <em>also</em> provides a function called <c>anova()</c>, but that works a bit differently, so let's just ignore it for now.</fn> If you type <c>?aov</c> and have a look at the help documentation, you'll see that there are several arguments to the <c>aov()</c> function, but the only two that we're interested in are <c>formula</c> and <c>data</c>. As we've seen in a few places previously, the <c>formula</c> argument is what you use to specify the outcome variable and the grouping variable, and the <c>data</c> argument is what you use to specify the data frame that stores these variables. In other words, to do the same ANOVA that I laboriously calculated in the previous section, I'd use a command like this:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+aov( formula = mood.gain ~ drug, data = clin.trial )]]></input>
+</program>
+    </remark>
+    <p>Actually, that's not <em>quite</em> the whole story, as you'll see as soon as you look at the output from this command, which I've hidden for the moment in order to avoid confusing you. Before we go into specifics, I should point out that either of these commands will do the same thing:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+aov( clin.trial$mood.gain ~ clin.trial$drug ) 
+aov( mood.gain ~ drug, clin.trial )]]></input>
+</program>
+    </remark>
+    <p>In the first command, I didn't specify a <c>data</c> set, and instead relied on the <c>$</c> operator to tell R how to find the variables. In the second command, I dropped the argument names, which is okay in this case because <c>formula</c> is the first argument to the <c>aov()</c> function, and <c>data</c> is the second one. Regardless of how I specify the ANOVA, I can assign the output of the <c>aov()</c> function to a variable, like this for example:</p>
+    <remark>
+      <title>R Code</title>
+    <program language="r">
+  <input><![CDATA[
+my.anova <- aov( mood.gain ~ drug, clin.trial )]]></input>
+</program>
+    </remark>
+    <p>This is almost always a good thing to do, because there's <em>lots</em> of useful things that we can do with the <c>my.anova</c> variable. So let's assume that it's this last command that I used to specify the ANOVA that I'm trying to run, and as a consequence I have this <c>my.anova</c> variable sitting in my workspace, waiting for me to do something with it...</p>
+</subsection>

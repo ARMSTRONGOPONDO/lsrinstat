@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<subsection xml:id="anovaintro-variance-formulas">
+    <title>Two formulas for the variance of <m><![CDATA[Y]]></m></title>
+
+    <p>Firstly, let's start by introducing some notation. We'll use <m><![CDATA[G]]></m> to refer to the total number of groups. For our data set, there are three drugs, so there are <m><![CDATA[G=3]]></m> groups. Next, we'll use <m><![CDATA[N]]></m> to refer to the total sample size: there are a total of <m><![CDATA[N=18]]></m> people in our data set. Similarly, let's use <m><![CDATA[N_k]]></m> to denote the number of people in the <m><![CDATA[k]]></m>-th group. In our fake clinical trial, the sample size is <m><![CDATA[N_k = 6]]></m> for all three groups.<fn>When all groups have the same number of observations, the experimental design is said to be "balanced". Balance isn't such a big deal for one-way ANOVA, which is the topic of this chapter. It becomes more important when you start doing more complicated ANOVAs.</fn> Finally, we'll use <m><![CDATA[Y]]></m> to denote the outcome variable: in our case, <m><![CDATA[Y]]></m> refers to mood change. Specifically, we'll use <m><![CDATA[Y_{ik}]]></m> to refer to the mood change experienced by the <m><![CDATA[i]]></m>-th member of the <m><![CDATA[k]]></m>-th group. Similarly, we'll use <m><![CDATA[\bar{Y}]]></m> to be the average mood change, taken across all 18 people in the experiment, and <m><![CDATA[\bar{Y}_k]]></m> to refer to the average mood change experienced by the 6 people in group <m><![CDATA[k]]></m>.</p>
+    <p>Excellent. Now that we've got our notation sorted out, we can start writing down formulas. To start with, let's recall the formula for the variance that we used in <xref ref="var"/>, way back in those kinder days when we were just doing descriptive statistics. The sample variance of <m><![CDATA[Y]]></m> is defined as follows:</p>
+    <me><![CDATA[\mbox{Var}(Y) = \frac{1}{N} \sum_{k=1}^G \sum_{i=1}^{N_k} \left(Y_{ik} - \bar{Y} \right)^2]]></me>
+    <p>This formula looks pretty much identical to the formula for the variance in <xref ref="var"/>. The only difference is that this time around I've got two summations here: I'm summing over groups (i.e., values for <m><![CDATA[k]]></m>) and over the people within the groups (i.e., values for <m><![CDATA[i]]></m>). This is purely a cosmetic detail: if I'd instead used the notation <m><![CDATA[Y_p]]></m> to refer to the value of the outcome variable for person <m><![CDATA[p]]></m> in the sample, then I'd only have a single summation. The only reason that we have a double summation here is that I've classified people into groups, and then assigned numbers to people within groups.</p>
+    <p>A concrete example might be useful here. Let's consider this table, in which we have a total of <m><![CDATA[N=5]]></m> people sorted into <m><![CDATA[G=2]]></m> groups. Arbitrarily, let's say that the "cool" people are group 1, and the "uncool" people are group 2, and it turns out that we have three cool people (<m><![CDATA[N_1 = 3]]></m>) and two uncool people (<m><![CDATA[N_2 = 2]]></m>).</p>
+        <table xml:id="table-chanova-44">
+      <tabular halign="center">
+        <row header="yes" bottom="minor">
+          <cell halign="left">name</cell>
+          <cell>person (<m>p</m>)</cell>
+          <cell>group</cell>
+          <cell>group num (<m>k</m>)</cell>
+          <cell>index in group (<m>i</m>)</cell>
+          <cell>grumpiness (<m>Y_{ik}</m> or <m>Y_p</m>)</cell>
+        </row>
+        <row>
+          <cell halign="left">Ann</cell>
+          <cell>1</cell>
+          <cell>cool</cell>
+          <cell>1</cell>
+          <cell>1</cell>
+          <cell>20</cell>
+        </row>
+        <row>
+          <cell halign="left">Ben</cell>
+          <cell>2</cell>
+          <cell>cool</cell>
+          <cell>1</cell>
+          <cell>2</cell>
+          <cell>55</cell>
+        </row>
+        <row>
+          <cell halign="left">Cat</cell>
+          <cell>3</cell>
+          <cell>cool</cell>
+          <cell>1</cell>
+          <cell>3</cell>
+          <cell>21</cell>
+        </row>
+        <row>
+          <cell halign="left">Dan</cell>
+          <cell>4</cell>
+          <cell>uncool</cell>
+          <cell>2</cell>
+          <cell>1</cell>
+          <cell>91</cell>
+        </row>
+        <row>
+          <cell halign="left">Egg</cell>
+          <cell>5</cell>
+          <cell>uncool</cell>
+          <cell>2</cell>
+          <cell>2</cell>
+          <cell>22</cell>
+        </row>
+      </tabular>
+    </table>
+    <p>Notice that I've constructed two different labelling schemes here. We have a "person" variable <m><![CDATA[p]]></m>, so it would be perfectly sensible to refer to <m><![CDATA[Y_p]]></m> as the grumpiness of the <m><![CDATA[p]]></m>-th person in the sample. For instance, the table shows that Dan is the four so we'd say <m><![CDATA[p = 4]]></m>. So, when talking about the grumpiness <m><![CDATA[Y]]></m> of this "Dan" person, whoever he might be, we could refer to his grumpiness by saying that <m><![CDATA[Y_p = 91]]></m>, for person <m><![CDATA[p = 4]]></m> that is.  However, that's not the only way we could refer to Dan. As an alternative we could note that Dan belongs to the "uncool" group (<m><![CDATA[k = 2]]></m>), and is in fact the first person listed in the uncool group (<m><![CDATA[i = 1]]></m>). So it's equally valid to refer to Dan's grumpiness by saying that <m><![CDATA[Y_{ik} = 91]]></m>, where <m><![CDATA[k = 2]]></m> and <m><![CDATA[i = 1]]></m>. In other words, each person <m><![CDATA[p]]></m> corresponds to a unique <m><![CDATA[ik]]></m> combination, and so the formula that I gave above is actually identical to our original formula for the variance, which would be</p>
+    <me><![CDATA[\mbox{Var}(Y) = \frac{1}{N} \sum_{p=1}^N  \left(Y_{p} - \bar{Y} \right)^2]]></me>
+    <p>In both formulas, all we're doing is summing over all of the observations in the sample. Most of the time we would just use the simpler <m><![CDATA[Y_p]]></m> notation: the equation using <m><![CDATA[Y_p]]></m> is clearly the simpler of the two. However, when doing an ANOVA it's important to keep track of which participants belong in which groups, and we need to use the <m><![CDATA[Y_{ik}]]></m> notation to do this.</p>
+</subsection>
